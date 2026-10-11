@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Medicine Master Flowchart</title>
+<script>document.write('<link rel="stylesheet" href="app/styles.css?v=' + Date.now() + '">');</script>
+</head>
+<body>
+<header class="topbar">
+  <a class="brand" href="#/">Medicine Master Flowchart</a>
+  <nav class="topnav">
+    <a href="#/">Master</a>
+    <a href="#/connections">Connections</a>
+    <a href="#/shared">Shared nodes</a>
+    <a href="#/legend">Legend</a>
+    <a href="#/progress">Progress</a>
+  </nav>
+  <div class="tools">
+    <input id="search" type="search" placeholder="Search everything…  ( / )" autocomplete="off">
+    <div class="zoom">
+      <button id="zoomOut" title="Zoom out">−</button>
+      <span id="zoomVal">100%</span>
+      <button id="zoomIn" title="Zoom in">+</button>
+    </div>
+  </div>
+</header>
+<div id="results" class="results" hidden></div>
+<main id="view"></main>
+
+<!-- Engine first, then data. Topic files are loaded by data/manifest.js. -->
+<!-- Cache-busting: each load appends ?v=<time> so edited data files are never served stale. -->
+<script>
+  (function () {
+    var v = Date.now();
+    ["app/expand.js", "app/app.js", "app/player.js", "data/glossary.js", "data/shared-nodes.js", "data/manifest.js"].forEach(function (src) {
+      document.write('<script src="' + src + '?v=' + v + '" data-build="' + v + '"><\/script>');
+    });
+  })();
+</script>
+</body>
+</html>
