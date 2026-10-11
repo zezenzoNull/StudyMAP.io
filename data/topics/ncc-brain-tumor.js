@@ -15,7 +15,7 @@ MF.addTopic({
         ["==Larvae== (semi-cooked pork)", "==Intestinal tapeworm== only (larvae can't cross the gut)"]
       ]}},
       { mnemonic: "Eggs → Everywhere (cysts) · Pork larvae → Paunch (tapeworm)" },
-      "Intermediate host → pig · autoinfection → dirty nails, no hand-washing",
+      { t: "Intermediate host → pig · autoinfection → dirty nails, no hand-washing", add: "In taeniasis the pig is the intermediate host and man the definitive host; in CYSTICERCOSIS the human becomes an accidental, dead-end intermediate host by swallowing eggs (faecal–oral or autoinfection)." },
       { t: "==Leading cause of acquired epilepsy / seizures in India== · leading cause of intracranial calcification", role: "hy", see: "epilepsy" }
     ]},
     { type: "clinical", title: "Types & case", src: "p.615", items: [
@@ -45,7 +45,7 @@ MF.addTopic({
       { mnemonic: "I'm Sure Outside Contact (notes) — major", lines: [["I", "Immunology — EITB antibodies"], ["O", "Cysticercosis Outside CNS"], ["C", "Household Contact with T. solium"]] },
       "Minor → clinical features · living in endemic area",
       "Confirmative imaging → cyst resolves spontaneously / after cysticidal drug",
-      { t: "Diagnosis = ==1 absolute + 2 major==", role: "hy" },
+      { t: "Diagnosis = ==1 absolute + 2 major==", add: "Del Brutto (2001): DEFINITIVE NCC = one absolute criterion alone, OR two major + one minor + one epidemiological criterion. PROBABLE = one major + two minor, or one major + one minor + one epidemiological, or three minor + one epidemiological.", role: "hy" },
       { table: { caption: "Starry sky elsewhere", head: ["Test", "Disease"], rows: [["CT/MRI head", "NCC"], ["Kidney biopsy", "Post-streptococcal GN"], ["USG liver", "Acute viral hepatitis"], ["Lymph-node biopsy", "Burkitt lymphoma"], ["Echo / cardiac MRI", "Restrictive cardiomyopathy (amyloidosis)"]] } }
     ]},
     { type: "diagnosis", title: "Cysticercus granuloma vs tuberculoma", src: "p.618", items: [
@@ -59,7 +59,7 @@ MF.addTopic({
     ]},
     { type: "treatment", title: "NCC treatment flowchart", src: "p.618", steps: [
       { t: "Vasogenic oedema → ==IV dexamethasone==", node: "rx-dexamethasone", role: "first", type: "treatment", why: "NCC oedema (also blunts reaction to dying cysts)" },
-      { t: "After ==48–72 h== of dexamethasone → ==albendazole 8 days== (praziquantel if >1 lesion)", node: "rx-albendazole", role: "first", type: "treatment", why: "NCC cysticidal therapy" },
+      { t: "After ==48–72 h== of dexamethasone → ==albendazole 8 days== (praziquantel if >1 lesion)", add: "Albendazole 15 mg/kg/day (max 1200 mg) for 10–14 days in most guidelines; for >2 viable cysts give albendazole + praziquantel together. Do NOT give cysticidal drugs for calcified-only lesions or cysticercal encephalitis (massive oedema — steroids only), and examine the fundus first: killing an eye cyst can cause blindness.", node: "rx-albendazole", role: "first", type: "treatment", why: "NCC cysticidal therapy" },
       { t: "AEDs → GTCS valproate · focal carbamazepine / lamotrigine → taper up to ==2 years==", node: ["rx-valproate", "rx-antiepileptic"], role: "first", type: "treatment", why: "NCC seizures" },
       { t: "↑↑ ICP → ==VP shunt==", node: "proc-vp-shunt", role: "def", type: "treatment", why: "NCC hydrocephalus" },
       { t: "Hydatid cyst → albendazole for 28 days (don't mix up)", role: "hy", type: "pearl" },
@@ -92,7 +92,7 @@ MF.addTopic({
         ["Metastasis", "Whole-brain radiation (WBRT) / stereotactic radiosurgery"],
         ["Astrocytoma", "==Temozolomide== · procarbazine, lomustine, vincristine"],
         { c: ["Oedema", "Steroids"], node: "rx-steroids", role: "adjunct", why: "Tumour vasogenic oedema", see: "raised-icp" }
-      ]}}
+      ]}, add: "Glioblastoma standard (Stupp protocol): maximal safe resection → radiotherapy 60 Gy with daily temozolomide → 6 cycles of adjuvant temozolomide; MGMT-promoter methylation predicts a better response. Median survival is still only ~15 months. PCV (procarbazine, lomustine, vincristine) is used for oligodendrogliomas." }
     ]},
     { type: "diagnosis", title: "Syndromes & paediatric tumours", src: "p.620", items: [
       { table: { head: ["Syndrome", "Tumour"], rows: [
@@ -103,12 +103,12 @@ MF.addTopic({
         ["NF-1", "Optic glioma"],
         ["NF-2", "Meningioma"],
         ["Tuberous sclerosis", "Subependymal astrocytoma"]
-      ]}},
+      ]}, add: "The Cowden-syndrome lesion is a dysplastic gangliocytoma of the cerebellum (Lhermitte–Duclos disease), caused by PTEN mutation." },
       { table: { caption: "Paediatric", head: ["Question", "Answer"], rows: [
         ["M/c benign · supratentorial", "==Craniopharyngioma=="],
         ["M/c malignant", "==Medulloblastoma== (craniospinal spread)"],
         ["Worst prognosis", "Brainstem glioma"]
-      ]}},
+      ]}, add: "Overall, the commonest childhood brain tumour is pilocytic astrocytoma (usually cerebellar, benign); most childhood brain tumours are infratentorial, while most adult ones are supratentorial." },
       { h: "Craniopharyngioma" },
       "Rathke's pouch · bimodal (children, ~60 y) · suprasellar ==calcified== cyst",
       "Visual deficit · ==central diabetes insipidus== (polyuria, polydipsia) · headache"

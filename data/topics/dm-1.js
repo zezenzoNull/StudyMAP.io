@@ -25,7 +25,7 @@ MF.addTopic({
       { t: "Anti-islet antibodies destroy β-cells", node: "lab-islet-ab", why: "Positive in T1DM" },
       "~**80% destroyed** → insulinopenia (↓ insulin on RIA)",
       { t: "HLA link: ==HLA-DQ1 0301 & 0302== (m/c, as in notes)", verify: "Notes write 'HLADQ1 0301 and 0302'. Standard texts describe HLA-DR3/DR4 with DQ2/DQ8 (DQB1*0302). Confirm the allele naming in Davidson before quoting it." },
-      "++Defective CTLA-4 gene++",
+      { t: "++Defective CTLA-4 gene++", add: "CTLA-4 (cytotoxic T-lymphocyte antigen 4) normally switches T cells off; a faulty gene lets self-reactive T cells survive → autoimmune β-cell destruction (the same gene also predisposes to Graves' and Addison's disease)." },
       "Fulminant DM → virus hits pancreas (++mumps, rubella++)",
       { t: "Part of autoimmune polyendocrine syndrome (type 1 & 2)", node: "con-aps", why: "T1DM is a component" },
       { t: "++Bronze diabetes++ → thalassaemic child on PRBC without chelation", node: "con-iron-overload", why: "Transfusional iron destroys β-cells", sub: ["Skin → bronzing", "Pancreas → β-cell loss (DM1)", "Liver → cirrhosis"] },
@@ -57,7 +57,7 @@ MF.addTopic({
       { h: "Measuring insulin resistance" },
       { t: "==HOMA-IR== = fasting glucose (mmol/L) × fasting insulin (mIU/L) ÷ **22.5**", node: "lab-insulin", role: "dx", why: "HOMA-IR >2 = insulin resistance" },
       "HOMA-IR **>2** → insulin resistance",
-      "Fasting insulin is measured by ++RIA++",
+      { t: "Fasting insulin is measured by ++RIA++", add: "Fasting insulin is mainly a research tool (insulin resistance, insulinoma work-up); it is not used to diagnose or type routine diabetes — C-peptide is preferred because it is not affected by injected insulin." },
       "Other indices: QUICKI · Matsuda ('Mitsuda' in notes)"
     ]},
     { type: "clinical", title: "Clinical features", src: "p.223–224, 228", items: [
@@ -73,7 +73,7 @@ MF.addTopic({
       { h: "Acanthosis nigricans" },
       { t: "Dark velvety skin → back of neck, axilla", node: "con-acanthosis", why: "Skin marker of insulin resistance" },
       "Insulin resistance → T2DM · PCOD · metabolic syndrome",
-      "Internal malignancy sign → Ca pancreas · Ca colon · stomach",
+      { t: "Internal malignancy sign → Ca pancreas · Ca colon · stomach", add: "Malignant acanthosis nigricans = sudden, extensive, often itchy lesions in a thin adult (may involve palms – 'tripe palms' – and mouth); the m/c associated cancer is gastric adenocarcinoma." },
       { h: "Think MODY when…" },
       "DM at **≤30 y**",
       "DM at ≤45 y **without** obesity / insulin resistance",
@@ -92,12 +92,12 @@ MF.addTopic({
         { c: ["Islet Ab (ICA, anti-GAD)", "{N:lab-islet-ab}", "+ in T1DM & LADA", "Autoimmune vs not"], node: "lab-islet-ab", role: "dx", why: "Separates T1DM/LADA from T2DM/MODY" },
         { c: ["Fasting insulin (RIA)", "{N:lab-insulin}", "↑ T2DM · ↓ T1DM/LADA", "Insulin resistance (HOMA-IR)"], node: "lab-insulin", role: "dx", why: "High in T2DM, low in T1DM" },
         { c: ["Genetic testing", "—", "MODY gene", "Confirms MODY"], node: "lab-genetic", role: "confirm", why: "Confirms MODY (m/c MODY 3, HNF-1α, chr 12)" }
-      ]}},
+      ]}, add: "C-peptide is reported in nmol/L (fasting normal ≈0.17–0.66 nmol/L), so read the cut-offs as nmol/L. The LADA consensus also has a grey zone: 0.3–0.7 nmol/L → treat like T2DM but avoid sulfonylureas, recheck C-peptide every 6 months and add insulin early." },
       "† = standard reference range, not printed in the notes",
       { h: "HbA1c — must-know" },
       "eAG = **28.7 × HbA1c − 46.7** (or HbA1c × 21 — not routine)",
       "Retrospective → **not affected by the last meal**",
-      { t: "==Useless in bronze diabetes== (transfused RBCs → ↓ HbA)", node: "lab-hba1c", role: "ci", why: "Transfused RBCs make HbA1c unreliable" },
+      { t: "==Useless in bronze diabetes== (transfused RBCs → ↓ HbA)", add: "HbA1c is also unreliable whenever red-cell lifespan changes: haemolysis, recent bleeding or transfusion, haemoglobinopathies, iron-deficiency anaemia (falsely high), pregnancy and advanced CKD → use fructosamine or CGM instead.", node: "lab-hba1c", role: "ci", why: "Transfused RBCs make HbA1c unreliable" },
       { mnemonic: "A1c = Ages · F = Fortnights", t: "HbA1c → 8–12 weeks; Fructosamine → 2–3 weeks" }
     ]},
     { type: "diagnosis", title: "Diagnosis (ADA 2023) & typing", src: "p.224–225, 229", wide: true, items: [

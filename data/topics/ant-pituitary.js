@@ -44,15 +44,15 @@ MF.addTopic({
         { c: ["Prolactin", "↑ in mixed adenoma", "{N:lab-prolactin}", "Co-secretion"], node: "lab-prolactin", role: "dx", why: "Mixed GH-prolactin adenoma" },
         { c: ["MRI head", "Adenoma (macro >10 mm → field defect)", "—", "Localise"], node: "img-mri-brain", role: "dx", why: "Localise GH-secreting adenoma" },
         { c: ["X-ray foot", "Heel pad **>25 mm**", "—", "Soft tissue"], node: "img-xray", role: "dx", why: "Heel-pad thickness" }
-      ]}},
+      ]}, add: "Normal response: GH falls below 1 µg/L (below 0.4 µg/L with sensitive assays) within 2 h of 75 g glucose; in acromegaly it stays high or even rises paradoxically." },
       { mnemonic: "IGF Identifies · OGTT Obligates", t: "IGF-1 screens, OGTT confirms" }
     ]},
     { type: "treatment", title: "Acromegaly treatment flowchart", src: "p.294", steps: [
-      { t: "==1st line: somatostatin receptor ligand== → lanreotide (SST2) · pasireotide (SST5) — shrinks tumour pre-op", node: "rx-ssa", role: "first", type: "treatment", why: "Acromegaly first line (pre-operative shrinkage)" },
+      { t: "==1st line: somatostatin receptor ligand== → lanreotide (SST2) · pasireotide (SST5) — shrinks tumour pre-op", add: "Most guidelines make trans-sphenoidal surgery the first-line treatment (cures most microadenomas); somatostatin ligands come first when surgery is not possible or to shrink a large tumour. Octreotide is the other SST2 ligand; pasireotide (SST5 > SST2) is for octreotide failures — hyperglycaemia is its main side effect. Cabergoline can be added for mild disease.", node: "rx-ssa", role: "first", type: "treatment", why: "Acromegaly first line (pre-operative shrinkage)" },
       { t: "==Trans-sphenoidal surgery==", node: "proc-tss", role: "def", type: "treatment", why: "Acromegaly definitive surgery" },
       { decision: "Recurrence or poor SRL response?", branches: [
         { label: "Yes", steps: [{ t: "==Pegvisomant== — blocks GH receptors", node: "rx-pegvisomant", role: "second", type: "treatment", why: "Recurrent / SRL-resistant acromegaly" }] },
-        { label: "No", steps: [{ t: "Follow up IGF-1", node: "lab-igf1", role: "monitor", type: "followup", why: "Acromegaly follow-up" }] }
+        { label: "No", steps: [{ t: "Follow up IGF-1", add: "Control = age- and sex-matched normal IGF-1 and GH <1 µg/L. Also screen the complications: colonoscopy (polyps), echocardiography, sleep study for OSA, glucose and BP.", node: "lab-igf1", role: "monitor", type: "followup", why: "Acromegaly follow-up" }] }
       ]}
     ]},
     { type: "etiology", title: "Sheehan & Simmonds", src: "p.294–295", items: [
@@ -74,7 +74,7 @@ MF.addTopic({
       { t: "MRI head → damaged pituitary · prolactin ↓", node: ["img-mri-brain", "lab-prolactin"], role: "dx", why: "Sheehan: damaged gland, low prolactin" }
     ]},
     { type: "treatment", title: "Sheehan — hormone replacement", src: "p.295", steps: [
-      { t: "==1st: dexamethasone== (replace cortisol)", node: "rx-dexamethasone", role: "first", type: "treatment", why: "Sheehan: cortisol replacement first" },
+      { t: "==1st: dexamethasone== (replace cortisol)", add: "Standard texts use hydrocortisone (15–25 mg/day in 2–3 doses) or prednisolone; whichever is used, the glucocorticoid always comes before thyroxine. Sick-day rules apply (double the dose in illness).", node: "rx-dexamethasone", role: "first", type: "treatment", why: "Sheehan: cortisol replacement first" },
       { t: "Levothyroxine for ↓ TSH, T4, T3", node: "rx-levothyroxine", role: "first", type: "treatment", why: "Secondary hypothyroidism" },
       { t: "Combined OCP → oestrogen (prevents osteoporosis) + progesterone (withdrawal bleed) · men → testosterone", node: "rx-hrt", role: "first", type: "treatment", why: "Gonadotrophin deficiency" },
       { t: "==Fludrocortisone NOT needed== (aldosterone is RAAS-driven, not ACTH)", node: "rx-fludrocortisone", role: "ci", type: "pearl", why: "Pituitary failure spares aldosterone" },
@@ -86,7 +86,7 @@ MF.addTopic({
       { table: { head: ["Test", "Note"], rows: [
         { c: ["==Insulin challenge test==", "No GH rise despite low sugar · ==risky (hypoglycaemia)=="], node: "bed-gh-stim", role: "dx", why: "GH deficiency: provocation test" },
         { c: ["==Arginine challenge test==", "==Safer== → confirmatory"], node: "bed-gh-stim", role: "confirm", why: "GH deficiency confirmation (safer)", hl: true }
-      ]}},
+      ]}, add: "The insulin tolerance test is the gold standard for GH and ACTH reserve, but it is contraindicated in epilepsy, ischaemic heart disease and the elderly; GHRH-arginine or glucagon stimulation tests are the safer alternatives." },
       { t: "Treat → ==recombinant GH injection till puberty==", node: "rx-gh", role: "first", why: "GH deficiency" }
     ]},
     { type: "investigation", title: "Confirmatory tests — all endocrine diseases", src: "p.296", wide: true, items: [
@@ -99,18 +99,18 @@ MF.addTopic({
         { c: ["Hypopituitarism (GH)", "Arginine challenge"], node: "bed-gh-stim", role: "confirm", why: "GH deficiency confirmation" },
         { c: ["Cushing disease", "Midnight salivary cortisol / low-dose DST"], node: ["lab-salivary-cortisol", "bed-ldst"], role: "confirm", why: "Cushing confirmation", see: "cushing" },
         { c: ["Phaeochromocytoma", "Plasma free metanephrines"], node: "lab-metanephrines", role: "confirm", why: "Phaeo confirmation" }
-      ]}},
+      ]}, add: "Water deprivation is followed by desmopressin: urine osmolality rising >50% → cranial DI; little change → nephrogenic DI. SIADH is diagnosed clinically — euvolaemic hypotonic hyponatraemia, urine osmolality >100 mOsm/kg, urine Na >30 mmol/L, with normal thyroid, adrenal and kidney function (water-load test is rarely used)." },
       { mnemonic: "Excess → try to SUPPRESS · Deficiency → try to STIMULATE", t: "the logic behind every confirmatory test" }
     ]},
     { type: "diagnosis", title: "Prolactinoma", src: "p.296", items: [
       { t: "M/c ==functioning== pituitary tumour → prolactinoma", role: "hy" },
       "M/c pituitary tumour overall → non-functioning adenoma",
-      { chain: ["Prolactin ↑", "Dopamine-like brake on LH/FSH", "Anovulation"] },
+      { chain: ["Prolactin ↑", "Dopamine-like brake on LH/FSH", "Anovulation"], add: "Mechanism: high prolactin suppresses hypothalamic GnRH pulses (via kisspeptin neurones) → low LH / FSH → anovulation, low oestrogen (osteoporosis) or low testosterone and ↓ libido in men." },
       "Features → anovulation · 2° amenorrhoea / infertility · visual deficits · headache",
       { table: { head: ["Test", "Finding", "Normal"], rows: [
         { c: ["Serum prolactin", "==>200 µg/L suggestive==", "{N:lab-prolactin}"], node: "lab-prolactin", role: "dx", why: "Prolactinoma: >200 µg/L", hl: true },
         { c: ["MRI head", "Pituitary adenoma", "—"], node: "img-mri-brain", role: "dx", why: "Localises prolactinoma" }
-      ]}}
+      ]}, add: "Prolactin 25–200 µg/L has many causes: drugs (antipsychotics, metoclopramide), primary hypothyroidism, CKD, pregnancy, and stalk compression by a non-functioning adenoma ('stalk effect'). Dopamine agonists are first line even for macroprolactinomas with visual loss (they shrink them); surgery only if intolerant or resistant." }
     ]},
     { type: "treatment", title: "Prolactinoma treatment", src: "p.296", steps: [
       { decision: "Wants pregnancy?", branches: [

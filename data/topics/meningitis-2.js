@@ -14,7 +14,7 @@ MF.addTopic({
         ["==Kernig==", "Extend the knee (hip flexed)", "Hamstring spasm / pain (pus irritates nerve roots)"],
         ["==Brudzinski==", "Passively flex the neck", "Hips + knees flex"]
       ]}},
-      { mnemonic: "Kernig = Knee · Brudzinski = Bend the neck" }
+      { mnemonic: "Kernig = Knee · Brudzinski = Bend the neck", add: "Both signs are specific but insensitive (positive in only a minority of adults with meningitis), so their absence does not exclude it; jolt accentuation of headache is more sensitive." }
     ]},
     { type: "investigation", title: "Image before LP?", src: "p.542", items: [
       { t: "Always → ==blood culture== first", node: "lab-blood-culture", role: "init", why: "Bacterial meningitis work-up" },
@@ -26,7 +26,7 @@ MF.addTopic({
       { decision: "Immunocompromised · CNS disease · new seizure · papilloedema · ↓ consciousness · focal deficit · LP delayed?", branches: [
         { label: "No", steps: [
           { t: "Blood cultures + ==LP STAT==", node: ["lab-blood-culture", "proc-lp"], role: "init", type: "investigation", why: "Uncomplicated suspected meningitis" },
-          { t: "==Dexamethasone + empirical antibiotics==", node: ["rx-dexamethasone", "rx-ceftriaxone"], role: "first", type: "emergency", why: "Bacterial meningitis initial therapy" },
+          { t: "==Dexamethasone + empirical antibiotics==", add: "Dexamethasone 0.15 mg/kg (adult 10 mg) IV 6-hourly × 4 days, first dose 10–20 min before or with the first antibiotic; continue only if pneumococcus (or Hib) is found.", node: ["rx-dexamethasone", "rx-ceftriaxone"], role: "first", type: "emergency", why: "Bacterial meningitis initial therapy" },
           { t: "CSF consistent with bacterial meningitis → +ve Gram stain", node: "lab-csf", role: "confirm", type: "investigation", why: "Confirmation" }
         ]},
         { label: "Yes", steps: [
@@ -75,7 +75,7 @@ MF.addTopic({
       ]}},
       { mnemonic: "Bacteria eat sugar · TB eats sugar + makes cobwebs · Virus leaves sugar alone", t: "sugar is the key discriminator" },
       "CNS leukaemia → malignant cells in sediment",
-      "Fungal → lymphocytes + eosinophils · ↓ sugar · ↑ protein → special studies",
+      { t: "Fungal → lymphocytes + eosinophils · ↓ sugar · ↑ protein → special studies", add: "Extra discriminators: CSF lactate >3.5 mmol/L and a raised serum procalcitonin favour bacterial meningitis. Partly treated bacterial meningitis can look 'viral' (lymphocytes, near-normal sugar) — the history of prior antibiotics is the clue." },
       { t: "GBS CSF", see: "gbs" }
     ]},
     { type: "clinical", title: "Normal pressure hydrocephalus", src: "p.545", items: [
@@ -94,7 +94,7 @@ MF.addTopic({
       { t: "Pulmonary TB", see: "tb" }
     ]},
     { type: "treatment", title: "TB meningitis treatment", src: "p.546", steps: [
-      { t: "==ATT== → **12 months** children · **6 months** adults", node: "rx-att", role: "first", type: "treatment", why: "TB meningitis" },
+      { t: "==ATT== → **12 months** children · **6 months** adults", add: "WHO / NICE usually treat TB meningitis for 12 months in adults too (2 months HRZE + 10 months HR). WHO 2022 also allows a shorter, intensive 6-month regimen (HRZ + ethionamide) for children.", node: "rx-att", role: "first", type: "treatment", why: "TB meningitis" },
       { t: "==Dexamethasone 6 weeks==, tapering → ↓ vasogenic oedema", node: "rx-dexamethasone", role: "adjunct", type: "treatment", why: "TBM vasogenic oedema" },
       { t: "Hydrocephalus → ==VP shunt==", node: "proc-vp-shunt", role: "def", type: "treatment", why: "TBM hydrocephalus" },
       { t: "Steroids for vasogenic oedema → TBM · NCC · brain tumour", node: "rx-steroids", role: "hy", type: "pearl", why: "Steroid-responsive cerebral oedema", see: "raised-icp" }

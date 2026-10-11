@@ -49,7 +49,7 @@ MF.addTopic({
         ["Edrophonium (Tensilon)", "2 mg → ptosis resolves (onset >30 s) · false + in ALS · only when electrodiagnosis is negative", "Rarely"],
         { c: ["CT chest", "Thymus pathology", "Thymoma / hyperplasia"], node: "img-ct-chest", role: "dx", why: "Look for thymoma" },
         { c: ["MRI brain", "Ocular MG — exclude other causes", "Exclusion"], node: "img-mri-brain", role: "dx", why: "Ocular MG mimics" }
-      ]}},
+      ]}, add: "Edrophonium acts within about 30 seconds and lasts ~5 minutes (test dose 2 mg, then up to 8 mg); keep IV atropine ready because it can cause bradycardia. It is now rarely used — ice-pack test, antibodies and electrodiagnosis have replaced it." },
       { h: "Autoimmune & pre-treatment panel" },
       { t: "Thyroid → anti-TPO (Hashimoto), TRAb (Graves) + TFT", node: ["lab-thyroid-ab", "lab-trab", "lab-tft"], role: "dx", why: "Associated autoimmune thyroid disease", see: "thyroid" },
       "RA → anti-CCP · SLE → ANA",
@@ -64,23 +64,23 @@ MF.addTopic({
     { type: "treatment", title: "MG treatment flowchart", src: "p.559–560", steps: [
       { decision: "Type?", branches: [
         { label: "Generalised MG", steps: [
-          { t: "==DOC: pyridostigmine + steroids==", node: ["rx-pyridostigmine", "rx-steroids"], role: "first", type: "treatment", why: "Generalised MG DOC" },
+          { t: "==DOC: pyridostigmine + steroids==", add: "Start prednisolone low and increase slowly: high doses can transiently WORSEN MG in the first 1–2 weeks. Azathioprine or mycophenolate are the usual long-term steroid-sparing drugs; rituximab works best in anti-MuSK MG.", node: ["rx-pyridostigmine", "rx-steroids"], role: "first", type: "treatment", why: "Generalised MG DOC" },
           { t: "Cushingoid on steroids → switch to ==mycophenolate==", node: "rx-immunosuppressant", role: "second", type: "treatment", why: "Steroid-sparing" },
-          { t: "Fit (FVC >15 mL/kg) → ==thymectomy = TOC== → remission, steroid dose ↓", role: "def", type: "treatment" },
+          { t: "Fit (FVC >15 mL/kg) → ==thymectomy = TOC== → remission, steroid dose ↓", add: "Thymectomy is indicated for every thymoma and for generalised AChR-antibody-positive MG in roughly 18–65-year-olds (MGTX trial); benefit appears gradually over months to years. Do it when stable, not during a crisis.", role: "def", type: "treatment" },
           { t: "Persisting → long-term steroids / mycophenolate", node: "rx-immunosuppressant", role: "second", type: "treatment", why: "Refractory MG" }
         ]},
         { label: "Ocular MG (symptoms 3 y, clinical)", steps: [
-          { t: "MRI brain to exclude secondary causes · ==no thymectomy==", node: "img-mri-brain", role: "dx", type: "imaging", why: "Ocular MG" },
-          { t: "DOC ==pyridostigmine== (may worsen)", node: "rx-pyridostigmine", role: "first", type: "treatment", why: "Ocular MG DOC" },
+          { t: "MRI brain to exclude secondary causes · ==no thymectomy==", add: "The branch label '3 y' means: if weakness stays purely ocular for 2–3 years, it is unlikely to become generalised (most generalisation happens within the first 2 years).", node: "img-mri-brain", role: "dx", type: "imaging", why: "Ocular MG" },
+          { t: "DOC ==pyridostigmine== (may worsen)", add: "Pyridostigmine 30–60 mg 4–6-hourly. Too much causes cholinergic weakness (excess ACh desensitises the receptors), which is why the dose must not be pushed; anti-MuSK patients often respond poorly or get worse.", node: "rx-pyridostigmine", role: "first", type: "treatment", why: "Ocular MG DOC" },
           { t: "Persisting → glucocorticoids · mycophenolate · rituximab · eculizumab", node: ["rx-steroids", "rx-immunosuppressant"], role: "second", type: "treatment", why: "Ocular MG immunotherapy" }
         ]}
       ]},
       { t: "FVC printed as '>15 mm/kg'", verify: "Unit typo in the notes — FVC is in mL/kg." }
     ]},
     { type: "emergency", title: "Myasthenic crisis", src: "p.560", steps: [
-      { t: "Trigger → intercurrent infection (COVID-19, UTI, sepsis)", type: "clinical" },
+      { t: "Trigger → intercurrent infection (COVID-19, UTI, sepsis)", add: "Drug triggers to avoid or stop: aminoglycosides, fluoroquinolones, macrolides, IV magnesium, β-blockers, neuromuscular blockers, chloroquine / hydroxychloroquine, penicillamine and immune-checkpoint inhibitors; also surgery and pregnancy.", type: "clinical" },
       { t: "==Diaphragm paralysis== → ventilatory support · ==type 2 respiratory failure==", node: "con-type2-resp-failure", role: "danger", type: "emergency", why: "Myasthenic crisis = hypercapnic failure", see: "resp-failure" },
-      { t: "==DOC: IVIG==", node: "rx-ivig", role: "emerg", type: "emergency", why: "Myasthenic crisis DOC" },
+      { t: "==DOC: IVIG==", add: "IVIG 2 g/kg over 2–5 days (or 5 plasma exchanges — faster onset). Monitor FVC: intubate if FVC <15–20 mL/kg or negative inspiratory force weaker than −20 cmH₂O. Pyridostigmine is usually paused while ventilated (it increases secretions).", node: "rx-ivig", role: "emerg", type: "emergency", why: "Myasthenic crisis DOC" },
       { t: "Or ==plasmapheresis==", node: "proc-plasmapheresis", role: "emerg", type: "emergency", why: "Myasthenic crisis alternative" },
       { mnemonic: "IVIG for G-K-M", t: "GBS · Kawasaki · Myasthenic crisis (notes)" }
     ]},
@@ -92,7 +92,7 @@ MF.addTopic({
         ["Features", "Fatigable ptosis, diplopia, normal DTR", "Proximal weakness · ptosis · diplopia · ==↓ DTR · dry mouth · impotence==", "Floppy"],
         { c: ["RNS", "==Decremental==", "==Incremental== (high frequency)", "Incremental (high frequency)"], node: "bed-rns", role: "dx", why: "Electrodiagnostic separation", hl: true },
         { c: ["DOC", "Pyridostigmine + steroids", "==3,4-diaminopyridine== (blocks K⁺ channels → ↑ ACh) · plasmapheresis · pyridostigmine", "—"], node: ["rx-pyridostigmine", "proc-plasmapheresis"], role: "first", why: "Disease-specific DOC" }
-      ]}},
+      ]}, add: "Only about half of LEMS is paraneoplastic (small-cell lung cancer) → screen with CT / PET for 2 years. Bedside hallmark: post-exercise facilitation — strength and reflexes briefly improve after 10 s of maximal effort. Botulism: DESCENDING symmetric paralysis starting in the cranial nerves, with fixed dilated pupils; treat with antitoxin (adults) or human botulism immune globulin (infants) and support breathing." },
       { mnemonic: "MG Melts with use (decrement) · LEMS Livens with use (increment)" }
     ]},
     { type: "mcq", title: "MCQ in the notes", src: "p.562", items: [

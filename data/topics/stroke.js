@@ -21,7 +21,7 @@ MF.addTopic({
         ["Vertebral (> PICA)", "==Lateral medullary syndrome=="],
         ["Anterior spinal", "==Medial medullary syndrome=="],
         ["Lenticulostriate branches", "Lacunar (internal capsule)"]
-      ]}},
+      ]}, add: "What each stroke looks like — ACA: contralateral LEG > arm weakness and sensory loss, urinary incontinence, abulia. MCA: contralateral face + ARM > leg weakness and sensory loss, homonymous hemianopia, eyes deviate TOWARDS the lesion, aphasia (dominant) or neglect (non-dominant). PCA: contralateral homonymous hemianopia with macular sparing ± memory loss." },
       { t: "MCA is ==not part of the circle of Willis==", role: "hy" },
       { t: "M/c berry aneurysm site → ==anterior communicating artery==; m/c nerve hit → ==oculomotor== (next to PCom)", node: "con-cn3-palsy", role: "hy", why: "PCom aneurysm compresses CN III", see: "sah" }
     ]},
@@ -57,7 +57,7 @@ MF.addTopic({
         ["'Want coffee… no spoon… hot' (telegraphic, understands)", "Broca area"],
         ["==Pure word deafness== — can't understand speech", "Superior temporal gyrus"],
         ["==Pure word blindness== — can't read but CAN write", "Left occipital lobe"]
-      ]}}
+      ]}, add: "Two more to know: GLOBAL aphasia (whole left MCA territory) → comprehension, fluency and repetition all lost. TRANSCORTICAL motor / sensory aphasia (watershed infarcts) → like Broca / Wernicke respectively, but REPETITION IS PRESERVED." }
     ]},
     { type: "clinical", title: "Frontal & occipital lobes", src: "p.499–500", items: [
       { h: "Frontal (ACA) — FRNTAL (notes)" },
@@ -75,7 +75,7 @@ MF.addTopic({
       "Superior colliculus → vertical gaze",
       "Trochlear → only CN with ==dorsal exit== and decussation",
       "Edinger–Westphal → parasympathetic part of CN III",
-      "Red nucleus → links to basal ganglia · substantia nigra → vascular parkinsonism",
+      { t: "Red nucleus → links to basal ganglia · substantia nigra → vascular parkinsonism", add: "Clearer version: the red nucleus relays cerebellar output (via the superior cerebellar peduncle) to the thalamus and spinal cord → a lesion gives contralateral tremor and ataxia (Holmes / rubral tremor). The substantia nigra sends dopamine to the striatum → a lesion gives contralateral parkinsonism." },
       "Crus cerebri → corticospinal + corticobulbar fibres",
       { table: { head: ["Syndrome", "Hit", "Ipsilateral", "Contralateral"], rows: [
         { c: ["==Weber==", "CN III + crus (corticospinal + corticobulbar)", "Ptosis · mydriasis · eye down & out", "==Face + arm + leg weakness=="], node: "con-cn3-palsy", role: "dx", why: "Weber: CN III palsy + contralateral hemiplegia", hl: true },
@@ -113,7 +113,7 @@ MF.addTopic({
       "Inferior olivary nucleus → relays spinal info to cerebellum (motor learning)"
     ]},
     { type: "clinical", title: "Lacunar stroke", src: "p.504", items: [
-      "Small-vessel stroke → penetrating ==lenticulostriate== branches",
+      { t: "Small-vessel stroke → penetrating ==lenticulostriate== branches", add: "The 5 classic lacunar syndromes: pure motor (posterior limb of internal capsule / pons), pure sensory (thalamus — VPL nucleus), sensorimotor (thalamus + capsule), ataxic hemiparesis (pons / internal capsule) and dysarthria–clumsy hand (basis pontis). Risk factors: hypertension and diabetes." },
       { chain: ["Lipohyalinosis", "Posterior limb of internal capsule", "C/L face + arm + leg weakness", "==Pure motor stroke=="] },
       { t: "No cortical signs (no aphasia, no neglect, no field cut)", role: "hy" }
     ]},

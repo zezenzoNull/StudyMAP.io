@@ -21,8 +21,8 @@ MF.addTopic({
         ["M/c overall", "==GBA== (lysosomal glucocerebrosidase)"],
         ["Juvenile (<20 y)", "==PARKIN=="],
         ["Sporadic", "==LRRK2=="]
-      ]}},
-      "Contact-sport athletes → ↑ neurological disorders",
+      ]}, add: "Clearer version: LRRK2 mutations are the commonest cause of autosomal-dominant familial PD (and occur in some 'sporadic' cases); GBA mutations are the commonest genetic RISK factor overall; PARKIN (autosomal recessive) causes early-onset PD; SNCA (α-synuclein) is the classic dominant gene." },
+      { t: "Contact-sport athletes → ↑ neurological disorders", add: "Repeated head impacts (boxing, American football, rugby) → chronic traumatic encephalopathy, a tauopathy with parkinsonism, dementia and mood / behaviour change (old name 'dementia pugilistica', 'punch-drunk')." },
       { t: "Dopamine excess disorder → ==Huntington chorea==", role: "hy" }
     ]},
     { type: "patho", title: "Basal ganglia & Braak staging", src: "p.549–550", items: [
@@ -69,7 +69,7 @@ MF.addTopic({
         ["**F** — Frontotemporal dementia (antisocial)", "**V** — Vascular"],
         ["", "**I** — Infection (encephalitis)"],
         ["", "**T** — Toxins: Mn, CS₂, CO, MPTP (crack cocaine), methanol"]
-      ]}},
+      ]}, add: "MPTP was a contaminant of illicit synthetic HEROIN (made while producing the opioid MPPP), not crack cocaine; its metabolite MPP⁺ kills nigral dopamine neurones and was used to model PD." },
       { t: "NPH", see: "meningitis-2" },
       { h: "Spot atypical PD in an MCQ" },
       { mnemonic: "No tremor, No asymmetry, No L-dopa response, Early falls, Fast course", t: "all atypical PD (PSP, CBS, MSA, FTD) lack resting tremor" }
@@ -83,7 +83,7 @@ MF.addTopic({
         { c: ["==Wilson==", "AR · ==ATP7B== · copper not excreted in bile · lenticular nucleus", "==Face of the giant panda== (midbrain)"], node: "img-mri-brain", role: "dx", why: "Wilson MRI sign" },
         { c: ["==NBIA (Hallervorden–Spatz)==", "Iron in globus pallidus", "==Eye of the tiger=="], node: "img-mri-brain", role: "dx", why: "NBIA MRI sign" },
         { c: ["==Huntington==", "AD · ==chr 4, huntingtin== · ↑ dopamine / ↓ GABA · chorea + dementia · anticipation", "==Caudate atrophy== → big lateral ventricles · ↑ frontal horn : intercaudate ratio"], node: "img-mri-brain", role: "dx", why: "Huntington MRI sign" }
-      ]}},
+      ]}, add: "Wilson clues: age <40, liver disease + movement disorder or psychiatric change, Kayser–Fleischer rings (slit lamp), low ceruloplasmin, high 24-h urinary copper. Treat with penicillamine or trientine (chelators) + zinc (blocks gut uptake); liver transplant for fulminant failure." },
       { mnemonic: "Bun-Bird-Tiger-Panda", t: "MSA-c · PSP · NBIA · Wilson" },
       "Tauopathies → Alzheimer · corticobasal · PSP"
     ]},
@@ -91,11 +91,11 @@ MF.addTopic({
       { t: "M/c cause of ==secondary== parkinsonism", role: "hy" },
       { mnemonic: "Help My Two Cats Find A Lion", lines: [["H", "Haloperidol / chlorpromazine"], ["M", "Metoclopramide"], ["T", "Tetrabenazine (dopamine depleter)"], ["C", "Cinnarizine (anti-vertigo)"], ["F", "Flunarizine"], ["A", "Amiodarone"], ["L", "Lithium"]] },
       { chain: ["Antipsychotic", "Dopamine ↓, ACh ↑", "Parkinsonism"] },
-      { t: "Treat → ==benzhexol (trihexyphenidyl)==", node: "rx-anticholinergic", role: "first", why: "Drug-induced parkinsonism" }
+      { t: "Treat → ==benzhexol (trihexyphenidyl)==", add: "First step is to stop or reduce the offending drug, or switch to an antipsychotic with little D2 blockade (quetiapine, clozapine); recovery can take weeks to months. Levodopa does little because the receptors are blocked.", node: "rx-anticholinergic", role: "first", why: "Drug-induced parkinsonism" }
     ]},
     { type: "treatment", title: "PD treatment flowchart", src: "p.554–555", steps: [
-      { t: "==Levodopa + carbidopa (controlled release)== — carbidopa blocks peripheral decarboxylase", node: "rx-levodopa", role: "first", type: "treatment", why: "PD mainstay" },
-      { t: "S/E → nausea, vomiting, orthostatic hypotension · ==punding== · hypersexuality · impulse control (shopping, gambling) · levodopa craving", type: "complication" },
+      { t: "==Levodopa + carbidopa (controlled release)== — carbidopa blocks peripheral decarboxylase", add: "Levodopa is the most effective drug and is fine at any age. In younger patients with mild symptoms an MAO-B inhibitor or dopamine agonist may be started first to delay dyskinesia. Take levodopa away from protein-rich meals (amino acids compete for absorption).", node: "rx-levodopa", role: "first", type: "treatment", why: "PD mainstay" },
+      { t: "S/E → nausea, vomiting, orthostatic hypotension · ==punding== · hypersexuality · impulse control (shopping, gambling) · levodopa craving", add: "Hallucinations / PD psychosis: reduce adjuncts first (anticholinergics, amantadine, agonists), then quetiapine, clozapine or pimavanserin — never haloperidol or other typical antipsychotics. Nausea: domperidone (does not cross the BBB), not metoclopramide.", type: "complication" },
       { decision: "Levodopa problem?", branches: [
         { label: "On–off", steps: [{ t: "SC ==apomorphine== · inhaled levodopa · jejunal gel", node: "rx-pd-adjunct", role: "rescue", type: "treatment", why: "On-demand 'off' time" }] },
         { label: "Wearing off", steps: [{ t: "↑ dose frequency · COMT / MAO-B inhibitor · istradefylline · amantadine", node: "rx-pd-adjunct", role: "adjunct", type: "treatment", why: "Wearing-off" }] },
@@ -111,7 +111,7 @@ MF.addTopic({
         ["A2A antagonist", "==Istradefylline==", "↓ off time"],
         ["NMDA antagonist", "==Amantadine== (also influenza A H3N1)", "↓ off time"],
         ["Others", "Zonisamide", "—"]
-      ]}, node: "rx-pd-adjunct", role: "adjunct", why: "PD adjunct classes" }
+      ]}, node: "rx-pd-adjunct", role: "adjunct", why: "PD adjunct classes", add: "Amantadine was an influenza A antiviral (M2 ion-channel blocker) but is no longer used for flu because of widespread resistance; in PD it is the main drug for levodopa-induced dyskinesia." }
     ]},
     { type: "mcq", title: "MCQs in the notes", src: "p.556", items: [
       { t: "60-y: rest tremor, bradykinesia, cogwheel rigidity, shuffling gait → ==Parkinson disease== (a)", role: "hy" },

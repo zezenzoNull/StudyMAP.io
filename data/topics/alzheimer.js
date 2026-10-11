@@ -62,7 +62,7 @@ MF.addTopic({
         { c: ["Rivastigmine · galantamine", "Cholinesterase inhibitors ('anticholinergic' in notes)"], node: "rx-cholinesterase-i", role: "second", why: "AD alternatives", verify: "Notes call rivastigmine + galantamine 'anticholinergic'; they are cholinesterase inhibitors (pro-cholinergic). Verify wording." },
         ["Aducanumab", "Targets aggregated Aβ amyloid"],
         ["Tacrine", "Hepatotoxic — withdrawn"]
-      ]}}
+      ]}, add: "Aducanumab was withdrawn in 2024; the newer anti-amyloid antibodies lecanemab and donanemab modestly slow decline in early AD (MCI / mild dementia with proven amyloid), with a risk of ARIA (brain oedema, microbleeds) — highest in APOE ε4 homozygotes. Memantine (NMDA antagonist) is used for moderate–severe AD, alone or with donepezil." }
     ]},
     { type: "pearl", title: "Dementia one-liners", src: "p.568, 572", items: [
       { table: { head: ["Clue", "Answer"], rows: [
@@ -74,7 +74,7 @@ MF.addTopic({
         ["Visual hallucinations + PD features + REM behaviour disorder", "==Lewy body dementia=="],
         ["Frontotemporal dementia", "==Pick disease=="],
         ["Other cortical", "Vascular dementia"]
-      ]}},
+      ]}, add: "Classic 'rapidly progressive dementia + startle myoclonus over months' = SPORADIC CJD (age ~60, periodic sharp-wave EEG, CSF 14-3-3 / RT-QuIC). Variant CJD affects younger people, starts with psychiatric and sensory symptoms and runs a slower course." },
       { t: "==Reversible dementia== → NPH · hypothyroidism · vitamin B12 deficiency", role: "hy", see: "thyroid" },
       { mnemonic: "Reversible = 'Water, Thyroid, B12'" }
     ]},

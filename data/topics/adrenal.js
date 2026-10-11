@@ -19,7 +19,7 @@ MF.addTopic({
       { mnemonic: "G-F-R = Salt · Sugar · Sex", t: "the deeper you go, the sweeter it gets" },
       { h: "Medulla" },
       "Makes catecholamines → adrenaline, noradrenaline, dopamine (fight/flight)",
-      { t: "Main circulating catecholamine: notes say ==adrenaline (60%)== on p.249 but NE 80% > E 20% on p.255", verify: "The notes contradict themselves on the dominant normal catecholamine (p.249 epinephrine 60% vs p.255 norepinephrine 80%). Check which figure your source uses." },
+      { t: "Main circulating catecholamine: notes say ==adrenaline (60%)== on p.249 but NE 80% > E 20% on p.255", add: "Both figures fit different things: the adrenal MEDULLA secretes mostly adrenaline (≈80% adrenaline : 20% noradrenaline), whereas most noradrenaline in plasma spills over from sympathetic nerve endings — so circulating NE > adrenaline.", verify: "The notes contradict themselves on the dominant normal catecholamine (p.249 epinephrine 60% vs p.255 norepinephrine 80%). Check which figure your source uses." },
       "In ==phaeochromocytoma → noradrenaline== dominates",
       "Phaeo outside the medulla = ++paraganglioma++",
       "Catecholamines (and T3/T4) are built from ==tyrosine==",
@@ -83,11 +83,11 @@ MF.addTopic({
         ["Renin / aldosterone", "Both ↓ (negative feedback)", "—", "Aldosterone ↑"],
         ["Tests", "ARR normal/↓ · NCCT adrenal normal", "—", "—"],
         { c: ["Treatment", "==Amiloride (DOC)==", "—", "—"], node: "rx-amiloride", role: "first", why: "Liddle syndrome: ENaC blocker is DOC", hl: true }
-      ]}},
+      ]}, add: "Gordon syndrome (pseudohypoaldosteronism type 2, WNK kinase mutations) = HTN + HYPERkalaemia + hyperchloraemic acidosis with low renin and normal or low aldosterone; DOC = thiazide diuretic (blocks the overactive NCC). Connshing (mixed cortisol + aldosterone adenoma) → adrenalectomy with steroid cover." },
       { t: "Connshing written as 'hypertension with hyperkalemia'", verify: "Aldosterone excess gives HYPOkalaemia; 'hyperkalemia' here looks like a typo. Verify." },
       { mnemonic: "C-L-C vs G", t: "HTN + hypokalaemic alkalosis = Conn · Liddle · Cushing; HTN + hyperchloraemic acidosis = Gordon ('Gordon Gives acid')" },
       { h: "Adrenal incidentaloma" },
-      { t: "Found by chance on imaging → first rule out malignancy (PET / whole-body PET-CT) → check hormone excess → prove non-functioning", node: "img-pet-ct", role: "init", why: "Incidentaloma: exclude malignancy first" }
+      { t: "Found by chance on imaging → first rule out malignancy (PET / whole-body PET-CT) → check hormone excess → prove non-functioning", add: "Standard work-up of every incidentaloma: (1) hormones — 1 mg overnight DST, plasma metanephrines, aldosterone:renin ratio if hypertensive; (2) imaging phenotype — unenhanced CT <10 HU = benign lipid-rich adenoma, >4 cm or >10 HU → more imaging / adrenalectomy. Functioning or suspicious lesions → surgery.", node: "img-pet-ct", role: "init", why: "Incidentaloma: exclude malignancy first" }
     ]},
     { type: "etiology", title: "Addison disease — causes", src: "p.252, 254–255", items: [
       "Primary = **both adrenals** damaged → **all 3 layers** fail",
@@ -124,16 +124,16 @@ MF.addTopic({
     { type: "treatment", title: "Addison treatment flowchart", src: "p.252, 254–255", steps: [
       { decision: "Stable or crisis?", branches: [
         { label: "Crisis (Waterhouse–Friderichsen / steroid stopped)", steps: [
-          { t: "==IV hydrocortisone==", node: ["em-adrenal-crisis", "rx-hydrocortisone"], role: "emerg", type: "emergency", why: "Addisonian crisis main treatment" },
+          { t: "==IV hydrocortisone==", add: "Adrenal crisis regimen: hydrocortisone 100 mg IV bolus, then 200 mg per 24 h (≈50 mg 6-hourly); 0.9% saline 1 L in the first hour, dextrose if hypoglycaemic, and treat the trigger. Take blood for cortisol / ACTH first, but never delay the steroid.", node: ["em-adrenal-crisis", "rx-hydrocortisone"], role: "emerg", type: "emergency", why: "Addisonian crisis main treatment" },
           { t: "W–F = fulminant ==N. meningitidis== sepsis + DIC → adrenal haemorrhage → ↓ aldosterone & BP", type: "clinical", see: "meningitis-1" }
         ]},
         { label: "Primary (stable)", steps: [
           { t: "==Oral hydrocortisone (DOC, lifelong)== — gluco + mineralo activity", node: "rx-hydrocortisone", role: "first", type: "treatment", why: "Primary Addison: DOC" },
           { t: "Low BP → add **fludrocortisone** (mineralocorticoid)", node: "rx-fludrocortisone", role: "adjunct", type: "treatment", why: "Primary Addison with hypotension" },
-          { t: "Low sugar → add **dexamethasone** (glucocorticoid)", node: "rx-dexamethasone", role: "adjunct", type: "treatment", why: "Primary Addison with hypoglycaemia" }
+          { t: "Low sugar → add **dexamethasone** (glucocorticoid)", add: "Standard practice adjusts the hydrocortisone itself rather than adding dexamethasone. Sick-day rules: double the oral dose during fever or illness, and give IM / IV hydrocortisone if vomiting. Patients carry a steroid card / emergency kit.", node: "rx-dexamethasone", role: "adjunct", type: "treatment", why: "Primary Addison with hypoglycaemia" }
         ]},
         { label: "Secondary / tertiary", steps: [
-          { t: "==Dexamethasone== (Sheehan: lifelong)", node: "rx-dexamethasone", role: "first", type: "treatment", why: "Secondary / tertiary insufficiency (aldosterone intact)" }
+          { t: "==Dexamethasone== (Sheehan: lifelong)", add: "Most texts use hydrocortisone (15–25 mg/day in 2–3 doses) for secondary and tertiary insufficiency too. Fludrocortisone is not needed because aldosterone is still controlled by renin–angiotensin. In Sheehan, also replace thyroid (start steroid first), sex hormones ± GH.", node: "rx-dexamethasone", role: "first", type: "treatment", why: "Secondary / tertiary insufficiency (aldosterone intact)" }
         ]}
       ]},
       { chain: ["Post-partum haemorrhage", "Pituitary infarction", "↓ ACTH", "↓ cortisol", "Hypoglycaemia + hyponatraemia"], type: "patho" }
@@ -147,7 +147,7 @@ MF.addTopic({
         ["Special sign", "==No pedal oedema==", "==Hyperpigmentation=="],
         { c: ["IOC", "Saline infusion test", "ACTH / cosyntropin test"], node: ["bed-saline-infusion", "bed-acth-stim"], role: "ioc", why: "IOC for each disorder", hl: true },
         { c: ["Treat", "Spironolactone", "Hydrocortisone"], node: ["rx-spironolactone", "rx-hydrocortisone"], role: "first", why: "First-line treatment for each" }
-      ]}}
+      ]}, add: "Standard teaching: losing aldosterone means the kidney keeps H⁺ and K⁺, giving a mild normal-anion-gap (hyperchloraemic) metabolic acidosis with hyperkalaemia — the type 4 RTA pattern." }
     ]},
     { type: "clinical", title: "Phaeochromocytoma — the great masquerader", src: "p.255–257", items: [
       "Aka ==chromaffinoma== · chromaffin cells → adrenal medulla + sympathetic ganglia",
@@ -156,8 +156,8 @@ MF.addTopic({
       "Tremors · weight loss · often misdiagnosed as anxiety",
       { t: "Sugar in prediabetic range → FBG 100–125 · 2-h PG 140–199", node: "lab-fpg", role: "dx", why: "Catecholamine-induced hyperglycaemia" },
       { chain: ["Long vasoconstriction", "Volume contracted", "Postural hypotension"] },
-      "Labs → ==relative polycythaemia · hypercalcaemia==",
-      "NE has the shortest half-life",
+      { t: "Labs → ==relative polycythaemia · hypercalcaemia==", add: "Polycythaemia: plasma volume is contracted by chronic vasoconstriction (some tumours also make erythropoietin). Hypercalcaemia: PTHrP from the tumour, or coexisting primary hyperparathyroidism in MEN 2A." },
+      { t: "NE has the shortest half-life", add: "Catecholamines are cleared within about 2 minutes (re-uptake + COMT/MAO), so a normal level between attacks means little. Metanephrines are made continuously inside the tumour by COMT, which is why they are the better test." },
       { mnemonic: "Rule of 10s", t: "from the notes' numbers", lines: [["10%", "==Malignant=="], ["10%", "==Familial== (MEN 2A / Sipple)"], ["10%", "==Bilateral=="], ["10–15%", "Outside medulla (organ of ==Zuckerkandl==)"]] },
       { t: "In MEN 2A → mainly **adrenaline** (sporadic → noradrenaline)" },
       { t: "==Biopsy / FNAC contraindicated== (damages gland)", role: "ci" }
@@ -182,7 +182,7 @@ MF.addTopic({
           { t: "**Intra-op HTN** → IV sodium nitroprusside · phentolamine", node: ["rx-nitroprusside", "rx-phentolamine"], role: "emerg", type: "emergency", why: "Intra-operative hypertensive surge" }
         ]},
         { label: "Malignant", steps: [
-          { t: "==Surgery contraindicated== → radiation · chemotherapy", role: "ci", type: "treatment", verify: "Notes write 'radiation (radioactive iodine)'. For phaeo the radiotherapy is usually I-131 MIBG, not plain radioiodine. Verify." }
+          { t: "==Surgery contraindicated== → radiation · chemotherapy", add: "Metastatic phaeo: debulking surgery is still done where possible to lower catecholamines (after α-blockade). Systemic options: I-131 MIBG therapy (MIBG-avid tumours), Lu-177 DOTATATE (PRRT), CVD chemotherapy (cyclophosphamide + vincristine + dacarbazine) and sunitinib.", role: "ci", type: "treatment", verify: "Notes write 'radiation (radioactive iodine)'. For phaeo the radiotherapy is usually I-131 MIBG, not plain radioiodine. Verify." }
         ]}
       ]},
       { mnemonic: "Alpha first, Always", t: "never β before α in phaeo" }

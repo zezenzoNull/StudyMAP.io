@@ -80,13 +80,13 @@ MF.addTopic({
         { c: ["**SGLT2i** (empa-, cana-, dapa-, ertu-gliflozin)", "Sugar + salt loss at PCT (SBP ↓ 3–6)", "—", "==Cardioprotective== · ↓ CKD progression · avoid eGFR <30–45 · UTI / genital mycosis"], node: "rx-sglt2i", role: "first", why: "T2DM with CV / renal benefit" },
         { c: ["**α-glucosidase i** (acarbose, voglibose)", "Block gut sugar absorption", "0.5–0.8", "Osmotic diarrhoea"], node: "rx-agi", role: "second", why: "T2DM oral agent" },
         { c: ["**Amylin agonist** — ==pramlintide== (T1 & T2)", "Regulates GI motility", "0.25–0.5", "Parenteral"], node: "rx-amylin", role: "adjunct", why: "Usable in both T1DM and T2DM" }
-      ]}},
+      ]}, add: "Pramlintide slows gastric emptying, suppresses post-meal glucagon and increases satiety; given SC before meals with insulin. Main risk: severe hypoglycaemia → cut mealtime insulin by ~50% when starting. SGLT2i lower HbA1c by ≈0.5–0.7% and can cause euglycaemic DKA (stop 3 days before surgery)." },
       { h: "Metformin — when to stop & what it does" },
       { mnemonic: "CLAN-H", t: "stop metformin for the CLAN-H", lines: [["C", "Contrast (radiographic) study"], ["L", "Liver damage"], ["A", "Acidosis"], ["N", "NPO hospitalised patient"], ["H", "Heart failure (decompensated)"]] },
       { mnemonic: "Nasty Metal Diarrhoea Lacks B12", t: "metformin side effects", lines: [["N", "Nausea / vomiting"], ["M", "Metallic taste"], ["D", "Unexplained diarrhoea"], ["L", "Lactic acidosis"], ["B12", "==B12 deficiency=="]] },
       { h: "TZD — contraindications" },
-      { mnemonic: "TZDs B-CHOMB", lines: [["B", "↑ Bladder cancer (S/E)"], ["CH", "CHF — CV mortality ↑"], ["H", "Hepatic failure"], ["O", "Induces Ovulation"], ["M", "Macular oedema worsens"]] },
-      { t: "'Type 2 DM: HbA1c is between 8–10%' (as written)", verify: "Line under the agents table lacks context in the notes (likely the HbA1c range for combination therapy). Confirm meaning before learning it." }
+      { mnemonic: "TZDs B-CHOMB", add: "The last B = Bone fractures (TZDs lower bone density, mainly in women). TZDs also cause fluid retention and weight gain — the reason they are avoided in heart failure.", lines: [["B", "↑ Bladder cancer (S/E)"], ["CH", "CHF — CV mortality ↑"], ["H", "Hepatic failure"], ["O", "Induces Ovulation"], ["M", "Macular oedema worsens"]] },
+      { t: "'Type 2 DM: HbA1c is between 8–10%' (as written)", add: "Usual meaning: HbA1c ≥1.5–2% above target (≈8.5–10%) at diagnosis → start dual therapy straight away (metformin + a second agent) instead of metformin alone; HbA1c >10% or symptomatic hyperglycaemia → start insulin (as in the line 'when to start insulin').", verify: "Line under the agents table lacks context in the notes (likely the HbA1c range for combination therapy). Confirm meaning before learning it." }
     ]},
     { type: "treatment", title: "T2DM treatment flowchart", src: "p.235–238", steps: [
       { t: "Lifestyle: MNT + exercise 30 min × 5 days", type: "treatment" },
@@ -121,7 +121,7 @@ MF.addTopic({
       { t: "Grade it → level 1: **55–70** · level 2: **<54** · level 3: incapacitated (any value)", node: "lab-rbs", role: "dx", type: "investigation", why: "Hypoglycaemia threshold <54 mg/dL" },
       { decision: "IV access?", branches: [
         { label: "Yes", steps: [{ t: "IV ==25–50% dextrose== (child **10%**) → prevents seizures", node: ["rx-dextrose", "em-hypoglycemia"], role: "emerg", type: "emergency", why: "First-line rescue of symptomatic hypoglycaemia" }] },
-        { label: "No", steps: [{ t: "==Glucagon SC==", node: "rx-glucagon", role: "rescue", type: "emergency", why: "Hypoglycaemia when IV access fails" }] }
+        { label: "No", steps: [{ t: "==Glucagon SC==", add: "Dose 1 mg IM / SC (0.5 mg if child <25 kg); works by releasing liver glycogen, so it fails when glycogen is depleted (alcohol, starvation, prolonged hypoglycaemia). Give oral carbohydrate once awake.", node: "rx-glucagon", role: "rescue", type: "emergency", why: "Hypoglycaemia when IV access fails" }] }
       ]},
       { t: "Find the cause → insulin / SU dose; 4 am low + 7 am high = Somogyi", type: "followup" },
       { t: "β-blockers ==mask hypoglycaemia — except sweating==; DM + ASCVD / stable angina → ==metoprolol==", node: "rx-beta-blocker", role: "hy", type: "pearl", why: "Mask hypoglycaemia (not sweating); metoprolol for DM with ASCVD/angina" }
@@ -133,7 +133,7 @@ MF.addTopic({
         ["7 am", "Rebound **~200**", "**~200**"],
         ["Problem", "Too much night insulin", "Natural early-morning resistance"]
       ]}},
-      { mnemonic: "Somogyi Swings · Dawn Doesn't dip", t: "check the 4 am sugar: low = Somogyi, not low = dawn" }
+      { mnemonic: "Somogyi Swings · Dawn Doesn't dip", add: "Dawn phenomenon cause: early-morning surge of growth hormone and cortisol → hepatic glucose output ↑ and insulin resistance. Fix — Somogyi: reduce the bedtime / night basal insulin (or give a bedtime snack); dawn: increase or move the night basal dose later (or use a pump).", t: "check the 4 am sugar: low = Somogyi, not low = dawn" }
     ]},
     { type: "treatment", title: "Lipids in DM", src: "p.238–239", items: [
       { table: { head: ["Situation", "Statin", "LDL target"], rows: [
@@ -158,7 +158,7 @@ MF.addTopic({
       { chain: ["NPDR", "Macular oedema", "Visual loss"] },
       { chain: ["PDR", "Neovascularisation", "Vitreous haemorrhage / retinal detachment", "Blindness"] },
       { t: "Treat → **pan-retinal photocoagulation** + ==bevacizumab (anti-VEGF)==", node: ["proc-prp", "rx-anti-vegf"], role: "first", why: "Proliferative DR / macular oedema" },
-      { t: "Work-up listed: homocysteine ↑ · creatinine / eGFR · follow progression", node: "lab-renal", role: "monitor", why: "Retinopathy tracks nephropathy", verify: "The notes list 'serum homocysteine ↑' under retinopathy diagnosis without explanation. Confirm relevance before using." }
+      { t: "Work-up listed: homocysteine ↑ · creatinine / eGFR · follow progression", add: "Raised homocysteine is a risk marker for microvascular damage and atherosclerosis, not a test for retinopathy. Retinopathy is diagnosed by dilated fundoscopy / retinal photography: screen T1DM from 5 years after diagnosis, T2DM at diagnosis, then yearly.", node: "lab-renal", role: "monitor", why: "Retinopathy tracks nephropathy", verify: "The notes list 'serum homocysteine ↑' under retinopathy diagnosis without explanation. Confirm relevance before using." }
     ]},
     { type: "complication", title: "Kidney — diabetic nephropathy", src: "p.240", items: [
       { t: "Earliest → ==hyperfiltration==", role: "hy" },
@@ -168,7 +168,7 @@ MF.addTopic({
       { t: "Follow → eGFR + UACR (moves with retinopathy)", node: "lab-renal", role: "monitor", why: "Diabetic nephropathy progression" },
       { t: "Treat → ==ACEi + SGLT2i + finerenone==", node: ["rx-acei", "rx-sglt2i", "rx-finerenone"], role: "first", why: "Diabetic nephropathy: renoprotection" },
       { mnemonic: "A-S-F", t: "ACEi · SGLT2i · Finerenone — 'Always Save Filters'" },
-      { t: "eGFR <30 → stop metformin, start insulin at **80%** of calculated dose", node: ["rx-metformin", "rx-insulin"], role: "ci", why: "eGFR <30: metformin contraindicated", verify: "'80% calculated dose' is stated without explanation. Confirm." }
+      { t: "eGFR <30 → stop metformin, start insulin at **80%** of calculated dose", add: "Why lower: the kidney clears about a third of circulating insulin, so in CKD insulin acts longer → hypoglycaemia. Usual rule: eGFR 10–50 → give ~75% of the dose; eGFR <10 → ~50%.", node: ["rx-metformin", "rx-insulin"], role: "ci", why: "eGFR <30: metformin contraindicated", verify: "'80% calculated dose' is stated without explanation. Confirm." }
     ]},
     { type: "complication", title: "Nerve — diabetic neuropathy", src: "p.240", items: [
       { t: "==M/c long-term complication of DM==", role: "hy" },
@@ -177,7 +177,7 @@ MF.addTopic({
         { c: ["Sensory", "Distal loss · ==C fibres== · burning feet", "==Duloxetine / gabapentin=="], node: "rx-gabapentinoid", role: "first", why: "Painful diabetic neuropathy" },
         ["Motor", "==3rd nerve palsy, pupil spared==", "—"],
         { c: ["Autonomic", "==Postural hypotension==: stand after 3 min → SBP ↓ ≥20", "==Midodrine=="], node: "rx-midodrine", role: "first", why: "Diabetic autonomic neuropathy: orthostatic hypotension" }
-      ]}}
+      ]}, add: "Diabetic mononeuropathy: infarction of the nerve's core spares the pupillary fibres that run on its surface → ptosis + 'down and out' eye with a normal pupil; usually painful at onset and recovers in ~3 months. A dilated pupil means compression (e.g. PCOM aneurysm) until proved otherwise." }
     ]},
     { type: "complication", title: "Liver & skin", src: "p.239–241", items: [
       { h: "NAFLD" },

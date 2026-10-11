@@ -37,7 +37,7 @@ MF.addTopic({
       "Tonic-clonic phase = **30–60 s** → aspiration · temperature ↑ · metabolic acidosis",
       { t: "In hospital → IV/IM ==lorazepam== or rectal diazepam", node: "rx-benzodiazepine", role: "emerg", why: "Abort an active GTCS" },
       { t: "==DOC GTCS → sodium valproate==", node: "rx-valproate", role: "first", why: "GTCS drug of choice" },
-      { t: "==Serum prolactin always ↑ after GTCS==", role: "hy" }
+      { t: "==Serum prolactin always ↑ after GTCS==", add: "Prolactin rises within 10–20 min and returns to normal within about an hour, so take the sample 10–20 min after the event. A raised level supports a generalised or focal-impaired-awareness seizure over a psychogenic attack, but a NORMAL level does not exclude a seizure.", role: "hy" }
     ]},
     { type: "diagnosis", title: "Syncope vs GTCS", src: "p.520", items: [
       { table: { head: ["", "Vasovagal syncope", "GTCS"], rows: [
@@ -53,8 +53,8 @@ MF.addTopic({
     ]},
     { type: "emergency", title: "Status epilepticus — flowchart", src: "p.517", steps: [
       { t: "Known GTCS, non-compliant → seizure ==>5 min==", node: "em-status-epilepticus", role: "emerg", type: "emergency", why: "Entry to status epilepticus protocol" },
-      { t: "**Impending / early SE (5–30 min)** → IV ==lorazepam / midazolam / clonazepam==", node: "rx-benzodiazepine", role: "first", type: "emergency", why: "First-line in status epilepticus" },
-      { t: "→ IV infusion ==phenytoin / valproate / levetiracetam==", node: ["rx-antiepileptic", "rx-valproate"], role: "second", type: "treatment", why: "Second-line in status epilepticus" },
+      { t: "**Impending / early SE (5–30 min)** → IV ==lorazepam / midazolam / clonazepam==", add: "Doses: IV lorazepam 0.1 mg/kg (max 4 mg, may repeat once) — or midazolam 10 mg IM / buccal if there is no IV line. Check glucose first; give IV thiamine before dextrose if alcohol misuse or malnutrition is possible.", node: "rx-benzodiazepine", role: "first", type: "emergency", why: "First-line in status epilepticus" },
+      { t: "→ IV infusion ==phenytoin / valproate / levetiracetam==", add: "Second-line loading doses (all about equally effective in ESETT): levetiracetam 60 mg/kg (max 4.5 g) · fosphenytoin 20 mg PE/kg (phenytoin needs ECG + BP monitoring; avoid in poisoning-related seizures) · valproate 40 mg/kg (avoid in liver disease and women of child-bearing age).", node: ["rx-antiepileptic", "rx-valproate"], role: "second", type: "treatment", why: "Second-line in status epilepticus" },
       { t: "**Established / early refractory (30 min – 48 h)** → IV ==midazolam (high dose)== · propofol", node: "rx-benzodiazepine", role: "rescue", type: "emergency", why: "Refractory status epilepticus" },
       { t: "**Late refractory (>48 h)** → medically induced coma · ==pentobarbital coma== · general anaesthesia", role: "rescue", type: "emergency" },
       { mnemonic: "5 · 30 · 48", t: "minutes → minutes → hours: BZD → AED infusion → midazolam/propofol → pentobarbital" }
@@ -87,7 +87,7 @@ MF.addTopic({
         { c: ["Focal", "==L2 COP==: carbamazepine · levetiracetam · lamotrigine · oxcarbazepine · phenytoin", "—"], node: "rx-antiepileptic", role: "first", why: "Focal seizure drugs" },
         ["Typical absence", "Valproate (ethosuximide in young children)", "Lamotrigine before conception"],
         ["Atypical absence / atonic / myoclonic", "Valproate", "Lamotrigine before conception"]
-      ]}},
+      ]}, add: "Valproate is avoided in any woman who could become pregnant (≈10% major malformations — neural tube defects — plus autism and lower IQ in the child). Give folic acid 5 mg/day from before conception; lamotrigine levels fall in pregnancy (needs dose checks)." },
       { mnemonic: "L2 COP (notes)", t: "focal seizure drugs and their catch", lines: [["C", "Carbamazepine — anaemia, leucopenia, hepatotoxic"], ["L", "Levetiracetam — elderly (few drug interactions)"], ["L", "Lamotrigine — ==SJS risk=="], ["O", "Oxcarbazepine — safe in liver disease"], ["P", "Phenytoin"]] }
     ]},
     { type: "diagnosis", title: "Epilepsy syndromes", src: "p.520–522", wide: true, items: [
@@ -97,10 +97,10 @@ MF.addTopic({
         { c: ["==MTLE==", "Febrile convulsions in childhood · automatisms · focal impaired awareness · MRI hippocampal sclerosis", "U/L or B/L temporal spikes", "DOC valproate · ==TOC neurosurgery=="], node: "img-mri-brain", role: "dx", why: "Hippocampal sclerosis in MTLE" },
         { c: ["==Infantile spasm (West)==", "Salaam spasms", "Hypsarrhythmia", "==ACTH== · with tuberous sclerosis → ==vigabatrin=="], node: ["rx-acth", "rx-vigabatrin"], role: "first", why: "Infantile spasm DOC", hl: true },
         { c: ["Febrile seizure", "M/c seizure in children", "—", "Episode → ==intranasal midazolam== > rectal diazepam · prevention → oral clobazam > diazepam"], node: "rx-benzodiazepine", role: "first", why: "Febrile seizure abortive / prophylaxis" }
-      ]}},
+      ]}, add: "Standard: MTLE is a FOCAL epilepsy, so the usual drugs are carbamazepine, lamotrigine or levetiracetam. It is often drug-resistant; anterior temporal lobectomy / selective amygdalo-hippocampectomy makes ~60–70% seizure-free. · Febrile seizure = age 6 months–5 years, temperature >38 °C, no CNS infection. Simple: generalised, <15 min, once in 24 h → no EEG or imaging needed. Complex: focal, >15 min or repeated within 24 h. LP if meningitis is possible (especially <12 months or after antibiotics). Paracetamol does not prevent recurrence. · Hallmark = TONIC seizures (especially in sleep) with intellectual disability. EEG: slow spike-and-wave 1.5–2.5 Hz + bursts of fast activity in sleep. Drugs: valproate, lamotrigine, rufinamide, clobazam, cannabidiol; drop attacks may need corpus callosotomy. · Jerks are worst in the first hour after waking and with sleep deprivation or alcohol. It responds well to valproate (levetiracetam or lamotrigine in women) but rarely remits, so treatment is usually lifelong; carbamazepine and phenytoin can make it worse." },
       { table: { caption: "Myoclonus by age", head: ["Age", "Cause"], rows: [["<1 y", "Infantile spasm"], ["8 y", "==SSPE=="], ["10–19 y", "JME"], ["30 y + tainted beef", "==vCJD== (startle myoclonus + dementia)"]] } },
       { h: "Pointers" },
-      "M/c epilepsy in children → ==benign Rolandic epilepsy== (one-sided face twitch, hand movements)",
+      { t: "M/c epilepsy in children → ==benign Rolandic epilepsy== (one-sided face twitch, hand movements)", add: "Benign epilepsy with centrotemporal spikes: seizures mainly in sleep, drooling and speech arrest, EEG centrotemporal spikes, normal child; it remits by mid-adolescence and often needs no drug." },
       "M/c seizure in newborns → ==subtle seizure== (HIE / birth asphyxia)"
     ]},
     { type: "investigation", title: "Signature EEG patterns", src: "p.522–524", items: [
@@ -114,7 +114,7 @@ MF.addTopic({
         ["Triphasic waves", "==Hepatic encephalopathy · vCJD=="],
         ["Hypsarrhythmia (chaotic, high-amplitude)", "Infantile spasm"],
         ["Periodic stereotyped high-voltage", "SSPE"]
-      ]}, node: "bed-eeg", role: "dx", why: "Pattern recognition" },
+      ]}, node: "bed-eeg", role: "dx", why: "Pattern recognition", add: "Correction to learn: ~1 Hz periodic sharp-wave complexes are typical of SPORADIC CJD; variant CJD usually has a non-specific EEG and is diagnosed by the MRI 'pulvinar sign' and tonsil biopsy. Triphasic waves = metabolic (hepatic / uraemic) encephalopathy." },
       { mnemonic: "3 Absent · 4-6 Jerky · PLEDs Herpes · Triphasic Liver", t: "the four you must know" },
       "Focal seizure EEG → discharge only in F8–T4, T4–T6 (rest normal) · diffuse GTCS → all leads"
     ]},
@@ -128,7 +128,7 @@ MF.addTopic({
         ["Measles antibody", "Serum ≥1:256 and/or CSF ≥1:4"],
         ["Brain biopsy", "Panencephalitis"]
       ]}},
-      "Definitive → criterion 5 + three more (3 of 5)"
+      { t: "Definitive → criterion 5 + three more (3 of 5)", add: "Dyk's criteria: (1) clinical picture, (2) EEG, (3) raised CSF globulin, (4) raised measles antibody, (5) typical brain histology. Definite SSPE = criterion 5 plus 3 others; probable = 3 of the first 4. Treatment is supportive (isoprinosine / intraventricular interferon slow it); measles vaccination prevents it." }
     ]},
     { type: "clinical", title: "Neurocutaneous disorders", src: "p.524–525", items: [
       { h: "Tuberous sclerosis" },

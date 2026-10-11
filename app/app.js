@@ -122,7 +122,10 @@
     it.verify ? `<span class="verify" title="${esc(it.verify)}">⚠ VERIFY</span>` : "",
     it.src ? `<span class="src">${esc(it.src)}</span>` : ""
   ].filter(Boolean).join(" ");
-  const notes = (it) => (it.verify ? `<div class="verify-note">⚠ ${fmt(it.verify)}</div>` : "") + (it.sup ? `<div class="supp-note">${fmt(it.sup)}</div>` : "");
+  // it.add = wording added to complete a terse or unclear note line; the note's own text stays exactly as printed.
+  const ADD_SRC = "Standard textbook teaching (Davidson's / Boloor's level), added to complete the note — not page-checked against those books.";
+  const addNote = (it) => (it.add ? `<div class="add-note"><span class="supp" title="${esc(it.addSrc || ADD_SRC)}">SUPPLEMENT</span> ${fmt(it.add)}<div class="add-src">${esc(it.addSrc || ADD_SRC)}</div></div>` : "");
+  const notes = (it) => (it.verify ? `<div class="verify-note">⚠ ${fmt(it.verify)}</div>` : "") + (it.sup ? `<div class="supp-note">${fmt(it.sup)}</div>` : "") + addNote(it);
 
   function tableHTML(tb, anchor) {
     const head = tb.head ? `<thead><tr>${tb.head.map((h) => `<th>${fmt(h)}</th>`).join("")}</tr></thead>` : "";
@@ -141,7 +144,7 @@
     if (it.h) return `<li id="${id}" class="li-h">${fmt(it.h)}${tg ? " " + tg : ""}</li>`;
     if (it.table) return `<li id="${id}" class="li-block">${tableHTML(it.table, anchor)}${tg ? `<div class="ctags">${tg}</div>` : ""}${notes(it)}</li>`;
     if (it.mnemonic) return `<li id="${id}" class="li-block"><div class="mn"><div class="mn-h"><span class="mn-badge">MNEMONIC</span> <b>${fmt(it.mnemonic)}</b>${it.t ? ` — ${fmt(it.t)}` : ""}</div>` +
-      `${it.lines ? `<div class="mn-lines">${it.lines.map((l) => `<div class="mn-row"><span class="mn-k">${fmt(l[0])}</span><span class="mn-v">${fmt(l[1])}</span></div>`).join("")}</div>` : ""}</div></li>`;
+      `${it.lines ? `<div class="mn-lines">${it.lines.map((l) => `<div class="mn-row"><span class="mn-k">${fmt(l[0])}</span><span class="mn-v">${fmt(l[1])}</span></div>`).join("")}</div>` : ""}</div>${addNote(it)}</li>`;
     if (it.chain) return `<li id="${id}" class="li-block"><div class="chain">${it.chain.map((c) => `<span class="ch">${fmt(c)}</span>`).join('<span class="cha">→</span>')}</div>${tg ? `<div class="ctags">${tg}</div>` : ""}${notes(it)}</li>`;
     const sub = it.sub && it.sub.length ? `<ul>${it.sub.map((s, i) => itemHTML(s, anchor + "-" + i)).join("")}</ul>` : "";
     const emg = it.role && [].concat(it.role).some((r) => ROLE_GROUP[r] === "emg");
@@ -300,7 +303,7 @@
       if (st.mnemonic || st.table) return `<li class="step step-block" id="${a}"><ul class="block-ul">${itemHTML(st, a + "-m")}</ul></li>`;
       return `<li class="step ${ty ? ty.cls : ""}" id="${a}"><div class="sbox">
         ${ty ? `<span class="stype" title="${esc(ty.label)}">${ty.icon}</span>` : ""}${st.chain ? `<div class="chain">${st.chain.map((c) => `<span class="ch">${fmt(c)}</span>`).join('<span class="cha">→</span>')}</div>` : `<span class="txt">${fmt(st.t || "")}</span>`} ${roleBadge(st.role)} ${nodesOf(st).map((n) => chip(n, { compact: true })).join("")}
-        ${st.items ? `<ul>${st.items.map((x, k) => itemHTML(x, `${a}-i${k}-0`)).join("")}</ul>` : ""}
+        ${addNote(st)}${st.items ? `<ul>${st.items.map((x, k) => itemHTML(x, `${a}-i${k}-0`)).join("")}</ul>` : ""}
       </div></li>`;
     }).join("")}</ol>`;
   }

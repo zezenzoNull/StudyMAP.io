@@ -37,17 +37,17 @@ MF.addTopic({
         ["**A**ge >80", "1"]
       ]}},
       { mnemonic: "GIIVA — GCS · Infratentorial · Intraventricular · Volume >30 · Age >80", t: "higher = worse prognosis" },
-      { t: "Neonatal intraventricular bleed → birth injury (forceps) · shrill cry, bulging fontanelle → ==IOC skull USG==", role: "hy" }
+      { t: "Neonatal intraventricular bleed → birth injury (forceps) · shrill cry, bulging fontanelle → ==IOC skull USG==", add: "Neonatal intraventricular haemorrhage is mainly a disease of PRETERM babies (<32 weeks): bleeding from the fragile germinal matrix in the first 72 h, often silent → routine cranial USG screening. Forceps / birth trauma in term babies causes subdural or subgaleal bleeds instead.", role: "hy" }
     ]},
     { type: "emergency", title: "ICH management — flowchart", src: "p.623–624", steps: [
       { t: "==No role for alteplase / tenecteplase==", node: "rx-thrombolysis", role: "ci", type: "emergency", why: "Thrombolysis contraindicated in haemorrhage" },
-      { t: "Hypertensive crisis (>220/120 + end-organ damage) → target ==<140 mmHg== with ==nicardipine (DOC)== / labetalol", node: "rx-antihypertensive-iv", role: "emerg", type: "emergency", why: "ICH BP control" },
+      { t: "Hypertensive crisis (>220/120 + end-organ damage) → target ==<140 mmHg== with ==nicardipine (DOC)== / labetalol", add: "INTERACT2 / AHA 2022: if systolic BP is 150–220 mmHg, lower it to about 140 mmHg within an hour and keep it steady (between 130 and 150); avoid dropping below 130 mmHg.", node: "rx-antihypertensive-iv", role: "emerg", type: "emergency", why: "ICH BP control" },
       { decision: "On an anticoagulant?", branches: [
-        { label: "Warfarin", steps: [{ t: "==PCC + vitamin K== > FFP", node: "rx-reversal", role: "emerg", type: "emergency", why: "Warfarin reversal" }] },
+        { label: "Warfarin", steps: [{ t: "==PCC + vitamin K== > FFP", add: "Four-factor PCC 25–50 IU/kg + IV vitamin K 10 mg, aiming for INR <1.4 within hours. Unfractionated heparin → protamine. Platelet transfusion does NOT help ICH on antiplatelet drugs (PATCH trial) unless surgery is planned.", node: "rx-reversal", role: "emerg", type: "emergency", why: "Warfarin reversal" }] },
         { label: "Apixaban", steps: [{ t: "==Andexanet alfa==", node: "rx-reversal", role: "emerg", type: "emergency", why: "Factor Xa inhibitor reversal" }] },
         { label: "Dabigatran", steps: [{ t: "==Idarucizumab==", node: "rx-reversal", role: "emerg", type: "emergency", why: "Dabigatran reversal" }] }
       ]},
-      { t: "Raised ICP → ICP monitor (==ventriculostomy best==) · target CPP ==60–80== · ==mannitol not recommended==", node: ["proc-evd", "rx-mannitol"], role: "first", type: "treatment", why: "ICH ICP management", see: "raised-icp" },
+      { t: "Raised ICP → ICP monitor (==ventriculostomy best==) · target CPP ==60–80== · ==mannitol not recommended==", add: "Surgery: cerebellar haemorrhage >3 cm, or any cerebellar bleed with brainstem compression or hydrocephalus → urgent evacuation. Supratentorial clot removal is mainly for superficial lobar bleeds in a deteriorating patient (minimally invasive evacuation is being studied).", node: ["proc-evd", "rx-mannitol"], role: "first", type: "treatment", why: "ICH ICP management", see: "raised-icp" },
       { t: "Cardiac hypertensive crisis → nitroglycerin (don't mix up)", role: "hy", type: "pearl" },
       { mnemonic: "Warfarin→PCC · Apixaban→Andexanet · Dabigatran→iDarucizumab" }
     ]},
@@ -60,7 +60,7 @@ MF.addTopic({
     { type: "clinical", title: "Subdural haemorrhage", src: "p.625–626", items: [
       "Case → 70-y obese diabetic slips, bumps forehead · next day irritable, drowsy · 2 weeks later unrousable, GCS 8, brisk DTR, extensor plantars · NCCT ==crescentic hypodensity== → ==chronic SDH==",
       { t: "Source → ==cortical bridging veins==", role: "hy" },
-      { table: { caption: "Age of blood on CT", head: ["Age", "Look"], rows: [["7–10 days", "White (hyperdense)"], [">14 days", "Black spots (mixed)"], [">28 days", "Black (hypodense)"]] } },
+      { table: { caption: "Age of blood on CT", head: ["Age", "Look"], rows: [["7–10 days", "White (hyperdense)"], [">14 days", "Black spots (mixed)"], [">28 days", "Black (hypodense)"]] }, add: "Standard CT ageing of subdural blood: ACUTE (<3 days) = hyperdense (white) · SUBACUTE (3 days–3 weeks) = isodense — easy to miss — · CHRONIC (>3 weeks) = hypodense (dark), often with mixed density from re-bleeds." },
       "Lucid interval → acute SDH and EDH",
       { table: { caption: "Treatment", head: ["Type", "Treatment"], rows: [
         ["Small SDH", "May need no surgery"],
@@ -79,7 +79,7 @@ MF.addTopic({
         { c: ["==Extradural==", "==Middle meningeal artery==", "==Biconvex / lenticular== hyperdensity"], hl: true },
         ["==Subdural==", "==Cortical bridging veins==", "==Crescentic== — hyper (acute), hypo (chronic)"],
         { c: ["Subarachnoid", "MCA (per notes)", "==Star of death== / Sylvian fissure blood"], see: "sah" }
-      ]}},
+      ]}, add: "Non-traumatic SAH comes from a ruptured berry aneurysm of the circle of Willis (m/c anterior communicating artery); trauma is the commonest cause overall." },
       { mnemonic: "Epidural = Egg (biconvex) from an Artery · Subdural = Sickle (crescent) from Veins" }
     ]},
     { type: "mcq", title: "MCQ in the notes", src: "p.627", items: [

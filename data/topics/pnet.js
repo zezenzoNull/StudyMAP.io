@@ -27,7 +27,7 @@ MF.addTopic({
       ]}
     ]},
     { type: "diagnosis", title: "Hypoglycaemia differentials", src: "p.274", items: [
-      { mnemonic: "CAPE-IAS (notes)", lines: [["C", "CKD — insulin is cleared by the kidney · CLD"], ["A", "Alcoholic liver disease"], ["P", "Poor nutrition"], ["E", "Extra-pancreatic tumour — leukaemia / lymphoma"], ["I", "==Insulinoma=="], ["A·S", "Abuse of Sulfonylureas / insulin"]] }
+      { mnemonic: "CAPE-IAS (notes)", lines: [["C", "CKD — insulin is cleared by the kidney · CLD"], ["A", "Alcoholic liver disease"], ["P", "Poor nutrition"], ["E", "Extra-pancreatic tumour — leukaemia / lymphoma"], ["I", "==Insulinoma=="], ["A·S", "Abuse of Sulfonylureas / insulin"]], add: "Non-islet-cell tumour hypoglycaemia is classically caused by large mesenchymal tumours (fibrosarcoma, solitary fibrous tumour / mesothelioma) and hepatoma that secrete big IGF-2 — insulin and C-peptide are suppressed." }
     ]},
     { type: "clinical", title: "Insulinoma — features", src: "p.274–275", items: [
       { mnemonic: "Whipple's triad", lines: [["1", "Symptoms of hypoglycaemia (emotional outburst)"], ["2", "Blood sugar ==<45 mg/dL=="], ["3", "==Immediate relief with IV glucose=="]] },
@@ -52,7 +52,7 @@ MF.addTopic({
         ["Insulin : glucagon ratio", "**>0.3**", "<0.3 (notes)"],
         { c: ["Plasma β-OH butyrate", "**Low**", "{N:lab-bohb}"], node: "lab-bohb", role: "dx", why: "Insulin suppresses ketogenesis" },
         { c: ["Urine sulfonylureas", "Negative", "{N:lab-urine-su}"], node: "lab-urine-su", role: "dx", why: "Excludes factitious hypoglycaemia" }
-      ]}},
+      ]}, add: "Standard criterion is the insulin : GLUCOSE ratio >0.3 (insulin µU/mL ÷ glucose mg/dL) during hypoglycaemia; 'glucagon' in the notes looks like a slip. Endocrine Society criteria at glucose <55 mg/dL: insulin ≥3 µU/mL, C-peptide ≥0.6 ng/mL, proinsulin ≥5 pmol/L, β-OH butyrate ≤2.7 mmol/L, negative sulfonylurea screen." },
       { mnemonic: "Injected insulin = C-peptide Crashes", t: "insulinoma & sulfonylurea → C-peptide ↑; exogenous insulin → C-peptide ↓" },
       { h: "Imaging (best → least)" },
       { t: "==Ga-68 DOTATATE PET/CT== > endoscopic ultrasound > somatostatin-receptor scintigraphy", node: ["img-ga68-dotatate", "img-eus"], role: "ioc", why: "Insulinoma localisation" }
@@ -60,10 +60,10 @@ MF.addTopic({
     { type: "treatment", title: "Insulinoma treatment flowchart", src: "p.275", steps: [
       { t: "**Frequent small meals**", type: "treatment" },
       { t: "==DOC: diazoxide== → opens K⁺ channels → β-cell hyperpolarised → ↓ insulin release", node: "rx-diazoxide", role: "first", type: "treatment", why: "Insulinoma DOC" },
-      { t: "Lanreotide → ↓ GH and sugar → can ==worsen== symptoms", role: "ci", type: "complication" },
+      { t: "Lanreotide → ↓ GH and sugar → can ==worsen== symptoms", add: "Why: somatostatin analogues suppress the counter-regulatory hormones (glucagon, GH) more than insulin when the insulinoma lacks somatostatin receptor type 2, so hypoglycaemia can deepen. Use them only if the tumour is receptor-positive on Ga-68 DOTATATE PET, and start under supervision.", role: "ci", type: "complication" },
       { decision: "Malignant?", branches: [
         { label: "Yes", steps: [{ t: "mTOR inhibitor ==everolimus== · radiolabelled somatostatin", node: ["rx-everolimus", "rx-prrt"], role: "first", type: "treatment", why: "Malignant insulinoma" }] },
-        { label: "No", steps: [{ t: "Medical control as above", type: "treatment" }] }
+        { label: "No", steps: [{ t: "Medical control as above", add: "Standard: a benign, localised insulinoma is CURED by surgery — enucleation, or distal pancreatectomy for tail lesions (~90% cure). Small meals and diazoxide are for preparation before surgery, for unfit patients, or for unresectable disease.", type: "treatment" }] }
       ]}
     ]},
     { type: "clinical", title: "Glucagonoma", src: "p.276–277", items: [
@@ -75,7 +75,7 @@ MF.addTopic({
         { c: ["Plasma glucagon", "**>1000 pg/mL**"], verify: "Notes print 'plasma glucose levels >1000 pg/mL' — pg/mL is a glucagon unit, so this is glucagon. Treat as a typo." },
         { c: ["Imaging", "MRI / CT abdomen → tumour ± metastasis"], node: "img-ct-abdomen", role: "dx", why: "Glucagonoma localisation" }
       ]}},
-      { t: "Treat → radiolabelled somatostatin analogues · debulking surgery", node: "rx-prrt", role: "first", why: "Glucagonoma" },
+      { t: "Treat → radiolabelled somatostatin analogues · debulking surgery", add: "Octreotide / lanreotide control glucagon levels and the rash; amino-acid and zinc supplements also help the necrolytic migratory erythema; anticoagulate because of the high thrombosis risk; surgery is curative only if there are no metastases.", node: "rx-prrt", role: "first", why: "Glucagonoma" },
       { h: "Migratory necrolytic erythema — causes" },
       "Glucagonoma · myeloproliferative disorders · malnutrition · short bowel syndrome",
       { h: "Other DM skin signs (notes)" },
@@ -88,7 +88,7 @@ MF.addTopic({
         ["Features", "**D**iabetes (insulin blocked) · **D**iarrhoea/steatorrhoea (amylase blocked) · **G**allstones/sludge (CCK blocked) · hypochlorhydria", "**W**atery **D**iarrhoea — pancreatic cholera, ==rice-water stool== · **H**ypokalaemia · **A**chlorhydria · flushing"],
         ["Source", "—", "VIP (28 amino acids) from pancreatic F cells, carcinoid"],
         { c: ["Treatment", "—", "==Octreotide=="], node: "rx-octreotide", role: "first", why: "VIPoma symptom control", hl: true }
-      ]}},
+      ]}, add: "VIPomas are non-β islet-cell tumours, m/c in the pancreatic tail (in children: ganglioneuroma / neuroblastoma); fasting plasma VIP is markedly raised (often >200 pg/mL); also hyperglycaemia and hypercalcaemia. Somatostatinoma: D-cell tumour of the pancreatic head or duodenum (duodenal ones linked to NF-1). For both: surgery if localised, octreotide for symptoms." },
       { t: "VIPoma diarrhoea → ==stool osmotic gap <50 = secretory==", role: "hy" }
     ]},
     { type: "diagnosis", title: "Secretory vs osmotic diarrhoea", src: "p.277", items: [
@@ -101,7 +101,7 @@ MF.addTopic({
     ]},
     { type: "pearl", title: "Neuroectodermal tumours (notes)", src: "p.278", items: [
       "Primitive neuroectodermal tumour (pNET) → e.g. ==neuroblastoma==",
-      "Peripheral PNET (ppNET) → medulloblastoma, Ewing sarcoma",
+      { t: "Peripheral PNET (ppNET) → medulloblastoma, Ewing sarcoma", add: "Standard grouping: CENTRAL PNET = medulloblastoma and supratentorial PNET; PERIPHERAL PNET = the Ewing sarcoma family (incl. Askin tumour of the chest wall). Neuroblastoma is a separate peripheral neuroblastic tumour of the adrenal medulla / sympathetic chain." },
       { t: "Don't confuse pNET (neuroectodermal) with PNET (pancreatic NET)", role: "hy" }
     ]},
     { type: "mcq", title: "MCQs in the notes", src: "p.279", items: [

@@ -40,7 +40,7 @@ MF.addTopic({
         { c: ["Hyperpigmentation ± (knuckles, scars)", "Only with ==ectopic ACTH== (carcinoid)"], hl: true },
         { c: ["DVT / PE", "==Hypercoagulable state=="], node: "con-hypercoag", role: "danger", why: "Cushing raises thrombosis risk" },
         ["Infections", "Eosinopenia + immune suppression"]
-      ]}},
+      ]}, add: "Standard: hirsutism and acne come from excess adrenal androgens (ACTH drive; marked virilisation suggests adrenocortical carcinoma), and amenorrhoea from cortisol suppressing GnRH / LH. Hypokalaemic alkalosis is worst in ectopic ACTH: huge cortisol saturates renal 11β-HSD2 and cortisol then acts on mineralocorticoid receptors." },
       { t: "Notes add: 'HTN with hypokalemic acidosis is seen in Conn's syndrome'", verify: "Conn's gives hypokalaemic ALKALOSIS (as the adrenal chapter states). 'Acidosis' here looks like a typo." }
     ]},
     { type: "investigation", title: "Work-up — screen & confirm", src: "p.261", wide: true, items: [
@@ -77,7 +77,7 @@ MF.addTopic({
         { label: "Adrenocortical carcinoma", steps: [{ t: "==Mitotane==", node: "rx-mitotane", role: "first", type: "treatment", why: "Adrenocortical carcinoma" }] },
         { label: "Cushing disease (pituitary)", steps: [{ t: "==Trans-sphenoidal surgery==", node: "proc-tss", role: "def", type: "treatment", why: "Cushing disease (incl. after equivocal tests + IPSS)" }] },
         { label: "Ectopic with metastasis", steps: [
-          { t: "Block cortisol synthesis:", node: "rx-steroidogenesis-inh", role: "first", type: "treatment", why: "Inoperable / metastatic ectopic ACTH", items: [
+          { t: "Block cortisol synthesis:", add: "Metyrapone and osilodrostat both block 11β-hydroxylase (CYP11B1, the last step of cortisol synthesis; osilodrostat also blocks aldosterone synthase). Ketoconazole blocks several earlier steps — monitor liver tests. Etomidate is the only IV option, used in ICU for severe hypercortisolism.", node: "rx-steroidogenesis-inh", role: "first", type: "treatment", why: "Inoperable / metastatic ectopic ACTH", items: [
             "Metyrapone — 11β-hydroxylase (oral)",
             "Ketoconazole (oral)",
             "Osilodrostat — aldosterone synthase (oral)",
@@ -91,7 +91,7 @@ MF.addTopic({
       { chain: ["Bilateral adrenalectomy", "No cortisol feedback", "ACTH ↑↑ (MSH-like)", "==Hyperpigmentation== (knuckles, creases, oral mucosa)"] },
       { t: "Intra-op → ==IV hydrocortisone== (prevents Addisonian crisis)", node: ["rx-hydrocortisone", "em-adrenal-crisis"], role: "emerg", why: "Prevents adrenal crisis after bilateral adrenalectomy" },
       { t: "Post-op → ==oral hydrocortisone lifelong==", node: "rx-hydrocortisone", role: "first", why: "Replacement after bilateral adrenalectomy" },
-      "Shows up at follow-up visits"
+      { t: "Shows up at follow-up visits", add: "Nelson syndrome = an enlarging, aggressive ACTH-secreting pituitary adenoma after bilateral adrenalectomy → deep pigmentation, headache, bitemporal hemianopia. Follow up with plasma ACTH and pituitary MRI; treat with trans-sphenoidal surgery ± pituitary radiotherapy." }
     ]},
     { type: "mcq", title: "MCQ in the notes", src: "p.263", items: [
       { t: "First investigation for ACTH-dependent Cushing → ==MRI head== (d)", node: "img-mri-brain", role: "init", why: "MCQ: first test in ACTH-dependent Cushing" }

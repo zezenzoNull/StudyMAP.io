@@ -12,7 +12,7 @@ MF.addTopic({
       { table: { head: ["", "Primary", "Secondary"], rows: [
         { c: ["M/c", "==Tension headache== (>15 days/month)", "==Infection== (meningitis, sinusitis)"], hl: true },
         ["Least common", "==Cluster headache== (deep retro-orbital, same time each day)", "==Brain tumour== (vomiting, then headache)"]
-      ]}}
+      ]}, add: "Episodic tension-type headache = <15 days/month; CHRONIC tension-type headache = ≥15 days/month for >3 months. It is bilateral, pressing, mild–moderate, not worsened by activity, and has no nausea." }
     ]},
     { type: "diagnosis", title: "Buzzword → diagnosis", src: "p.506", wide: true, items: [
       { table: { head: ["Buzzword", "Diagnosis", "Key extra"], rows: [
@@ -22,8 +22,8 @@ MF.addTopic({
         ["Migraine on NSAID + caffeine + opioid, still daily", "==Medication-overuse headache==", "==No opioids / barbiturates in migraine== (habituation, withdrawal)"],
         ["Worse standing, better lying (positional)", "==Low CSF volume headache==", "After LP, epidural, weightlifting, straining, coughing · starts ≤48 h (up to 12 days)"],
         { c: ["Obese woman · worse on waking & lying · papilloedema", "==IIH (pseudotumour cerebri)==", "MRI + MR venogram (partial sinus obstruction) · guarded LP helps · ==acetazolamide=="], node: ["img-mrv", "rx-acetazolamide", "proc-lp"], role: "dx", why: "IIH work-up and treatment" }
-      ]}},
-      { t: "Normal pressure hydrocephalus → CSF removal improves gait (==Fisher test==)", node: "proc-lp", role: "dx", why: "Tap test in NPH" }
+      ]}, add: "Treatment: lie flat, fluids, caffeine and simple analgesics; if it persists beyond a few days → epidural blood patch. A small-gauge, atraumatic (pencil-point) LP needle prevents most post-dural-puncture headaches. · Diagnosis needs papilloedema + opening pressure >25 cmH₂O with NORMAL CSF and normal brain imaging (venous sinus thrombosis excluded). Main threat = permanent visual loss → weight loss + acetazolamide; failing vision → optic nerve sheath fenestration or CSF shunt." },
+      { t: "Normal pressure hydrocephalus → CSF removal improves gait (==Fisher test==)", add: "NPH triad = wet (urinary incontinence), wobbly (magnetic gait apraxia) and wacky (dementia) with enlarged ventricles on imaging. Improvement after removing 30–50 mL of CSF predicts a good response to a ventriculoperitoneal shunt.", node: "proc-lp", role: "dx", why: "Tap test in NPH" }
     ]},
     { type: "clinical", title: "Migraine — features & criteria", src: "p.507", items: [
       { h: "Aura & triggers" },
@@ -54,14 +54,14 @@ MF.addTopic({
     ]},
     { type: "treatment", title: "Migraine — acute treatment flowchart", src: "p.508–509", steps: [
       { decision: "Attack severity", branches: [
-        { label: "Mild–moderate", steps: [{ t: "==COX inhibitor — naproxen==", node: "rx-nsaid", role: "first", type: "treatment", why: "Mild-moderate migraine attack" }] },
+        { label: "Mild–moderate", steps: [{ t: "==COX inhibitor — naproxen==", add: "Add an antiemetic / prokinetic (metoclopramide or domperidone): it treats nausea and speeds absorption of the analgesic. Limit acute drugs to <10 days a month (triptans) or <15 (simple analgesics) to avoid medication-overuse headache.", node: "rx-nsaid", role: "first", type: "treatment", why: "Mild-moderate migraine attack" }] },
         { label: "Severe", steps: [
           { t: "==Triptans== — sumatriptan nasal / SC; most effective → ==rizatriptan, eletriptan== (5-HT1B/1D)", node: "rx-triptan", role: "first", type: "treatment", why: "Severe migraine attack" },
           { t: "+ naproxen → ↓ recurrence", node: "rx-nsaid", role: "adjunct", type: "treatment", why: "Triptan + naproxen combination" }
         ]},
         { label: "Severe, can't take oral", steps: [
           { t: "==6 mg SC sumatriptan (needle-free)== · 1 mg dihydroergotamine SC/IM/IV", node: "rx-triptan", role: "rescue", type: "treatment", why: "Parenteral migraine rescue" },
-          { t: "==C/I: pregnancy · Prinzmetal angina · PAD · basilar migraine==", role: "ci", type: "emergency" }
+          { t: "==C/I: pregnancy · Prinzmetal angina · PAD · basilar migraine==", add: "Also contraindicated: ischaemic heart disease, previous stroke / TIA, uncontrolled hypertension and hemiplegic migraine (all because triptans constrict 5-HT1B arteries); avoid within 24 h of an ergot.", role: "ci", type: "emergency" }
         ]}
       ]},
       { t: "Other options: ==gepants== (rimegepant, ubrogepant) · ==ditans== (lasmiditan — no vascular effect, OK in CVS/CNS disease; dizziness; no driving 8 h) · ergotamine · single-pulse TMS", node: "rx-cgrp", role: "second", type: "treatment", why: "Migraine acute alternatives" },
@@ -75,7 +75,7 @@ MF.addTopic({
       { t: "Flunarizine", node: "rx-ccb", role: "prevent", why: "Migraine prophylaxis" },
       { t: "CGRP monoclonal antibodies", node: "rx-cgrp", role: "prevent", why: "Migraine prophylaxis" },
       { h: "Familial hemiplegic migraine" },
-      "Migraine + weakness that resolves slowly (stroke mimic) · ==calcium-channel defect==",
+      { t: "Migraine + weakness that resolves slowly (stroke mimic) · ==calcium-channel defect==", add: "Autosomal dominant: FHM1 = CACNA1A (P/Q-type calcium channel), FHM2 = ATP1A2 (Na⁺/K⁺-ATPase), FHM3 = SCN1A (sodium channel). Triptans and ergots are avoided in hemiplegic migraine." },
       "Other Ca-channel diseases → Lambert–Eaton (oat-cell Ca lung) · hypokalaemic periodic paralysis type 1"
     ]},
     { type: "clinical", title: "Tension · cluster · SUNCT", src: "p.511–513", wide: true, items: [
@@ -100,18 +100,18 @@ MF.addTopic({
     ]},
     { type: "diagnosis", title: "Giant cell arteritis", src: "p.510–511", items: [
       "70-y man · feverish 4 weeks · scalp tender while combing · ==jaw claudication== · cord-like temporal artery · ESR 100",
-      { chain: ["Auriculo-temporal artery narrows", "Scalp + TMJ ischaemia", "Tenderness / jaw claudication"] },
-      { t: "M/c presentation → ==fever of unknown origin==", role: "hy" },
+      { chain: ["Auriculo-temporal artery narrows", "Scalp + TMJ ischaemia", "Tenderness / jaw claudication"], add: "The artery involved is the superficial temporal artery (a branch of the external carotid); 'auriculo-temporal' is the nerve that runs with it. Ischaemia of the ophthalmic / posterior ciliary arteries causes anterior ischaemic optic neuropathy → sudden painless blindness." },
+      { t: "M/c presentation → ==fever of unknown origin==", add: "Standard: the commonest presentation is a NEW headache with scalp tenderness in someone >50 y; GCA is, though, an important cause of PUO in the elderly. About half have polymyalgia rheumatica (shoulder / hip girdle pain and stiffness).", role: "hy" },
       { t: "Ophthalmic artery → ==monocular blindness==", role: "danger" },
       { t: "Biopsy → ==giant cells, granulomatous vasculitis==", node: "proc-ta-biopsy", role: "confirm", why: "GCA confirmation" },
       { t: "ESR ↑ (~100)", node: "lab-esr", role: "dx", why: "GCA: very high ESR" },
-      { t: "Treat → ==steroids== · no role for triptans", node: "rx-steroids", role: "first", why: "GCA (prevents blindness)" },
+      { t: "Treat → ==steroids== · no role for triptans", add: "Start prednisolone 40–60 mg/day at once on suspicion — do not wait for the biopsy (it stays positive for ~2 weeks on steroids). With visual symptoms: IV methylprednisolone 500–1000 mg daily × 3 days. Add low-dose aspirin; tocilizumab is the steroid-sparing drug. Taper over 1–2 years.", node: "rx-steroids", role: "first", why: "GCA (prevents blindness)" },
       { t: "ESR 100 mm/h → ==SBE · GCA · multiple myeloma==", role: "hy" }
     ]},
     { type: "diagnosis", title: "Case clues (notes)", src: "p.509–510", items: [
       { t: "Woman, 5 am explosive headache, vomiting, ==ptosis + nuchal rigidity== → ==SAH== (focal deficit + neck stiffness exclude migraine; short history excludes ICSOL; no fever excludes meningitis)", see: "sah" },
       { t: "SAH → NCCT: blood in Sylvian fissure, ==star of death== → then ==cerebral angiography== → TOC ==endovascular coiling== · DOC ==nimodipine==", node: ["img-ncct-head", "img-angio", "proc-coiling", "rx-ccb"], role: "dx", why: "SAH pathway" },
-      { t: "Young woman in a ==dark cinema== → retro-orbital pain, vomiting, red eye, ==vertically oval dilated sluggish pupil== → ==angle-closure glaucoma== → ==mannitol==", node: "rx-mannitol", role: "emerg", why: "Acute angle-closure glaucoma" },
+      { t: "Young woman in a ==dark cinema== → retro-orbital pain, vomiting, red eye, ==vertically oval dilated sluggish pupil== → ==angle-closure glaucoma== → ==mannitol==", add: "Emergency drops and drugs: IV acetazolamide 500 mg + topical timolol and a steroid, pilocarpine once the pressure starts to fall, and IV mannitol if IOP stays very high. Definitive: laser peripheral iridotomy — in both eyes.", node: "rx-mannitol", role: "emerg", why: "Acute angle-closure glaucoma" },
       "Glaucoma: dark → mydriasis → ciliary block → ↑ IOP"
     ]},
     { type: "emergency", title: "Red-flag headaches", src: "p.513", items: [
@@ -124,7 +124,7 @@ MF.addTopic({
         ["Onset after 55 y", "Stroke / tumour"],
         ["Fever / systemic, temporal tenderness", "==GCA=="],
         ["Known systemic illness · abnormal neuro exam", "Secondary cause"]
-      ]}},
+      ]}, add: "Standard red-flag reading: headache brought on by coughing, straining or bending suggests RAISED intracranial pressure — a posterior-fossa mass or Chiari malformation — and needs MRI. Low-CSF headache is the POSTURAL one: worse upright, relieved by lying flat." },
       { mnemonic: "SNOOP", t: "Systemic illness · Neuro signs · Onset sudden · Older >55 · Pattern change (positional, waking, vomiting)" }
     ]},
     { type: "mcq", title: "MCQ in the notes", src: "p.514", items: [

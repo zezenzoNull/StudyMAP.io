@@ -29,7 +29,7 @@ MF.addTopic({
         ["AMAN", "Children, young adults · ==pure motor==", "Nodes of Ranvier", "Axonal degeneration"],
         ["AMSAN", "Adults · uncommon · motor + sensory", "Nodes of Ranvier", "Axonal degeneration"],
         ["==Miller Fisher== (<5%)", "Triad ==OAA==: Ophthalmoplegia · Areflexia ==without weakness== · Ataxia · CN III · ==anti-GQ1b==", "Schwann cells", "Either"]
-      ]}},
+      ]}, add: "Standard teaching: anti-GM1 / anti-GD1a IgG are linked to the AXONAL forms (AMAN, typically after Campylobacter); AIDP usually has no single defining antibody. Anti-GQ1b = Miller Fisher." },
       { mnemonic: "Miller Fisher = Fish eyes don't move", t: "OAA: ophthalmoplegia, areflexia (no weakness), ataxia" },
       { h: "Don't confuse — Wernicke encephalopathy (GOA)" },
       { t: "Global confusion · Ophthalmoplegia (CN VI) · Ataxia → ==IV thiamine + IV dextrose== (thiamine first)", node: "rx-dextrose", role: "first", why: "Wernicke: thiamine then dextrose" },
@@ -63,9 +63,9 @@ MF.addTopic({
       { mnemonic: "FAME (notes)", lines: [["F", "Flaccid bilateral limb weakness"], ["A", "Areflexia (ascending, symmetric) + cytoAlbuminologic dissociation"], ["M", "Monophasic illness — 12 h to 28 days"], ["E", "Electrodiagnostic demyelination"]] }
     ]},
     { type: "treatment", title: "Treatment flowchart", src: "p.565", steps: [
-      { t: "Monitor FVC / single-breath count → ventilate if failing · manage autonomic swings", type: "emergency" },
+      { t: "Monitor FVC / single-breath count → ventilate if failing · manage autonomic swings", add: "'20 / 30 / 40 rule' for intubation: vital capacity <20 mL/kg, maximal inspiratory pressure weaker than −30 cmH₂O or maximal expiratory pressure <40 cmH₂O (also bulbar failure, rapid progression). Give DVT prophylaxis, cardiac monitoring and pain relief (neuropathic pain is common).", type: "emergency" },
       { decision: "Disease-modifying (either one)", branches: [
-        { label: "TOC", steps: [{ t: "==IVIG==", node: "rx-ivig", role: "first", type: "treatment", why: "GBS treatment of choice" }] },
+        { label: "TOC", steps: [{ t: "==IVIG==", add: "IVIG 0.4 g/kg/day × 5 days (2 g/kg total), started within 2 weeks of onset — up to 4 weeks if still worsening; plasma exchange = 5 exchanges over ~2 weeks. Combining the two adds nothing.", node: "rx-ivig", role: "first", type: "treatment", why: "GBS treatment of choice" }] },
         { label: "Equally effective", steps: [{ t: "==Plasmapheresis (PLEX)==", node: "proc-plasmapheresis", role: "first", type: "treatment", why: "GBS alternative" }] }
       ]},
       { t: "Improvement shows after **>1 week** (delayed)", type: "followup" },
@@ -74,7 +74,7 @@ MF.addTopic({
       { mnemonic: "GBS: no Steroids, just Swap plasma or Supply IVIG" }
     ]},
     { type: "complication", title: "Cause of death", src: "p.565", items: [
-      { t: "==Secondary pulmonary involvement==", role: "danger" },
+      { t: "==Secondary pulmonary involvement==", add: "Death (~3–5%) comes mainly from respiratory failure, ventilator pneumonia, autonomic arrhythmias and pulmonary embolism — hence the need for cardiac monitoring and DVT prophylaxis. Poor recovery predictors: older age, preceding diarrhoea, rapid onset and need for ventilation.", role: "danger" },
       { table: { head: ["Cause"], rows: [["==Diaphragmatic paralysis (m/c)=="], ["AMAN subtype"], ["Pneumonia · atelectasis"], ["Pulmonary embolism"]] } }
     ]},
     { type: "mcq", title: "MCQ in the notes", src: "p.566", items: [

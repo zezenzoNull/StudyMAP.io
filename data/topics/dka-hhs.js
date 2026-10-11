@@ -54,9 +54,9 @@ MF.addTopic({
         { c: ["TLC", "↑", "{N:lab-cbc}", "Infection trigger?"], node: "lab-cbc", role: "init", why: "Look for infective trigger" },
         { c: ["Blood culture", "—", "{N:lab-blood-culture}", "Diagnose sepsis"], node: "lab-blood-culture", role: "init", why: "Infective trigger" },
         { c: ["Mg · PO₄ · Cl⁻", "Track", "{N:lab-electrolytes}", "Shift during treatment"], node: "lab-electrolytes", role: "monitor", why: "Electrolyte shifts during DKA treatment" }
-      ]}},
+      ]}, add: "Serum K⁺ is often normal or even high at presentation, because acidosis and lack of insulin move K⁺ out of cells, although total-body K⁺ is depleted (urine + vomiting losses). It falls quickly once insulin and fluids start — hence 2-hourly K⁺ checks." },
       "† = standard reference range, not printed in the notes",
-      { t: "Sodium correction → every **100 mg/dL** sugar ↑ = Na⁺ ↓ **1.6 mEq/L**", role: "hy" }
+      { t: "Sodium correction → every **100 mg/dL** sugar ↑ = Na⁺ ↓ **1.6 mEq/L**", add: "Why: glucose holds water in the plasma and draws water out of cells, diluting Na⁺ (translocational hyponatraemia). Corrected Na⁺ = measured Na⁺ + 1.6 × (glucose − 100) ÷ 100. A normal or high measured Na⁺ in DKA therefore means severe water loss.", role: "hy" }
     ]},
     { type: "diagnosis", title: "Grading & ICU", src: "p.245–246", items: [
       { table: { head: ["Grade", "pH", "β-OH butyrate"], rows: [
@@ -86,7 +86,7 @@ MF.addTopic({
       "Confirm → blood culture · metagenomic sequencing · septic-shock check · KFT · lactate",
       { t: "Causes → ==metformin given despite low eGFR== · septic shock", node: "rx-metformin", role: "ci", why: "Metformin with low eGFR → lactic acidosis" },
       { h: "Euglycaemic DKA" },
-      { t: "On SGLT2i (canagliflozin, empagliflozin) → glucosuria → sugar stays low", node: "rx-sglt2i", role: "hy", why: "SGLT2i glucosuria keeps glucose low despite DKA" }
+      { t: "On SGLT2i (canagliflozin, empagliflozin) → glucosuria → sugar stays low", add: "Euglycaemic DKA = ketoacidosis with glucose <250 mg/dL. Other settings: pregnancy, starvation / low-carbohydrate diet, alcohol, and insulin given before arrival. Treat as DKA but start dextrose with the insulin from the beginning.", node: "rx-sglt2i", role: "hy", why: "SGLT2i glucosuria keeps glucose low despite DKA" }
     ]},
     { type: "emergency", title: "DKA management flowchart (ISPAD)", src: "p.242–246", steps: [
       { t: "DKA confirmed (sugar ↑ + ketones + HCO₃⁻ <15–18)", node: "em-dka", role: "emerg", type: "emergency", why: "Entry to DKA protocol" },
@@ -105,11 +105,11 @@ MF.addTopic({
         ]}
       ]},
       { t: "==Insulin infusion 0.05–0.1 U/kg/h, start 1 h after fluids== (regular insulin IV)", node: "rx-insulin", role: "def", type: "treatment", why: "DKA insulin infusion (ISPAD)" },
-      { t: "K⁺ low → **hold insulin** (notes print '<33 meq/L')", node: "lab-potassium", role: "ci", type: "emergency", why: "Low K⁺: replace before insulin", verify: "'<33 meq/L' is a typo in the notes; the intended cut-off is almost certainly 3.3 mEq/L. Confirm." },
+      { t: "K⁺ low → **hold insulin** (notes print '<33 meq/L')", add: "ADA potassium rule: K⁺ <3.3 mEq/L → hold insulin and give 20–30 mEq K⁺ per hour until ≥3.3; K⁺ 3.3–5.2 → add 20–30 mEq to each litre of fluid; K⁺ >5.2 → no K⁺, recheck every 2 h.", node: "lab-potassium", role: "ci", type: "emergency", why: "Low K⁺: replace before insulin", verify: "'<33 meq/L' is a typo in the notes; the intended cut-off is almost certainly 3.3 mEq/L. Confirm." },
       { t: "Sugar falls **50–100 mg/dL/h** → at **200–250** switch to ==5% dextrose + 0.45% saline==", node: "rx-dextrose", role: "adjunct", type: "treatment", why: "DKA: prevent hypoglycaemia once glucose 200–250" },
       { t: "**Hourly:** blood sugar · fluid in/out · neuro status", node: "lab-potassium", role: "monitor", type: "followup", why: "Hourly monitoring during DKA treatment" },
       { decision: "Neuro deterioration? (HI-BID)", branches: [
-        { label: "Yes", steps: [{ t: "==Cerebral oedema== → urgent cerebral-injury management", type: "emergency" }] },
+        { label: "Yes", steps: [{ t: "==Cerebral oedema== → urgent cerebral-injury management", add: "ISPAD: give mannitol 0.5–1 g/kg IV over 10–20 min (or 3% hypertonic saline 2.5–5 mL/kg), cut the IV fluid rate by a third, raise the head end, support the airway; CT head only after the child is stabilised.", type: "emergency" }] },
         { label: "No · patient eating", steps: [{ t: "Switch to **SC insulin**", node: "rx-insulin", role: "def", type: "treatment", why: "DKA resolution: SC insulin when eating" }] }
       ]}
     ]},
@@ -136,14 +136,14 @@ MF.addTopic({
         ["HCO₃⁻", "↓", "Hyperchloraemia"]
       ]}},
       { mnemonic: "All fall, chloride climbs", t: "electrolytes on DKA treatment" },
-      { chain: ["Too much NS", "Cl⁻ excess", "Kidney pushes HCO₃⁻ into cells", "==Hyperchloraemic acidosis=="] }
+      { chain: ["Too much NS", "Cl⁻ excess", "Kidney pushes HCO₃⁻ into cells", "==Hyperchloraemic acidosis=="], add: "Standard explanation: a large chloride load from 0.9% saline dilutes bicarbonate and makes the kidney retain Cl⁻ in place of HCO₃⁻ → normal-anion-gap (hyperchloraemic) acidosis. It is usually harmless and avoided by changing to a balanced fluid (Ringer's lactate / Plasma-Lyte)." }
     ]},
     { type: "diagnosis", title: "HHS — hyperglycaemic hyperosmolar coma", src: "p.243, 246–247", items: [
       { mnemonic: "HHS = 6 · 3 · 7", t: "sugar >600 · osmolality >330 · pH >7.3 (no acidosis)" },
       "Who → middle-aged, occult T2DM",
       { chain: ["Relative insulin lack", "Hyperglycaemia", "Osmotic diuresis", "Dehydration", "==Pre-renal AKI=="] },
       "↓ consciousness → ↓ cerebral blood flow + uraemia",
-      { t: "Notes' mechanism: sugar crosses BBB → water into brain → cerebral oedema → coma", verify: "Notes attribute HHS coma to water entering the brain. Standard teaching links coma mainly to hyperosmolar brain dehydration (oedema being a risk of over-rapid correction). Verify." },
+      { t: "Notes' mechanism: sugar crosses BBB → water into brain → cerebral oedema → coma", add: "Standard teaching: very high plasma osmolality pulls water OUT of brain cells → cellular dehydration → drowsiness and coma (likely once osmolality >320–330 mOsm/kg). Cerebral oedema is a risk of correcting osmolality too fast — aim for a fall of ≤3–8 mOsm/kg per hour.", verify: "Notes attribute HHS coma to water entering the brain. Standard teaching links coma mainly to hyperosmolar brain dehydration (oedema being a risk of over-rapid correction). Verify." },
       "Triggers → MI · stroke · pneumonia (COVID-19) · surgery",
       { table: { head: ["Test", "HHS finding", "Normal"], rows: [
         { c: ["RBS", "==600–1200 mg/dL==", "{N:lab-rbs}"], node: "lab-rbs", role: "dx", why: "HHS: very high glucose" },
@@ -159,13 +159,13 @@ MF.addTopic({
         { label: ">150 mEq/L", steps: [{ t: "Switch to **0.45% saline**", node: "lab-sodium", role: "monitor", type: "treatment", why: "HHS: hypernatraemia → hypotonic saline" }] },
         { label: "≤150", steps: [{ t: "Continue 0.9% NS", type: "treatment" }] }
       ]},
-      { t: "**Insulin drip** until the patient starts eating", node: "rx-insulin", role: "def", type: "treatment", why: "HHS: IV insulin until eating" }
+      { t: "**Insulin drip** until the patient starts eating", add: "Fluids alone lower glucose first. Start low-dose insulin (0.05 U/kg/h) once the fall slows, or at once if ketones >1 mmol/L; keep the glucose fall ≤90 mg/dL per hour, add dextrose when glucose <300 mg/dL, and give LMWH because HHS carries a high thrombosis risk.", node: "rx-insulin", role: "def", type: "treatment", why: "HHS: IV insulin until eating" }
     ]},
     { type: "pearl", title: "Exam pearls", src: "p.243–246", items: [
       { t: "IOC = **β-OH butyrate**, not Ketostix", role: "hy" },
       { t: "Euglycaemic DKA → think **SGLT2 inhibitor**", role: "hy" },
       { t: "HHS → no acidosis, osm 330–380, sugar 600–1200", role: "hy" },
-      { t: "Hypervolaemic hyponatraemia → TBW ↑ + total body Na ↑; ↑ aldosterone in CHF, AKI, CKD, cirrhosis", role: "hy" }
+      { t: "Hypervolaemic hyponatraemia → TBW ↑ + total body Na ↑; ↑ aldosterone in CHF, AKI, CKD, cirrhosis", add: "Water rises more than sodium, so Na⁺ falls even though the patient is oedematous; treat with fluid restriction ± loop diuretic, not saline.", role: "hy" }
     ]},
     { type: "mcq", title: "MCQs in the notes", src: "p.248", items: [
       { t: "Unconscious child, pH 7.2, sugar 300, ketone 3+ → ==insulin infusion 0.05–0.1 U/kg/h after 1 h of IV fluids== (a)", node: "em-dka", role: "emerg", why: "MCQ: ISPAD sequence" },

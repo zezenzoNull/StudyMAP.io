@@ -33,7 +33,7 @@ MF.addTopic({
         ["Paraparesis / monoparesis", "==ACA=="],
         ["Nasal twang / regurgitation (IX, X)", "==Vertebral=="]
       ]}},
-      { t: "Highest stroke risk → ==next 48 h==", role: "danger" }
+      { t: "Highest stroke risk → ==next 48 h==", add: "Treatment of high-risk TIA / minor stroke: start dual antiplatelets at once — aspirin + clopidogrel for 21 days (CHANCE, POINT) or aspirin + ticagrelor for 30 days (THALES) — then a single antiplatelet, plus a statin and BP control; image the carotids and do an ECG / Holter for AF.", role: "danger" }
     ]},
     { type: "diagnosis", title: "ABCD² score", src: "p.605–606", items: [
       "Predicts stroke in ==next 3 months== after TIA → ==not diagnostic== (diagnose with ==NIHSS==)",
@@ -46,7 +46,7 @@ MF.addTopic({
         ["**D**uration >60 min", "2"],
         ["**D**iabetes", "1"],
         { c: ["**Total 7** → 6–7 ≈ ==22% stroke risk==", ""], hl: true }
-      ]}},
+      ]}, add: "Original ABCD² data (Johnston 2007): score 6–7 ≈ 8% stroke risk at 2 days (~18% at 90 days); 4–5 ≈ 4%; 0–3 ≈ 1% at 2 days. Current guidelines no longer triage by the score alone — every suspected TIA should see a specialist within 24 h." },
       { t: "Past history of stroke is ==not== in ABCD² (MCQ)", role: "hy" },
       { t: "NIHSS", node: "bed-nihss", role: "dx", why: "Confirms stroke" }
     ]},
@@ -61,12 +61,12 @@ MF.addTopic({
     ]},
     { type: "emergency", title: "Acute ischaemic stroke protocol", src: "p.607–609", steps: [
       { t: "**Step 1** → airway · BP · time last seen normal · ==thrombolysis C/I if BP >185/110== → lower with CCB", node: "rx-antihypertensive-iv", role: "emerg", type: "emergency", why: "AIS BP threshold before lysis" },
-      { t: "**Step 2** → NIHSS **>5** = stroke", node: "bed-nihss", role: "dx", type: "investigation", why: "Confirms stroke" },
+      { t: "**Step 2** → NIHSS **>5** = stroke", add: "NIHSS (0–42) grades the severity of a deficit rather than proving a stroke. Lysis is offered for a DISABLING deficit (traditionally NIHSS ≥5 or any disabling sign such as aphasia); mild non-disabling strokes get dual antiplatelets instead.", node: "bed-nihss", role: "dx", type: "investigation", why: "Confirms stroke" },
       { t: "**Step 3** → ==NCCT head== + RBS (door-to-imaging <25 min) → rules out bleed (ischaemia may be invisible for 6 h)", node: ["img-ncct-head", "lab-rbs"], role: "init", type: "imaging", why: "Exclude haemorrhage" },
       { decision: "Time since onset?", branches: [
         { label: "<4.5 h (upper limit <6 h)", steps: [
           { t: "CTA for large-vessel occlusion (M1, M2, ICA, BA)", node: "img-angio", role: "dx", type: "imaging", why: "Find LVO" },
-          { t: "==IV alteplase 0.9 mg/kg== (10% bolus, rest over 1 h) or ==tenecteplase bolus==", node: "rx-thrombolysis", role: "first", type: "emergency", why: "AIS reperfusion" },
+          { t: "==IV alteplase 0.9 mg/kg== (10% bolus, rest over 1 h) or ==tenecteplase bolus==", add: "Alteplase maximum 90 mg. Tenecteplase 0.25 mg/kg single IV bolus (max 25 mg) is now an accepted alternative. Approved window is 4.5 h; beyond that (up to ~9 h, or wake-up stroke) only with imaging selection — CT perfusion mismatch or DWI–FLAIR mismatch on MRI.", node: "rx-thrombolysis", role: "first", type: "emergency", why: "AIS reperfusion" },
           { t: "Success ≈30% → cath lab for angiography + thrombectomy if feasible", node: "proc-thrombectomy", role: "def", type: "treatment", why: "Post-lysis LVO" }
         ]},
         { label: "6–24 h", steps: [
@@ -95,7 +95,7 @@ MF.addTopic({
       ]}, node: "rx-thrombolysis", role: "ci", why: "Thrombolysis eligibility" },
       { h: "Giving IV tPA" },
       "2 IV lines · monitor BP continuously · ==no antithrombotics for 48 h== · no urinary catheter for 2 h",
-      { t: "Neuro decline / bleed after tPA → ==cryoprecipitate== + repeat imaging", role: "emerg" },
+      { t: "Neuro decline / bleed after tPA → ==cryoprecipitate== + repeat imaging", add: "Stop the infusion immediately, urgent CT head, send fibrinogen and clotting; give cryoprecipitate (≈10 units, aim fibrinogen >150 mg/dL) or tranexamic acid, and involve neurosurgery. Angio-oedema after alteplase (especially with ACE inhibitors) → antihistamine, steroid, adrenaline if airway threatened.", role: "emerg" },
       { t: "Aspirin in AIS → start ==after 24–48 h==", node: "rx-antiplatelet", role: "first", why: "Delayed aspirin after AIS" }
     ]},
     { type: "treatment", title: "Supportive care", src: "p.609", items: [
@@ -103,7 +103,7 @@ MF.addTopic({
       { table: { caption: "BP intervention threshold", head: ["Patient", "Treat if"], rows: [["Thrombolysis candidate", "==>185/110=="], ["Not for lysis", "==>220/130=="]] } },
       { mnemonic: "185 to Lyse · 220 to Leave alone", t: "BP thresholds" },
       "Control fever · glucose 60–180 mg/dL",
-      { t: "Malignant cerebral oedema (peaks 2–3 days) → water restriction · ==mannitol== (cytotoxic) · craniotomy", node: "rx-mannitol", role: "first", why: "Malignant MCA oedema" },
+      { t: "Malignant cerebral oedema (peaks 2–3 days) → water restriction · ==mannitol== (cytotoxic) · craniotomy", add: "Decompressive hemicraniectomy within 48 h in patients ≤60 y (selected older patients too) roughly halves mortality in malignant MCA infarction (DECIMAL, DESTINY, HAMLET). Also: swallow screen before any oral intake, early mobilisation and stroke-unit care.", node: "rx-mannitol", role: "first", why: "Malignant MCA oedema" },
       "Cerebellar infarct → ==suboccipital decompression=="
     ]},
     { type: "treatment", title: "Secondary prevention — ABCDX (notes)", src: "p.606–607", wide: true, items: [
@@ -115,7 +115,7 @@ MF.addTopic({
         { c: ["**D**M", "Insulin if HbA1c >10%"], node: "rx-insulin", role: "first", why: "Glycaemic control after stroke" },
         { c: ["**D**OAC (apixaban, rivaroxaban, dabigatran)", "==Non-valvular AF + CHA₂DS₂-VASc >2=="], node: ["rx-anticoag", "con-af"], role: "first", why: "AF anticoagulation", hl: true },
         { c: ["Warfarin", "==Valvular AF== (RHD with MS, LAA clot) · mechanical valves → ==INR 2.5–3.5=="], node: "rx-anticoag", role: "first", why: "Valvular AF / mechanical valve" }
-      ]}}
+      ]}, add: "Dual antiplatelet therapy is only for minor stroke (NIHSS ≤3–5) or high-risk TIA: aspirin + clopidogrel × 21 days or aspirin + ticagrelor × 30 days, then one antiplatelet long-term. Carotid endarterectomy: symptomatic stenosis 70–99% (consider 50–69%), ideally within 2 weeks of the event. DOAC for AF: men CHA₂DS₂-VASc ≥2, women ≥3 (any stroke patient qualifies); usually start ~1–3 days after TIA / small stroke, later for large infarcts." }
     ]},
     { type: "etiology", title: "Causes of ischaemic stroke", src: "p.609–610", items: [
       { table: { head: ["Cause", "Detail"], rows: [
@@ -149,7 +149,7 @@ MF.addTopic({
         { c: ["==Moyamoya==", "Non-inflammatory distal ICA/MCA occlusion + fragile collaterals → child ischaemic, adult haemorrhagic", "Angiography ==puff of smoke=="], node: "img-angio", role: "dx", why: "Moyamoya" },
         ["==CADASIL==", "AD arteriopathy · ==NOTCH3== · migraine with aura + young recurrent strokes + family history", "—"],
         { c: ["==PRES==", "Severe BP → BBB leak → vasogenic oedema (occipital, parietal) · eclampsia, AKI, amphetamine, SLE, APS · post-partum headache, blindness, seizures", "FLAIR white-matter hyperintensity · ==MAP ~130 + anticonvulsants=="], node: ["img-mri-brain", "rx-antiepileptic"], role: "dx", why: "PRES" }
-      ]}}
+      ]}, add: "LMWH is preferred over unfractionated heparin, and anticoagulation is given EVEN if there is a haemorrhagic venous infarct. Dabigatran is an accepted alternative to warfarin; duration 3–12 months depending on the cause (lifelong for severe thrombophilia). Stop the OCP." }
     ]},
     { type: "clinical", title: "Lacunar syndromes", src: "p.612–613", items: [
       "Cause → atherothrombosis / ==lipohyalinosis of penetrating branches==",

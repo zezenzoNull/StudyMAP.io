@@ -42,7 +42,7 @@ MF.addTopic({
         ["↑ BMR / calorigenesis", "==Weight loss · heat intolerance=="],
         ["Gut", "Diarrhoea (↑ appetite → osmotic load; ↓ motility → bacterial overgrowth; bile acids)"],
         ["Hormonal", "Oligomenorrhoea · infertility"]
-      ]}},
+      ]}, add: "Standard teaching: thyroid hormone SPEEDS gut transit → frequent, loose stools (hyperdefecation) with increased appetite; true watery diarrhoea is uncommon. Slow transit with constipation is the hypothyroid picture." },
       "Sleeping pulse rate separates thyrotoxicosis from anxiety neurosis",
       { t: "Hyperdynamic heart → loud S1, ejection systolic murmur, ==Means–Lerman scratch==", node: "bed-ecg", role: "dx", why: "AF (irregularly irregular) in thyrotoxicosis" },
       { h: "Graves-specific" },
@@ -71,8 +71,8 @@ MF.addTopic({
       ]}},
       { h: "Thyroid scan" },
       "Hot / cold nodules · pyramidal lobe (Graves) · patchy (toxic MNG) · low diffuse (thyroiditis)",
-      "Toxic multinodular goitre → needs ==surgery==",
-      { t: "Half-lives as printed: I-132 = 13.2 h · I-123 = 2.3 h · I-131 = 8 days", verify: "The notes appear to swap these: I-123 has t½ ≈ 13.2 h and I-132 ≈ 2.3 h. I-131 = 8 days is correct. Verify." }
+      { t: "Toxic multinodular goitre → needs ==surgery==", add: "Surgery or radioiodine — both are definitive. Antithyroid drugs control the toxicity but never produce remission, because the nodules are autonomous (unlike Graves)." },
+      { t: "Half-lives as printed: I-132 = 13.2 h · I-123 = 2.3 h · I-131 = 8 days", add: "Standard values: I-123 t½ ≈13 h (γ-emitter → diagnostic scans); I-131 t½ ≈8 days (β-emitter → ablation); Tc-99m pertechnetate t½ 6 h (trapped but not organified; the most-used scan agent). I-132 is not a routine clinical isotope.", verify: "The notes appear to swap these: I-123 has t½ ≈ 13.2 h and I-132 ≈ 2.3 h. I-131 = 8 days is correct. Verify." }
     ]},
     { type: "diagnosis", title: "Hyperthyroid → which cause? (flowchart)", src: "p.268–269", steps: [
       { t: "Thyrotoxic features → **free T4 + TSH**", node: "lab-tft", role: "init", type: "investigation", why: "First thyroid tests" },
@@ -93,7 +93,7 @@ MF.addTopic({
         { label: "Graves / primary", steps: [
           { t: "==1st line: antithyroid drugs== → reach euthyroid · ==DOC carbimazole==", node: "rx-carbimazole", role: "first", type: "treatment", why: "Graves first-line (DOC)" },
           { t: "Planning pregnancy / 1st trimester → **PTU** (high protein binding)", node: "rx-ptu", role: "first", type: "treatment", why: "Hyperthyroid in first trimester" },
-          { t: "==TOC (ATA): radioactive iodine I-131 ablation== (t½ 8 d, β-rays)", node: "rx-rai", role: "def", type: "treatment", why: "Graves definitive therapy" }
+          { t: "==TOC (ATA): radioactive iodine I-131 ablation== (t½ 8 d, β-rays)", add: "RAI is contraindicated in pregnancy and breast-feeding (avoid conception for ~6 months after), and it can flare active Graves eye disease → give prednisolone cover or choose surgery. Most patients become hypothyroid later → lifelong levothyroxine and yearly TFTs.", node: "rx-rai", role: "def", type: "treatment", why: "Graves definitive therapy" }
         ]},
         { label: "Secondary (TSH-oma: TSH ↑, T4 ↑)", steps: [
           { t: "Antithyroid drugs first", node: "rx-carbimazole", role: "first", type: "treatment", why: "Bridge in TSH-secreting adenoma" },
@@ -133,15 +133,15 @@ MF.addTopic({
         ["AF", "Absent 0 · present 10"],
         ["CHF", "Absent 0 · mild 5 · moderate 10 · severe 20"],
         { c: ["Precipitant history", "As printed: positive 0 · negative 10"], verify: "This looks reversed — a positive precipitant history should score 10. Verify." }
-      ]}}
+      ]}, add: "Original Burch–Wartofsky scale (1993): precipitant negative 0 · positive 10. Temperature 99–99.9 °F = 5 (not 0), then 10 · 15 · 20 · 25 · 30 (≥104 °F). Heart rate 99–109 = 5, 110–119 = 10, 120–129 = 15, 130–139 = 20, ≥140 = 25." }
     ]},
     { type: "emergency", title: "Thyroid storm — treatment flowchart", src: "p.265", steps: [
       { t: "Goal → ↓ total biologically active T4", type: "shared" },
       { t: "**Support:** cooling (ice packs) · oxygen · IV fluids (stop if CHF)", type: "emergency" },
       { t: "==DOC: PTU== (NG tube / rectal) → ↓ T4 production + ==blocks peripheral T4 → T3== · alternative: methimazole", node: "rx-ptu", role: ["emerg", "first"], type: "emergency", why: "Thyroid storm DOC" },
-      { t: "**SSKI 6-hourly** → mega iodine → ==Wolff–Chaikoff== → ↓ trapping → ↓ T4/T3", node: "rx-iodide", role: "adjunct", type: "treatment", why: "Thyroid storm: block hormone release" },
+      { t: "**SSKI 6-hourly** → mega iodine → ==Wolff–Chaikoff== → ↓ trapping → ↓ T4/T3", add: "Give iodine at least 1 hour AFTER the first PTU / methimazole dose — given earlier, the iodine is used to make more hormone. Lugol's iodine is the alternative to SSKI.", node: "rx-iodide", role: "adjunct", type: "treatment", why: "Thyroid storm: block hormone release" },
       { t: "==Propranolol== (β1 + β2) → counters tachycardia & muscle effects · tachycardia + hypotension → ==esmolol==", node: "rx-beta-blocker", role: "adjunct", type: "treatment", why: "Thyroid storm: β-blockade" },
-      { t: "**Hydrocortisone**", node: "rx-hydrocortisone", role: "adjunct", type: "treatment", why: "Thyroid storm adjunct" },
+      { t: "**Hydrocortisone**", add: "Hydrocortisone 100 mg IV 8-hourly: blocks peripheral T4 → T3 conversion and covers the relative adrenal insufficiency of a storm. Avoid aspirin for fever (it frees T4 from binding proteins) — use paracetamol.", node: "rx-hydrocortisone", role: "adjunct", type: "treatment", why: "Thyroid storm adjunct" },
       { t: "**Cholestyramine** → sequesters thyroid hormone", node: "rx-cholestyramine", role: "adjunct", type: "treatment", why: "Thyroid storm: bind hormone" },
       { mnemonic: "Cool + 5 B's", t: "Block synthesis (PTU) · Block release (iodine) · Block conversion (PTU, steroid) · Beta-block · Bind (cholestyramine)" }
     ]},
@@ -193,13 +193,13 @@ MF.addTopic({
         ]},
         { label: "Myxoedema coma", steps: [
           { t: "Non-compliant hypothyroid + trigger (UTI, sleeping pills) → hormone crash → temp **<35 °C**, bradycardia, hypotension, prolonged PR, unconscious", type: "clinical" },
-          { t: "**Rewarm** + ==liothyronine (T3)== + levothyroxine", node: ["rx-liothyronine", "rx-levothyroxine"], role: "emerg", type: "emergency", why: "Myxoedema coma" }
+          { t: "**Rewarm** + ==liothyronine (T3)== + levothyroxine", add: "Also give IV hydrocortisone (100 mg 8-hourly) until adrenal insufficiency is excluded. Warm passively with blankets (active rewarming → vasodilatory collapse), correct hyponatraemia and hypoglycaemia, and ventilate if CO₂ retention. IV levothyroxine loading dose ≈200–400 µg (lower in elderly / cardiac patients).", node: ["rx-liothyronine", "rx-levothyroxine"], role: "emerg", type: "emergency", why: "Myxoedema coma" }
         ]}
       ]},
       { mnemonic: "1.6 for the young · 25 for the old heart", t: "levothyroxine start dose" }
     ]},
     { type: "diagnosis", title: "Sick euthyroid syndrome", src: "p.272", items: [
-      "Trigger → **sepsis**",
+      { t: "Trigger → **sepsis**", add: "Also seen in starvation, MI, major surgery, burns, CKD and liver failure; reverse T3 is ↑. Thyroxine is not given — the pattern recovers with the illness. Re-check TFTs about 6 weeks after recovery." },
       "Problem → ==impaired T4 → T3 conversion==",
       { table: { head: ["T4", "T3", "TSH"], rows: [
         { c: ["Normal", "==↓==", "↓ at first → normal/↑ in recovery"], node: "lab-tft", role: "dx", why: "Sick euthyroid pattern" }

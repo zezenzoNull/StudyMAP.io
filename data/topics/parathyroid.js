@@ -63,20 +63,20 @@ MF.addTopic({
       { t: "==IOC imaging → Tc-99m sestamibi SPECT/CT==", node: "img-sestamibi", role: "ioc", why: "Localises parathyroid adenoma" },
       { t: "X-ray hand → ==subperiosteal resorption of phalanges==", node: "img-xray", role: "dx", why: "Bone sign of hyperparathyroidism" },
       { t: "Don't confuse → Tc-99m ==pertechnetate== scan = Meckel diverticulum", role: "hy" },
-      { t: "Treatment → ==resect the tumour==", role: "def" }
+      { t: "Treatment → ==resect the tumour==", add: "Surgery is indicated in all symptomatic patients; in asymptomatic ones if serum Ca >1 mg/dL above the upper limit, eGFR <60, T-score ≤ −2.5 or vertebral fracture, kidney stones / hypercalciuria, or age <50. Watch for 'hungry bone' hypocalcaemia after removal.", role: "def" }
     ]},
     { type: "etiology", title: "Causes of hypercalcaemia", src: "p.282", items: [
       { mnemonic: "HAS MILK-Intoxication (notes)", lines: [["H", "Humoral hypercalcaemia of malignancy — squamous cell Ca lung / breast"], ["A", "Adenoma (parathyroid)"], ["S", "Sarcoidosis — granulomas make 1α-hydroxylase → vit D3 ↑ → steroids work"], ["MILK", "Milk-alkali syndrome — antacid abuse, thiazides, lithium"], ["I", "Intoxication with vitamin D3 → steroids work"]] },
       { h: "Others" },
-      "Jansen disease → PTHR1 gain of function",
-      "Familial hypocalciuric hypercalcaemia → CaSR (parathyroid + kidney) faulty → PTH ↑, Ca reabsorption ↑",
+      { t: "Jansen disease → PTHR1 gain of function", add: "The PTH receptor is switched on without PTH, so PTH itself is low or undetectable; presents in childhood with short-limbed dwarfism and hypercalcaemia." },
+      { t: "Familial hypocalciuric hypercalcaemia → CaSR (parathyroid + kidney) faulty → PTH ↑, Ca reabsorption ↑", add: "FHH is benign and autosomal dominant: urine calcium is very LOW (calcium/creatinine clearance ratio <0.01), PTH normal or mildly raised. It needs no treatment and must not be operated on — the key reason to check urine calcium before parathyroidectomy." },
       { h: "Steroid-responsive hypercalcaemia" },
       { mnemonic: "VS MLL", t: "Vitamin D intoxication · Sarcoidosis · Myeloma · Leukaemia · Lymphoma" },
       { t: "Steroids", node: "rx-steroids", role: "first", why: "Steroid-responsive hypercalcaemia (granulomas, haematological)" }
     ]},
     { type: "emergency", title: "Hypercalcaemic crisis — flowchart", src: "p.282", steps: [
       { t: "Dangerous hypercalcaemia (risk of arrest >15 mg/dL)", node: "em-hypercalcemia", role: "emerg", type: "emergency", why: "Entry to hypercalcaemic crisis protocol" },
-      { t: "==1st line: normal saline==", node: "rx-normal-saline", role: "first", type: "emergency", why: "Hypercalcaemic crisis first line" },
+      { t: "==1st line: normal saline==", add: "Give 0.9% saline 200–300 mL/h (≈3–4 L in the first 24 h) to keep urine output 100–150 mL/h; furosemide only after the volume is restored; stop thiazides, calcium and vitamin D; haemodialysis if Ca >18 mg/dL with neuro signs or renal failure.", node: "rx-normal-saline", role: "first", type: "emergency", why: "Hypercalcaemic crisis first line" },
       { t: "Then ==NS + furosemide drip== → Ca²⁺ lost in urine", node: "rx-furosemide", role: "adjunct", type: "treatment", why: "Calciuresis after rehydration" },
       { t: "==DOC: IV zoledronate== (onset 1–2 days, full effect ~3 weeks)", node: "rx-bisphosphonate", role: "def", type: "treatment", why: "Hypercalcaemic crisis DOC" },
       { decision: "Extra options", branches: [
@@ -97,7 +97,7 @@ MF.addTopic({
       ]}}
     ]},
     { type: "treatment", title: "Secondary hyperPTH — treatment", src: "p.283", steps: [
-      { t: "Calcium + vitamin D3", node: "rx-vitd", role: "first", type: "treatment", why: "Secondary hyperparathyroidism of CKD" },
+      { t: "Calcium + vitamin D3", add: "In CKD the kidney cannot activate vitamin D, so give ACTIVE vitamin D (calcitriol / alfacalcidol), plus a low-phosphate diet and phosphate binders (sevelamer, calcium carbonate). Long-standing disease can turn autonomous = TERTIARY hyperparathyroidism (Ca ↑, PTH ↑↑) → parathyroidectomy.", node: "rx-vitd", role: "first", type: "treatment", why: "Secondary hyperparathyroidism of CKD" },
       { t: "==Cinacalcet== → calcimimetic on parathyroid CaSR → ↓ PTH release", node: "rx-cinacalcet", role: "second", type: "treatment", why: "Lowers PTH in CKD" },
       { t: "==Kidney transplant → definitive==", role: "def", type: "treatment" }
     ]},
@@ -130,8 +130,8 @@ MF.addTopic({
     ]},
     { type: "emergency", title: "Tetany / hypoPTH — treatment flowchart", src: "p.284", steps: [
       { decision: "Acute or chronic?", branches: [
-        { label: "Acute tetany", steps: [{ t: "==IV 10% calcium gluconate over 10 minutes==", node: ["em-tetany", "rx-calcium-gluconate"], role: "emerg", type: "emergency", why: "Emergency management of tetany" }] },
-        { label: "Post-surgical hypoPTH", steps: [{ t: "==Teriparatide SC==", node: "rx-teriparatide", role: "first", type: "treatment", why: "Surgically induced hypoparathyroidism" }] },
+        { label: "Acute tetany", steps: [{ t: "==IV 10% calcium gluconate over 10 minutes==", add: "10–20 mL of 10% calcium gluconate diluted in 50–100 mL 5% dextrose over 10 min with ECG monitoring, then a slow infusion; never mix with bicarbonate (precipitates). Check magnesium — low Mg²⁺ blocks PTH release and makes hypocalcaemia refractory until it is corrected.", node: ["em-tetany", "rx-calcium-gluconate"], role: "emerg", type: "emergency", why: "Emergency management of tetany" }] },
+        { label: "Post-surgical hypoPTH", steps: [{ t: "==Teriparatide SC==", add: "Standard first line for post-surgical hypoparathyroidism is still oral calcium + calcitriol (aim for low-normal calcium to avoid hypercalciuria); PTH analogues (teriparatide / rhPTH 1-84) are for patients poorly controlled on that.", node: "rx-teriparatide", role: "first", type: "treatment", why: "Surgically induced hypoparathyroidism" }] },
         { label: "Chronic", steps: [{ t: "Calcium + vitamin D supplements", node: "rx-vitd", role: "first", type: "treatment", why: "Hypoparathyroidism maintenance" }] }
       ]}
     ]},
@@ -157,13 +157,13 @@ MF.addTopic({
         ["Defect", "1α-hydroxylase gene → no active vit D", "End-organ resistance to vit D3"],
         ["Treatment", "Vitamin D3", "==IV calcium infusion=="]
       ]}},
-      { verify: "Type 1 VDDR is usually treated with calcitriol (active vitamin D), since 1α-hydroxylation is the missing step; notes say 'vitamin D3'. Verify.", t: "Type 1 treatment as printed: vitamin D3" }
+      { verify: "Type 1 VDDR is usually treated with calcitriol (active vitamin D), since 1α-hydroxylation is the missing step; notes say 'vitamin D3'. Verify.", t: "Type 1 treatment as printed: vitamin D3", add: "Standard: VDDR type 1 (1α-hydroxylase defect) → calcitriol in physiological doses; VDDR type 2 (vitamin D receptor defect, often with alopecia) → very high-dose calcitriol + high-dose oral calcium, and IV calcium only if resistant." }
     ]},
     { type: "diagnosis", title: "Osteoporosis", src: "p.286", items: [
       "Post-menopausal woman with ==severe low back pain and bone pain==",
       "Ca · PO₄ · SAP all ==normal==",
       { t: "==IOC → DEXA scan==", node: "img-dexa", role: "ioc", why: "Osteoporosis diagnosis" },
-      { t: "T-score ≤ **−2.5 SD** · Z-score ≤ −2.5 SD (as printed)", verify: "The −2.5 cut-off belongs to the T-score; Z-score ≤ −2.0 is the usual 'below expected for age' cut-off. Verify." }
+      { t: "T-score ≤ **−2.5 SD** · Z-score ≤ −2.5 SD (as printed)", add: "WHO: T-score ≤ −2.5 = osteoporosis; −1 to −2.5 = osteopenia; ≤ −2.5 + fragility fracture = severe osteoporosis. Z-score (vs age-matched people) ≤ −2.0 = 'below the expected range for age' — used for pre-menopausal women, men <50 and children.", verify: "The −2.5 cut-off belongs to the T-score; Z-score ≤ −2.0 is the usual 'below expected for age' cut-off. Verify." }
     ]},
     { type: "treatment", title: "Osteoporosis — drugs", src: "p.286", items: [
       { table: { head: ["Drug", "Watch for"], rows: [
@@ -171,7 +171,7 @@ MF.addTopic({
         { c: ["Calcitonin nasal spray", "—"], node: "rx-calcitonin", role: "second", why: "Osteoporosis option" },
         { c: ["Teriparatide", "==Osteosarcoma risk=="], node: "rx-teriparatide", role: "second", why: "Anabolic osteoporosis therapy" },
         { c: ["Denosumab", "Notes: 'osteoclasts ↑, osteoblasts normal'"], node: "rx-denosumab", role: "second", why: "Osteoporosis anti-resorptive", verify: "Denosumab blocks RANKL, so osteoclast activity goes DOWN; the notes' '↑' looks like a typo." }
-      ]}},
+      ]}, add: "Denosumab = monoclonal antibody against RANKL → osteoclast formation and activity ↓; 60 mg SC every 6 months. Stopping it suddenly causes rebound vertebral fractures (follow with a bisphosphonate); check calcium first, especially in CKD." },
       { t: "Cinacalcet → ==not effective== in osteoporosis (MCQ)", node: "rx-cinacalcet", role: "ci", why: "Calcimimetic has no role in osteoporosis" }
     ]},
     { type: "mcq", title: "MCQs in the notes", src: "p.288", items: [

@@ -16,7 +16,7 @@ MF.addTopic({
         ["MAP", "= (SBP + 2 × DBP) ÷ 3"],
         ["Normal CPP", "**60–80 mmHg**"],
         { c: ["CPP <60", "==Brain infarction=="], role: "danger" }
-      ]}},
+      ]}, add: "Most texts give normal adult ICP as 5–15 mmHg lying down; treatment usually starts when ICP stays >20–22 mmHg." },
       { mnemonic: "Keep ICP under 20, CPP over 60", t: "management goals · act when ICP >20–25 for >5 min" },
       { h: "CSF physiology" },
       { table: { head: ["CSF fact", "Value"], rows: [
@@ -34,7 +34,7 @@ MF.addTopic({
         { c: ["==Uncal==", "Uncus over tentorium", "==CN III compression → I/L mid-dilated sluggish pupil (Hutchinson)=="], node: "con-cn3-palsy", role: "danger", why: "Uncal herniation compresses CN III", hl: true },
         { c: ["==Foraminal (tonsillar)==", "Cerebellar tonsils down", "Medulla compressed → ==apnoea== · caused by ==LP with raised ICP=="], node: "proc-lp", role: "ci", why: "LP in raised ICP can cause tonsillar herniation" },
         ["Transcalvarial", "Out through skull defect after trauma", "Bad prognosis"]
-      ]}}
+      ]}, add: "Central (transtentorial) herniation → falling consciousness, small then mid-position fixed pupils, decorticate → decerebrate posturing, Cheyne–Stokes breathing and Duret haemorrhages in the brainstem. Subfalcine herniation compresses the anterior cerebral artery → contralateral leg weakness." }
     ]},
     { type: "clinical", title: "Symptoms", src: "p.529", items: [
       "Headache → ==frontal first== (dura stretch, CN V), later holocephalic",
@@ -86,11 +86,11 @@ MF.addTopic({
     { type: "emergency", title: "Raised ICP management — flowchart", src: "p.527–528", steps: [
       { t: "ICP >20–25 mmHg for >5 min · insert ICP monitor (==ventriculostomy== — most effective)", node: ["em-raised-icp", "proc-evd"], role: "emerg", type: "emergency", why: "Entry to raised-ICP protocol" },
       { t: "**H** — Head end elevation, midline head position", type: "treatment" },
-      { t: "**O** — Osmotherapy: ==mannitol== (C/I active CNS bleed, e.g. warfarin toxicity) · ==23.4% hypertonic saline== · ==5% dextrose absolutely C/I== (hypotonic)", node: ["rx-mannitol", "rx-hypertonic-saline"], role: "first", type: "treatment", why: "Osmotherapy for raised ICP" },
+      { t: "**O** — Osmotherapy: ==mannitol== (C/I active CNS bleed, e.g. warfarin toxicity) · ==23.4% hypertonic saline== · ==5% dextrose absolutely C/I== (hypotonic)", add: "Mannitol 0.25–1 g/kg IV bolus, repeated 4–6-hourly while serum osmolality stays <320 mOsm/kg (it can cause hypovolaemia and AKI). Hypertonic saline (3% peripheral, 23.4% only via central line) aims for Na⁺ 145–155 mmol/L and is preferred when the patient is hypotensive.", node: ["rx-mannitol", "rx-hypertonic-saline"], role: "first", type: "treatment", why: "Osmotherapy for raised ICP" },
       { t: "**D** — Drain CSF via ventriculostomy", node: "proc-evd", role: "first", type: "treatment", why: "CSF drainage lowers ICP" },
       { t: "Glucocorticoids → only for ==vasogenic== oedema (TB meningitis, NCC, tumour, HACE); not stroke / TBI", node: "rx-steroids", role: "adjunct", type: "treatment", why: "Vasogenic oedema only" },
       { t: "**S** — Sedation: midazolam, propofol, morphine · paralyse + intubate (PPV) → less barotrauma", node: "rx-sedation", role: "adjunct", type: "treatment", why: "Lower metabolic demand and ICP" },
-      { t: "**H** — Hyperventilation (short-term): CO₂ washout → cerebral vasoconstriction → ICP ↓", type: "treatment" },
+      { t: "**H** — Hyperventilation (short-term): CO₂ washout → cerebral vasoconstriction → ICP ↓", add: "Target PaCO₂ 30–35 mmHg and use it only as a short bridge to definitive treatment: prolonged or deeper hyperventilation causes cerebral ischaemia.", type: "treatment" },
       { t: "**P** — Pressors (dopamine, norepinephrine, phenylephrine) → ↑ MAP → keeps CPP >60", node: "rx-vasopressor", role: "adjunct", type: "treatment", why: "Maintain CPP" },
       { decision: "Still refractory?", branches: [
         { label: "Yes → Tier II", steps: [
@@ -118,7 +118,7 @@ MF.addTopic({
     { type: "diagnosis", title: "Brain death", src: "p.532–534", items: [
       "Brainstem dead, heart still beating · toe/finger twitches and DTRs can persist",
       { h: "Certify (India)" },
-      { mnemonic: "C-A-T-2", lines: [["C", "Coma — irreversible, GCS <8"], ["A", "Absent brainstem reflexes + positive apnoea test"], ["T", "Tests — EEG flat isoelectric, MRA/scintigraphy no brainstem flow"], ["2", "Two separate doctors certify"]] },
+      { mnemonic: "C-A-T-2", lines: [["C", "Coma — irreversible, GCS <8"], ["A", "Absent brainstem reflexes + positive apnoea test"], ["T", "Tests — EEG flat isoelectric, MRA/scintigraphy no brainstem flow"], ["2", "Two separate doctors certify"]], add: "Brain death requires the deepest coma — GCS 3 with no motor response to pain above the neck (spinal reflexes may persist) — with a known irreversible cause, after excluding sedatives, paralytics, hypothermia, and severe metabolic or endocrine upset. In India (THOA 1994) a board of four doctors certifies, and the tests are repeated after at least 6 hours." },
       { table: { caption: "Brainstem reflexes (all absent)", head: ["Reflex", "Test", "CN"], rows: [
         ["Light", "Pupils fixed", "II, III (midbrain)"],
         ["Corneal", "No blink both sides", "V, VII (pons)"],
@@ -128,7 +128,7 @@ MF.addTopic({
         ["Gag", "Gag + cough", "IX, X"]
       ]}},
       { h: "Apnoea test" },
-      { chain: ["100% O₂ for 10 min (pO₂ ~200)", "Disconnect ventilator", "pCO₂ >60 mmHg", "No breathing effort = positive"] },
+      { chain: ["100% O₂ for 10 min (pO₂ ~200)", "Disconnect ventilator", "pCO₂ >60 mmHg", "No breathing effort = positive"], add: "A positive apnoea test = no respiratory effort once PaCO₂ is ≥60 mmHg (or ≥20 mmHg above baseline), which shows that the medullary respiratory centre is dead. Abort if BP falls or SpO₂ drops below ~85%." },
       "Respiratory pacemaker = ==pre-Bötzinger complex== → destroyed",
       { t: "EEG → ==flat isoelectric >30 min== (sensitivity 2 µV); burst suppression earlier (cortical anoxia)", node: "bed-eeg", role: "confirm", why: "Brain death EEG" },
       { t: "MRA / brain scintigraphy → ==no flow to brainstem==", node: "img-angio", role: "confirm", why: "Brain death: absent flow" }
