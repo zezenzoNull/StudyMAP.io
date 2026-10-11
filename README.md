@@ -4,7 +4,7 @@ An interconnected, colour-coded revision flowchart built from the PrepLadder Med
 (`Medicine Prep X - ZeroTrace - Copy.pdf`). It covers the exam-scope topics from the index photos, in book order.
 
 ## Open it
-**Online:** https://zezenzonull.github.io/StudyMAP/ (GitHub Pages) — works on phones too; tap **▶ Play** on any topic for a guided walkthrough.
+**Online:** https://zezenzonull.github.io/StudyMAP.io/ (GitHub Pages) — works on phones too; tap **▶ Play** on any topic for a guided walkthrough.
 
 **Offline:** double-click **`index.html`**. It runs offline in any modern browser (Edge, Chrome, Firefox) with no install or internet needed.
 
