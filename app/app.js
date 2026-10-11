@@ -49,6 +49,8 @@
   const MF = (window.MF = { shared: {}, topics: {}, manifest: [], usage: {}, index: [], TYPES, ROLES, KINDS });
   MF.glossary = {};
   MF.defineGlossary = (g) => Object.assign(MF.glossary, g);
+  MF.drugs = [];
+  MF.defineDrugs = (list) => MF.drugs.push(...list);
   const xp = (raw) => (window.MFExpand ? window.MFExpand.text(raw, { glossary: MF.glossary, topic: MF._topic, marker: true }) : String(raw));
   MF.defineShared = (list) => list.forEach((n) => (MF.shared[n.id] = n));
   MF.addTopic = (t) => (MF.topics[t.id] = t);
@@ -308,7 +310,8 @@
     const wrap = $("#bubbles"), svg = $("#arrows");
     if (!wrap || !svg) return;
     const z = currentZoom();
-    const W = wrap.scrollWidth, H = wrap.scrollHeight;
+    svg.setAttribute("width", 0); svg.setAttribute("height", 0); // measure the bubbles, not last time's overlay
+    const W = wrap.clientWidth, H = wrap.scrollHeight;
     svg.setAttribute("width", W); svg.setAttribute("height", H); svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
     const base = wrap.getBoundingClientRect();
     const boxes = [...wrap.querySelectorAll(".bubble")].map((el) => {
@@ -472,9 +475,16 @@
   // ---------- Zoom ----------
   const ZK = "mf-zoom";
   const currentZoom = () => parseFloat(view().style.zoom || 1) || 1;
+  // A zoomed page keeps the screen's width: its own px width is scaled by the zoom in every engine
+  // (Chrome's standard zoom and Safari's legacy zoom alike), so text re-wraps instead of running off a phone.
+  function fitZoom() {
+    const v = view(), z = parseFloat(v.style.zoom || 1) || 1;
+    v.style.width = z === 1 ? "" : (document.documentElement.clientWidth / z).toFixed(2) + "px";
+  }
   function setZoom(z) {
     z = Math.min(2, Math.max(0.5, Math.round(z * 10) / 10));
     view().style.zoom = z;
+    fitZoom();
     $("#zoomVal").textContent = Math.round(z * 100) + "%";
     try { localStorage.setItem(ZK, z); } catch (e) { /* storage unavailable */ }
     requestAnimationFrame(drawArrows);
@@ -504,7 +514,7 @@
     window.addEventListener("hashchange", route);
     const setTB = () => document.documentElement.style.setProperty("--tb", ($(".topbar") ? $(".topbar").offsetHeight + 4 : 56) + "px");
     setTB();
-    window.addEventListener("resize", () => { setTB(); requestAnimationFrame(drawArrows); });
+    window.addEventListener("resize", () => { setTB(); fitZoom(); requestAnimationFrame(drawArrows); });
     const s = $("#search");
     s.addEventListener("input", () => search(s.value));
     s.addEventListener("keydown", (e) => { if (e.key === "Escape") { s.value = ""; search(""); } });

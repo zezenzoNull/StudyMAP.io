@@ -1,7 +1,8 @@
 /* Play mode — a story-style walkthrough of one topic's flowchart.
    Tap ▶ Play on a topic page → full-screen slides, one bubble/pathway at a time, auto-scrolling and auto-advancing
    until the topic is finished; the last slide is the whole chart as a connected map.
-   Controls: tap right = next · tap left = back · tap middle = pause/resume · swipe down or ✕ = close · ←/→/space/Esc keys.
+   Controls: tap right = next · tap left = back · tap middle = pause/resume · scroll with a finger (or wheel / ↑↓) = pause and
+   read at your own pace, tap middle to carry on from there · pull down at the top or ✕ = close · ←/→/space/Esc keys.
    Slides are clones of the rendered page, so nothing is lost (tables, mnemonics, chips, colours, flowcharts). */
 (function () {
   "use strict";
@@ -86,19 +87,25 @@
     stage.appendChild(el("div", "pl-card"));
     const paused = el("div", "pl-paused", "❚❚ paused");
     paused.hidden = true;
-    ov.append(bars, top, stage, el("div", "pl-hint", "tap right ▸ next · left ◂ back · middle pause · swipe ↓ close"), paused);
+    ov.append(bars, top, stage, el("div", "pl-hint", "tap right ▸ next · left ◂ back · middle pause · scroll freely · pull ↓ at top to close"), paused);
     document.body.appendChild(ov);
     document.documentElement.classList.add("pl-lock");
-    state = { ov, slides, i: -1, t0: 0, dur: 0, elapsed: 0, paused: false, raf: 0 };
+    state = { ov, slides, i: -1, t0: 0, dur: 0, elapsed: 0, paused: false, raf: 0, touching: false, anchor: null };
     x.addEventListener("click", (e) => { e.stopPropagation(); close(); });
     ov.addEventListener("click", onTap);
-    let y0 = null;
-    ov.addEventListener("touchstart", (e) => { y0 = e.touches[0].clientY; }, { passive: true });
-    ov.addEventListener("touchend", (e) => {
-      const card = state && $(".pl-card", state.ov);
-      if (y0 !== null && card && e.changedTouches[0].clientY - y0 > 110 && card.scrollTop <= 0) close();
+    // Manual scrolling: the finger always wins. Moving the card pauses the slide; tap middle resumes from there.
+    const card = $(".pl-card", ov);
+    let y0 = null, top0 = 0;
+    card.addEventListener("touchstart", (e) => { y0 = e.touches[0].clientY; top0 = card.scrollTop; state.touching = true; }, { passive: true });
+    card.addEventListener("touchmove", (e) => {
+      if (y0 !== null && Math.abs(e.touches[0].clientY - y0) > 8) holdForReading();
+    }, { passive: true });
+    card.addEventListener("touchend", (e) => {
+      if (state) state.touching = false;
+      if (y0 !== null && top0 <= 0 && card.scrollTop <= 0 && e.changedTouches[0].clientY - y0 > 140) close();
       y0 = null;
     }, { passive: true });
+    card.addEventListener("wheel", holdForReading, { passive: true });
     document.addEventListener("keydown", onKey);
     go(0);
   }
@@ -112,16 +119,37 @@
   }
   function onKey(e) {
     if (!state) return;
+    if (e.key === "ArrowDown" || e.key === "ArrowUp" || e.key === "PageDown" || e.key === "PageUp") {
+      const card = $(".pl-card", state.ov), step = e.key.startsWith("Page") ? card.clientHeight * 0.9 : 80;
+      e.preventDefault();
+      holdForReading();
+      card.scrollBy({ top: e.key === "ArrowDown" || e.key === "PageDown" ? step : -step, behavior: "smooth" });
+      return;
+    }
     if (e.key === "ArrowRight") go(state.i + 1);
     else if (e.key === "ArrowLeft") go(state.i - 1);
     else if (e.key === " ") { e.preventDefault(); togglePause(); }
     else if (e.key === "Escape") close();
   }
+  function setPaused(on, label) {
+    state.paused = on;
+    const badge = $(".pl-paused", state.ov);
+    badge.textContent = label || "❚❚ paused";
+    badge.hidden = !on;
+    if (!on) {
+      state.t0 = performance.now() - state.elapsed;
+      // carry on gliding from wherever the reader left the card
+      const p = state.dur ? Math.min(1, state.elapsed / state.dur) : 0;
+      state.anchor = { p, top: $(".pl-card", state.ov).scrollTop };
+    }
+  }
   function togglePause() {
     if (!state || state.slides[state.i].final) return;
-    state.paused = !state.paused;
-    $(".pl-paused", state.ov).hidden = !state.paused;
-    if (!state.paused) state.t0 = performance.now() - state.elapsed;
+    setPaused(!state.paused);
+  }
+  function holdForReading() {
+    if (!state || state.paused || state.slides[state.i].final) return;
+    setPaused(true, "❚❚ reading · tap middle to continue");
   }
 
   function go(i) {
@@ -141,6 +169,7 @@
     $(".pl-label", ov).textContent = s.label;
     ov.querySelectorAll(".pl-bar").forEach((b, k) => { b.firstChild.style.width = k < i || (s.final && k === i) ? "100%" : "0%"; });
     state.paused = false;
+    state.anchor = null;
     $(".pl-paused", ov).hidden = true;
     state.dur = s.final ? 0 : readMs(s.node);
     state.elapsed = 0;
@@ -159,9 +188,12 @@
       // keep moving: glide through long slides, holding a moment at the start and end
       const card = $(".pl-card", state.ov);
       const max = card.scrollHeight - card.clientHeight;
-      if (max > 4) {
-        const q = Math.min(1, Math.max(0, (p - 0.12) / 0.78));
-        card.scrollTop = max * (q < 0.5 ? 2 * q * q : 1 - Math.pow(-2 * q + 2, 2) / 2);
+      if (max > 4 && !state.touching) {
+        const a = state.anchor || { p: 0.12, top: 0 };
+        const end = Math.max(a.p + 0.05, 0.9);
+        const q = Math.min(1, Math.max(0, (p - a.p) / (end - a.p)));
+        const top = Math.min(a.top, max);
+        card.scrollTop = top + (max - top) * (q < 0.5 ? 2 * q * q : 1 - Math.pow(-2 * q + 2, 2) / 2);
       }
       if (p >= 1) go(state.i + 1);
     }

@@ -27,8 +27,25 @@
     return v._ === undefined ? null : v._;
   }
 
+  // Drug names → CAPITALS (data/drugs.js). "insulin-like" and similar compounds are left alone.
+  let drugFor = null, drugRe = null;
+  function caps(s, drugs) {
+    if (!drugs || !drugs.length || !s) return s;
+    if (drugFor !== drugs) {
+      const names = [...new Set(drugs.map((d) => d.trim()).filter(Boolean))].sort((a, b) => b.length - a.length);
+      drugRe = new RegExp("(?<![A-Za-z0-9])(" + names.map(reEsc).join("|") + ")(?![A-Za-z0-9]|-like)", "gi");
+      drugFor = drugs;
+    }
+    return s.replace(drugRe, (m) => m.toUpperCase());
+  }
+
   function text(raw, opts) {
     const o = opts || {};
+    const drugs = o.drugs || (root.MF && root.MF.drugs);
+    return caps(expand(raw, o), drugs);
+  }
+
+  function expand(raw, o) {
     const g = o.glossary || (root.MF && root.MF.glossary) || {};
     if (!raw || !Object.keys(g).length) return String(raw == null ? "" : raw);
     const s = String(raw);
@@ -49,5 +66,5 @@
     });
   }
 
-  root.MFExpand = { text, meaning };
+  root.MFExpand = { text, meaning, caps };
 })(typeof window !== "undefined" ? window : globalThis);

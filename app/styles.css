@@ -134,9 +134,9 @@ h1 .chip { font-size: 22px; }
 .blabel { font-size: 12px; font-weight: 700; color: var(--muted); text-transform: uppercase; letter-spacing: .03em; }
 
 /* Master */
-.systems { display: grid; gap: 22px; }
+.systems { display: grid; grid-template-columns: minmax(0, 1fr); gap: 22px; }
 .system h2 { margin: 0 0 8px; font-size: 18px; border-bottom: 2px solid var(--line); padding-bottom: 4px; }
-.topic-flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 12px; counter-reset: t; }
+.topic-flow { list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(min(280px, 100%), 1fr)); gap: 12px; counter-reset: t; }
 .tcard { background: var(--panel); border: 1.5px solid var(--line); border-left: 6px solid var(--sh); border-radius: 10px; padding: 9px 11px; }
 .tcard.st-done { border-left-color: var(--tx); }
 .tcard.st-in-progress { border-left-color: var(--cx); }
@@ -233,17 +233,18 @@ table.mini.key td:first-child { width: 34%; color: var(--c); }
 /* ===================== Phone layout (≤ 700px) ===================== */
 .chip { max-width: 100%; }
 .chip .clabel { white-space: normal; overflow-wrap: anywhere; }
-.bubble li, .pathway li, .sbox, .mn-v, .ch, .lede, .tcard .one { overflow-wrap: anywhere; }
+.bubble li, .pathway li, .sbox, .mn-v, .ch, .lede, .tcard .one, .tcard .tt, h1, h2, .bt, .meta, .crumbs, .sf, .pl-tile-t { overflow-wrap: anywhere; }
+.bubble header, .pathway header, .bt { min-width: 0; }
 @media (max-width: 700px) {
   html, body { overflow-x: hidden; }
+  html { -webkit-text-size-adjust: 100%; text-size-adjust: 100%; }
   .page { padding: 12px 12px 70px; }
   h1 { font-size: 22px; }
   /* compact top bar: brand + scrolling nav on one row, search below */
   .topbar { gap: 6px 10px; padding: 6px 10px; }
   .brand { font-size: 14px; }
-  .topnav { flex-wrap: nowrap; overflow-x: auto; -webkit-overflow-scrolling: touch; max-width: 100%; scrollbar-width: none; }
-  .topnav::-webkit-scrollbar { display: none; }
-  .topnav a { white-space: nowrap; padding: 4px 8px; font-size: 13px; }
+  .topnav { display: flex; flex-wrap: nowrap; justify-content: space-between; width: 100%; gap: 0; }
+  .topnav a { white-space: nowrap; padding: 4px 2px; font-size: clamp(11px, 3.4vw, 13px); }
   .tools { width: 100%; margin-left: 0; }
   #search { flex: 1; width: auto; min-width: 0; font-size: 16px; /* 16px stops iOS zoom-on-focus */ }
   .results { top: var(--tb, 96px); left: 8px; right: 8px; width: auto; max-height: 65vh; }
@@ -256,8 +257,11 @@ table.mini.key td:first-child { width: 34%; color: var(--c); }
   .branches::before { content: "↓"; }
   .branch { border-left: 2px solid var(--line); padding-left: 10px; }
   .tylabel { display: none; }
-  .legend-strip { flex-wrap: nowrap; overflow-x: auto; padding-bottom: 4px; }
-  .lg { white-space: nowrap; }
+  .legend-strip { flex-wrap: wrap; gap: 5px; }
+  .lg { font-size: 11.5px; }
+  /* the clinical sequence reads top-to-bottom on a phone */
+  .spine-flow { flex-direction: column; align-items: stretch; gap: 2px; }
+  .spine-flow .sfa { align-self: center; transform: rotate(90deg); line-height: 1; padding: 2px 0; }
   .topic-head { flex-direction: column; }
   .pn { flex-wrap: wrap; }
   /* wide data tables scroll sideways inside themselves */
@@ -291,7 +295,7 @@ html.pl-lock, html.pl-lock body { overflow: hidden; }
   padding: calc(10px + env(safe-area-inset-top)) 12px calc(12px + env(safe-area-inset-bottom));
   background: radial-gradient(900px 600px at 15% -10%, rgba(34,211,197,.25), transparent 60%),
               radial-gradient(800px 600px at 110% 20%, rgba(124,58,237,.25), transparent 60%), #070b14;
-  color: #e8eef9; animation: pl-fade .25s ease-out; touch-action: pan-y; user-select: none; -webkit-user-select: none;
+  color: #e8eef9; animation: pl-fade .25s ease-out; touch-action: pan-y; user-select: none; -webkit-user-select: none; overscroll-behavior: contain;
 }
 @keyframes pl-fade { from { opacity: 0; } to { opacity: 1; } }
 .pl-bars { display: flex; gap: 3px; }
@@ -303,7 +307,7 @@ html.pl-lock, html.pl-lock body { overflow: hidden; }
 .pl-x { border: 0; background: rgba(255,255,255,.1); color: #fff; width: 34px; height: 34px; border-radius: 50%; font-size: 15px; cursor: pointer; }
 .pl-stage { flex: 1; min-height: 0; display: flex; }
 .pl-card {
-  flex: 1; overflow-y: auto; -webkit-overflow-scrolling: touch; border-radius: 22px; padding: 4px;
+  flex: 1; overflow-y: auto; overflow-x: hidden; -webkit-overflow-scrolling: touch; overscroll-behavior: contain; touch-action: pan-y; border-radius: 22px; padding: 4px;
   max-width: 760px; margin: 0 auto; width: 100%;
 }
 .pl-card.pl-in > * { animation: pl-in .45s cubic-bezier(.2,.8,.2,1); }

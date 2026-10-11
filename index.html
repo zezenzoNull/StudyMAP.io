@@ -35,7 +35,7 @@
 <script>
   (function () {
     var v = Date.now();
-    ["app/expand.js", "app/app.js", "app/player.js", "data/glossary.js", "data/shared-nodes.js", "data/manifest.js"].forEach(function (src) {
+    ["app/expand.js", "app/app.js", "app/player.js", "data/glossary.js", "data/drugs.js", "data/shared-nodes.js", "data/manifest.js"].forEach(function (src) {
       document.write('<script src="' + src + '?v=' + v + '" data-build="' + v + '"><\/script>');
     });
   })();
