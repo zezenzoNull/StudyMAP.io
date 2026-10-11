@@ -1,0 +1,188 @@
+/* ===== MedChart NEO theme (iPhone app) =====
+   Same meaning-colours as the web chart (blue = definition, orange = etiology, red = emergency …),
+   brightened for a dark, glassy, neon look. Loaded after app/styles.css. */
+body.neo {
+  --bg: #03060d; --panel: rgba(255,255,255,.045); --ink: #e8eef9; --muted: #8e9bb3; --line: rgba(140,170,220,.18); --arrow: #5ee7ff;
+  --def: #4f8dff;  --def-bg: rgba(79,141,255,.12);
+  --eti: #ff8a3d;  --eti-bg: rgba(255,138,61,.12);
+  --pat: #a77bff;  --pat-bg: rgba(167,123,255,.12);
+  --cli: #34d27b;  --cli-bg: rgba(52,210,123,.12);
+  --inv: #22d3c5;  --inv-bg: rgba(34,211,197,.12);
+  --img: #7a6bff;  --img-bg: rgba(122,107,255,.13);
+  --dx:  #38b6ff;  --dx-bg:  rgba(56,182,255,.12);
+  --emg: #ff4d5e;  --emg-bg: rgba(255,77,94,.14);
+  --tx:  #27c26a;  --tx-bg:  rgba(39,194,106,.12);
+  --cx:  #ffc93d;  --cx-bg:  rgba(255,201,61,.12);
+  --fu:  #9fb0c8;  --fu-bg:  rgba(159,176,200,.10);
+  --sh:  #8a96a8;  --sh-bg:  rgba(138,150,168,.10);
+  --hy: rgba(255,70,170,.22); --hy-ink: #ff8fd0;
+  --glow: 0 0 0 1px rgba(255,255,255,.04) inset, 0 10px 40px rgba(0,0,0,.45);
+  --font: -apple-system, "SF Pro Text", "Segoe UI", system-ui, sans-serif;
+  color-scheme: dark;
+  background:
+    radial-gradient(1200px 600px at 10% -10%, rgba(34,211,197,.18), transparent 60%),
+    radial-gradient(900px 600px at 110% 10%, rgba(167,123,255,.20), transparent 60%),
+    radial-gradient(800px 500px at 50% 120%, rgba(79,141,255,.16), transparent 60%),
+    linear-gradient(rgba(94,231,255,.035) 1px, transparent 1px) 0 0 / 28px 28px,
+    linear-gradient(90deg, rgba(94,231,255,.035) 1px, transparent 1px) 0 0 / 28px 28px,
+    #03060d;
+  background-attachment: fixed;
+  color: var(--ink);
+  font: 15.5px/1.5 var(--font);
+  -webkit-font-smoothing: antialiased;
+  -webkit-tap-highlight-color: transparent;
+}
+body.neo a { color: #6fb8ff; }
+body.neo h1 {
+  font-size: 27px; font-weight: 800; letter-spacing: -.01em; margin: 6px 0 4px;
+  background: linear-gradient(90deg, #ffffff, #8fe9ff 45%, #b9a2ff); -webkit-background-clip: text; background-clip: text; color: transparent;
+}
+body.neo h2.sec {
+  color: #8fe9ff; font-size: 12.5px; letter-spacing: .16em; margin: 30px 0 12px; display: flex; align-items: center; gap: 10px;
+}
+body.neo h2.sec::after { content: ""; flex: 1; height: 1px; background: linear-gradient(90deg, rgba(94,231,255,.5), transparent); }
+body.neo .lede, body.neo .meta, body.neo .crumbs { color: var(--muted); }
+body.neo .page { padding: calc(14px + env(safe-area-inset-top)) max(14px, env(safe-area-inset-right)) 90px max(14px, env(safe-area-inset-left)); }
+
+/* top bar (web use); the iPhone app hides it and uses native navigation */
+body.neo .topbar { background: rgba(5,10,20,.72); backdrop-filter: blur(18px) saturate(160%); -webkit-backdrop-filter: blur(18px) saturate(160%); border-bottom: 1px solid var(--line); }
+body.neo #search { background: rgba(255,255,255,.08); color: var(--ink); border: 1px solid var(--line); }
+body.in-app .topbar, body.in-app .pn, body.in-app .zoom { display: none !important; }
+
+/* glass panels */
+body.neo .bubble, body.neo .pathway, body.neo .tcard, body.neo .spine-flow, body.neo table.usage, body.neo .results, body.neo .mapwrap {
+  background: linear-gradient(180deg, rgba(255,255,255,.06), rgba(255,255,255,.025));
+  backdrop-filter: blur(14px) saturate(140%); -webkit-backdrop-filter: blur(14px) saturate(140%);
+}
+body.neo .bubble, body.neo .pathway {
+  border: 1px solid color-mix(in srgb, var(--c) 55%, transparent);
+  border-radius: 22px;
+  box-shadow: var(--glow), 0 0 28px color-mix(in srgb, var(--c) 22%, transparent);
+}
+body.neo .bubble > header, body.neo .pathway > header {
+  background: linear-gradient(90deg, color-mix(in srgb, var(--c) 34%, transparent), color-mix(in srgb, var(--c) 6%, transparent) 70%, transparent);
+  border-bottom: 1px solid color-mix(in srgb, var(--c) 35%, transparent);
+  padding: 11px 14px;
+}
+body.neo .bubble .bt, body.neo .pathway > header { color: #fff; font-weight: 700; letter-spacing: .01em; }
+body.neo .tylabel { color: color-mix(in srgb, var(--c) 80%, #fff); opacity: .9; letter-spacing: .14em; font-size: 9.5px; }
+body.neo .bubble .num {
+  background: var(--c); color: #00111a; box-shadow: 0 0 14px var(--c); font-weight: 800;
+}
+body.neo .bubble .ico { color: var(--c); text-shadow: 0 0 10px var(--c); }
+body.neo .bubble > ul > li { border-bottom: 1px solid rgba(255,255,255,.05); }
+body.neo .bubble > ul > li::before { box-shadow: 0 0 8px var(--c); }
+body.neo li.li-h { color: color-mix(in srgb, var(--c) 85%, #fff); }
+body.neo li.li-emg { background: linear-gradient(90deg, rgba(255,77,94,.16), transparent); border-left-color: var(--emg) !important; }
+body.neo .bsrc { color: #6c7891; }
+
+/* flow arrows between bubbles */
+body.neo .flowline { stroke: var(--arrow); stroke-width: 2; filter: drop-shadow(0 0 4px rgba(94,231,255,.8)); stroke-dasharray: 6 5; animation: neo-dash 1.6s linear infinite; }
+body.neo .ahead { fill: var(--arrow); }
+@keyframes neo-dash { to { stroke-dashoffset: -22; } }
+
+/* spine strip */
+body.neo .spine-flow { border: 1px solid rgba(94,231,255,.35); border-radius: 16px; box-shadow: 0 0 24px rgba(94,231,255,.12); }
+body.neo .sf { background: rgba(94,231,255,.10); border: 1px solid rgba(94,231,255,.3); color: #dff9ff; }
+body.neo .sfa { color: var(--arrow); text-shadow: 0 0 8px var(--arrow); }
+
+/* legend pills */
+body.neo .lg { background: color-mix(in srgb, var(--c) 14%, transparent); border-color: color-mix(in srgb, var(--c) 70%, transparent); color: color-mix(in srgb, var(--c) 85%, #fff); box-shadow: 0 0 12px color-mix(in srgb, var(--c) 18%, transparent); }
+
+/* marks */
+body.neo mark.hy { background: var(--hy); color: var(--hy-ink); box-shadow: 0 0 10px rgba(255,70,170,.25); }
+body.neo .kw { background: rgba(34,211,197,.16); color: #7ff3e8; }
+body.neo strong { color: #fff; }
+body.neo .ff { color: #8fa0bc; }
+body.neo .src { background: rgba(255,255,255,.07); color: #8e9bb3; }
+body.neo .verify { background: rgba(255,201,61,.15); color: #ffd76a; border-color: rgba(255,201,61,.6); }
+body.neo .supp { color: #c4a8ff; border-color: #a77bff; }
+body.neo .role { background: rgba(255,255,255,.06) !important; }
+body.neo .r-inv { color: #5ff0e3; border-color: rgba(34,211,197,.6); }
+body.neo .r-tx { color: #5fe39a; border-color: rgba(39,194,106,.6); }
+body.neo .r-emg { color: #fff; background: rgba(255,77,94,.85) !important; box-shadow: 0 0 10px rgba(255,77,94,.6); }
+body.neo .r-cx { color: #ffd76a; border-color: rgba(255,201,61,.6); }
+
+/* mini tables */
+body.neo table.mini { border: 1px solid color-mix(in srgb, var(--c) 55%, transparent); border-radius: 14px; background: rgba(0,0,0,.25); }
+body.neo table.mini th { background: linear-gradient(90deg, color-mix(in srgb, var(--c) 70%, #000), color-mix(in srgb, var(--c) 40%, #000)); color: #fff; letter-spacing: .03em; }
+body.neo table.mini td { background: transparent; border-top: 1px solid rgba(255,255,255,.06); color: var(--ink); }
+body.neo table.mini tbody tr:nth-child(even) td { background: color-mix(in srgb, var(--c) 8%, transparent); }
+body.neo table.mini td:first-child { color: color-mix(in srgb, var(--c) 70%, #fff); }
+body.neo table.mini tr.hl td { background: rgba(255,201,61,.14) !important; box-shadow: inset 0 0 0 9999px rgba(255,201,61,.02); }
+body.neo .mini-cap { color: color-mix(in srgb, var(--c) 85%, #fff); }
+
+/* mnemonics */
+body.neo .mn { background: linear-gradient(135deg, rgba(167,123,255,.16), rgba(255,70,170,.08)); border: 1px solid rgba(190,140,255,.7); border-radius: 16px; box-shadow: 0 0 22px rgba(167,123,255,.25); }
+body.neo .mn-badge { background: linear-gradient(90deg, #a77bff, #ff5fc4); box-shadow: 0 0 10px rgba(167,123,255,.7); }
+body.neo .mn-k { color: #d8c4ff; text-shadow: 0 0 10px rgba(167,123,255,.9); }
+
+/* chains & flowchart steps */
+body.neo .ch { background: color-mix(in srgb, var(--c) 14%, transparent); border-color: color-mix(in srgb, var(--c) 70%, transparent); color: #fff; box-shadow: 0 0 10px color-mix(in srgb, var(--c) 18%, transparent); }
+body.neo .cha { color: var(--arrow); text-shadow: 0 0 8px var(--arrow); }
+body.neo .sbox { background: color-mix(in srgb, var(--c, #5ee7ff) 10%, rgba(255,255,255,.03)) !important; border: 1px solid color-mix(in srgb, var(--c, #5ee7ff) 55%, transparent) !important; border-radius: 14px; }
+body.neo .step:not(:last-child)::after { color: var(--arrow); text-shadow: 0 0 10px var(--arrow); }
+body.neo .decision .dbox { background: rgba(94,231,255,.08); border: 1.5px dashed rgba(94,231,255,.7); color: #dff9ff; border-radius: 14px; }
+body.neo .branches::before { color: var(--arrow); }
+body.neo .branch { border-left: 2px solid rgba(94,231,255,.25); }
+body.neo .blabel { color: #8fe9ff; }
+
+/* chips */
+body.neo .chip { background: rgba(255,255,255,.05); color: var(--ink); border-color: color-mix(in srgb, var(--k) 70%, transparent); box-shadow: 0 0 10px color-mix(in srgb, var(--k) 25%, transparent); }
+body.neo .chip .glyph { background: var(--k); color: #001018; }
+body.neo .xref { color: #8fe9ff; border-bottom-color: rgba(94,231,255,.5); }
+
+/* master + tables */
+body.neo .tcard { border: 1px solid var(--line); border-left: 4px solid var(--sh); border-radius: 16px; }
+body.neo .tcard.st-done { border-left-color: var(--tx); box-shadow: -6px 0 18px -10px var(--tx); }
+body.neo .tcard .tt { color: #fff; }
+body.neo .system h2 { color: #fff; border-bottom: 1px solid var(--line); }
+body.neo table.usage th { background: rgba(94,231,255,.10); color: #dff9ff; }
+body.neo table.usage th, body.neo table.usage td { border-color: rgba(255,255,255,.08); }
+body.neo .caution { background: rgba(255,201,61,.10); border-color: rgba(255,201,61,.5); color: #ffe7a3; }
+body.neo .normal-line { background: rgba(34,211,197,.10); border-color: rgba(34,211,197,.5); }
+body.neo .map text { fill: #dbe4f3; }
+body.neo .map .mt rect { fill: rgba(255,255,255,.05); stroke: var(--line); }
+body.neo .map .mn rect { fill: rgba(0,0,0,.3); }
+body.neo .flash { animation: neo-flash 2.4s ease-out; }
+@keyframes neo-flash { 0%, 40% { box-shadow: 0 0 0 2px #5ee7ff, 0 0 30px #5ee7ff; background: rgba(94,231,255,.15); } 100% { box-shadow: none; } }
+
+/* phone layout */
+@media (max-width: 700px) {
+  body.neo .bubbles { grid-template-columns: minmax(0, 1fr); gap: 34px; }
+  body.neo .bubble, body.neo .pathway, body.neo .step, body.neo .branch { min-width: 0; }
+  body.neo .mini-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; margin-left: -2px; margin-right: -2px; }
+  body.neo table.mini { min-width: 100%; }
+  body.neo .tylabel { display: none; }
+  body.neo .page { overflow-x: hidden; }
+  body.neo .bubble.wide { grid-column: auto; }
+  body.neo .pathways { grid-template-columns: 1fr; }
+  body.neo .branches { flex-direction: column; }
+  body.neo .branch { border-left: 2px solid rgba(94,231,255,.35); padding-left: 10px; }
+  body.neo .branches::before { content: "↓"; }
+  body.neo table.mini { font-size: 12.5px; }
+  body.neo h1 { font-size: 24px; }
+}
+@media (prefers-reduced-motion: reduce) { body.neo .flowline { animation: none; } }
+
+/* phone: wide tables (3+ columns) become stacked row cards; column names become labels */
+@media (max-width: 700px) {
+  body.neo .stackable table.mini, body.neo .stackable table.mini tbody { display: block; border: 0; background: transparent; min-width: 0; }
+  body.neo .stackable table.mini thead { display: none; }
+  body.neo .stackable table.mini tr {
+    display: block; margin: 0 0 10px; border: 1px solid color-mix(in srgb, var(--c) 45%, transparent); border-radius: 14px;
+    background: color-mix(in srgb, var(--c) 7%, rgba(0,0,0,.25)); overflow: hidden;
+  }
+  body.neo .stackable table.mini tr.hl { border-color: rgba(255,201,61,.8); box-shadow: 0 0 14px rgba(255,201,61,.25); }
+  body.neo .stackable table.mini td { display: block; border: 0; padding: 4px 12px 6px; background: transparent !important; overflow-wrap: anywhere; }
+  body.neo .stackable table.mini td:first-child {
+    display: block; padding: 8px 12px; font-size: 14px;
+    background: linear-gradient(90deg, color-mix(in srgb, var(--c) 30%, transparent), transparent) !important;
+    border-bottom: 1px solid color-mix(in srgb, var(--c) 30%, transparent);
+  }
+  body.neo .stackable table.mini td[data-h]::before {
+    content: attr(data-h); display: block; color: color-mix(in srgb, var(--c) 75%, #fff); font-size: 10.5px; font-weight: 800;
+    text-transform: uppercase; letter-spacing: .08em; margin-bottom: 1px; opacity: .9;
+  }
+  body.neo .stackable table.mini td:not(:first-child):empty { display: none; }
+}
