@@ -15,3 +15,6 @@
 - Values are copied as printed in the notes. Where a value differs from a well-known guideline wording, it is kept as printed and flagged.
 - Exam-relevant notes that cite another authority (e.g. "ADA 2023", "Harrison 21e", "ISPAD") are attributed in the bullet itself.
 - Original notes and PDFs are never modified. All generated material lives in `medical-flowchart/`.
+
+## Drug doses
+- `data/doses.js` holds usual adult doses for every drug named in the chart, from standard references (BNF, Harrison, major guidelines). They are not in the notes and are shown as separate dose tags. Doses vary with renal and hepatic function, weight and local protocol, so always check before prescribing.

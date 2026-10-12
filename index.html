@@ -8,7 +8,7 @@
 <title>Medicine Master Flowchart</title>
 <!-- Big, rarely-changing assets load without a cache-buster; code and styles carry the build version (bump MF_V on deploy). -->
 <link rel="stylesheet" href="app/assets/fonts.css">
-<script>window.MF_V = "2026.10.12-1"; (function (v) { ["app/styles.css", "app/theme-neo.css", "app/layout.css"].forEach(function (h) { document.write('<link rel="stylesheet" href="' + h + '?v=' + v + '">'); }); document.write('<script src="app/ui.js?v=' + v + '"><\/script>'); })(window.MF_V);</script>
+<script>window.MF_V = "2026.10.12-2"; (function (v) { ["app/styles.css", "app/theme-neo.css", "app/layout.css"].forEach(function (h) { document.write('<link rel="stylesheet" href="' + h + '?v=' + v + '">'); }); document.write('<script src="app/ui.js?v=' + v + '"><\/script>'); })(window.MF_V);</script>
 </head>
 <body class="neo">
 <header class="topbar">
@@ -37,7 +37,7 @@
 <script>
   (function () {
     var v = window.MF_V;
-    ["app/expand.js", "app/app.js", "app/layout.js", "app/player.js", "data/icons.js", "data/glossary.js", "data/drugs.js", "data/shared-nodes.js", "data/manifest.js"].forEach(function (src) {
+    ["app/expand.js", "app/app.js", "app/layout.js", "app/player.js", "app/dose-tags.js", "data/icons.js", "data/glossary.js", "data/drugs.js", "data/doses.js", "data/shared-nodes.js", "data/manifest.js"].forEach(function (src) {
       document.write('<script src="' + src + '?v=' + v + '" data-build="' + v + '"><\/script>');
     });
   })();

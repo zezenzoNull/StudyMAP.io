@@ -740,3 +740,37 @@ html.pl-lock, html.pl-lock body { overflow: hidden; }
 @media (prefers-contrast: more) {
   :root { --line: #8f887a; --sep: #cfc8b8; }
 }
+
+/* ============================ Drug doses (app/dose-tags.js · data/doses.js) ============================ */
+span.drug.has-dose { cursor: help; text-decoration: underline dotted color-mix(in srgb, var(--tx) 70%, transparent); text-underline-offset: 3px; }
+span.drug.has-dose:focus-visible { outline: 2px solid var(--focus, var(--tx)); outline-offset: 2px; border-radius: 3px; }
+.dose-tag {
+  display: inline-flex; align-items: center; gap: 4px; margin: 0 2px 0 5px; padding: 0 7px 0 5px; max-width: 100%;
+  border-radius: 999px; border: 1px solid color-mix(in srgb, var(--tx) 45%, transparent);
+  background: color-mix(in srgb, var(--tx) 11%, var(--panel)); color: var(--tx);
+  font: 600 var(--fs-tiny)/1.55 var(--font-ui); font-variant-numeric: tabular-nums lining-nums; letter-spacing: 0;
+  vertical-align: 0.05em; white-space: normal; overflow-wrap: anywhere; cursor: pointer;
+  transition: background-color var(--dur-1) ease-out, transform var(--dur-1) ease-out;
+}
+.dose-tag .mi, .dose-tag .dose-glyph { width: 1.05em; height: 1.05em; flex: none; }
+.dose-tag:hover { background: color-mix(in srgb, var(--tx) 20%, var(--panel)); }
+.dose-tag:focus-visible { outline: 2px solid var(--focus, var(--tx)); outline-offset: 2px; }
+html.no-doses .dose-tag { display: none; }
+html.no-doses span.drug.has-dose { text-decoration: none; cursor: inherit; }
+.dose-btn[aria-pressed="false"] { opacity: .55; }
+.dose-btn .mi { width: 20px; height: 20px; }
+.dose-pop {
+  position: absolute; z-index: 80; padding: 10px 12px 10px; border-radius: 14px; max-width: calc(100vw - 16px);
+  background: var(--panel); color: var(--ink); border: 1px solid color-mix(in srgb, var(--tx) 50%, var(--line, transparent));
+  box-shadow: 0 18px 50px rgba(0,0,0,.35); font-size: var(--fs-small); line-height: 1.45;
+  animation: dose-in var(--dur-2, 200ms) var(--ease-out, ease-out);
+}
+.dose-pop-h { display: flex; align-items: center; gap: 8px; color: var(--tx); font: 700 var(--fs-small)/1.2 var(--font-ui); letter-spacing: .02em; margin-bottom: 6px; }
+.dose-pop-h .mi { width: 18px; height: 18px; }
+.dose-pop-x { margin-left: auto; width: 30px; height: 30px; border: 0; border-radius: 9px; background: var(--panel-2); color: var(--ink); font-size: 18px; cursor: pointer; }
+.dose-pop-l { margin: 0; padding: 0 0 0 18px; }
+.dose-pop-l li { margin: 3px 0; font-variant-numeric: tabular-nums lining-nums; }
+.dose-pop-n { margin-top: 8px; color: var(--muted); font-size: var(--fs-tiny); }
+@keyframes dose-in { from { opacity: 0; transform: translateY(-4px); } to { opacity: 1; transform: none; } }
+@media (prefers-reduced-motion: reduce) { .dose-pop { animation: none; } }
+@media print { .dose-tag { border: 0; padding: 0; background: none; } .dose-pop, .dose-btn { display: none; } }

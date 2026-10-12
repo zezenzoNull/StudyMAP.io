@@ -51,6 +51,8 @@
   MF.defineGlossary = (g) => Object.assign(MF.glossary, g);
   MF.drugs = [];
   MF.defineDrugs = (list) => MF.drugs.push(...list);
+  MF.doses = {};
+  MF.defineDoses = (d) => Object.assign(MF.doses, d);
   const xp = (raw) => (window.MFExpand ? window.MFExpand.text(raw, { glossary: MF.glossary, topic: MF._topic, marker: true }) : String(raw));
   MF.defineShared = (list) => list.forEach((n) => (MF.shared[n.id] = n));
   MF.addTopic = (t) => (MF.topics[t.id] = t);
@@ -84,13 +86,15 @@
   const normalOf = (id) => { const n = MF.shared[id]; return n && n.normal ? n.normal + (n.normalStd ? " †" : "") : "—"; };
   const fmt = (s) => esc(xp(String(s).replace(/\{N:([\w-]+)\}/g, (m, id) => normalOf(id))))
     .replace(/([^]*)/g, ' <span class="ff">($1)</span>')
+    .replace(/\u0003([^\u0004]*)\u0004/g, (m, d) => `<span class="drug" data-drug="${d.toLowerCase()}">${d}</span>`)
     .replace(/\*\*(.+?)\*\*/g, "<strong>$1</strong>")
     .replace(/==(.+?)==/g, '<mark class="hy">$1</mark>')
     .replace(/\+\+(.+?)\+\+/g, '<span class="kw">$1</span>')
     .replace(/-&gt;/g, "→").replace(/&lt;-/g, "←")
     .replace(/\^(\S+?)\^/g, "<sup>$1</sup>")
     .replace(/~(\S+?)~/g, "<sub>$1</sub>");
-  const ex = (s) => esc(xp(String(s == null ? "" : s))).replace(/\u0001([^\u0002]*)\u0002/g, ' <span class="ff">($1)</span>');
+  const ex = (s) => esc(xp(String(s == null ? "" : s))).replace(/\u0001([^\u0002]*)\u0002/g, ' <span class="ff">($1)</span>')
+    .replace(/\u0003([^\u0004]*)\u0004/g, (m, d) => `<span class="drug" data-drug="${d.toLowerCase()}">${d}</span>`);
   const exPlain = (s) => (window.MFExpand ? window.MFExpand.text(String(s == null ? "" : s), { glossary: MF.glossary, topic: MF._topic }) : String(s));
   const KIND_ICON = { lab: "⚗", imaging: "◉", bedside: "✚", procedure: "✂", drug: "℞", protocol: "▶", emergency: "⚠", concept: "◆" };
   const nodeName = (n) => n.short || String(n.label).split(" (")[0];
@@ -530,6 +534,7 @@
         <li>Pathway boxes joined by ↓ = sequence; a dashed diamond-style box splits into side-by-side branches (decision point).</li>
         <li>Red-edged list items = emergency, danger sign or contraindication.</li>
         <li><span class="supp">SUPPLEMENT</span> = not in the primary notes; the source is shown beneath it. <span class="verify">⚠ VERIFY</span> = unclear in the source, conflicting or possibly outdated — check before relying on it.</li>
+        <li><span class="drug">DRUG NAMES</span> are in capitals. <span class="dose-tag"><span class="dose-glyph">℞</span><span class="dose-t">dose</span></span> = usual adult dose after a drug's first mention in each bubble (tap any drug name for all its doses). Doses come from standard references, not the notes — check renal / hepatic function and local protocol. The ℞ button in the top bar hides or shows them.</li>
         <li>Grey page tags (e.g. p.242) = PDF page of the notes the point came from.</li>
       </ul></section>`);
     window.scrollTo(0, 0);

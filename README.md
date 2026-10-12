@@ -27,6 +27,8 @@ An interconnected, colour-coded revision flowchart built from the PrepLadder Med
 - <mark>pink</mark> = highlighted as high-yield in the notes · **bold** = key value or drug of choice
 - Role badges: *Inv. of choice, Initial test, Confirmatory, 1st-line, 2nd-line, Definitive, Emergency, Contraindicated …*
 - **⚠ VERIFY** = unclear, conflicting or possibly outdated in the notes. All of them are listed in `REVIEW-FLAGS.md`.
+- Drug names are in CAPITALS. A 💊 tag after a drug's first mention in each bubble shows the usual adult dose (`data/doses.js`, standard references, not the notes); tap a drug name for all its doses. The ℞ button in the top bar turns the tags off.
+- **Move / resize:** drag a bubble's header to move it and its corner to resize; arrows follow. Layout is saved per topic (↺ Reset / ⤢ Tidy). On phones, tap ✥ Arrange first.
 - **SUPPLEMENT** = not from the primary notes; its source is printed beneath it.
 - `p.242` tags = PDF page of the notes each bubble came from.
 

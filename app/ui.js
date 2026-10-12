@@ -564,5 +564,5 @@
   // data/icons.js may load after this file: decorate whatever was rendered without icons once it arrives
   window.addEventListener("load", () => { mountSearchIcon(); handleRender(); });
 
-  window.MFUI = { applyTheme: (t) => { store.set(TK, t === "light" || t === "dark" ? t : null); applyTheme(currentTheme()); }, theme: currentTheme, enhance, revealAll: revealAllNow };
+  window.MFUI = { icon, applyTheme: (t) => { store.set(TK, t === "light" || t === "dark" ? t : null); applyTheme(currentTheme()); }, theme: currentTheme, enhance, revealAll: revealAllNow };
 })();
