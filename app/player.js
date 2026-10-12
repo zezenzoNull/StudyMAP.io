@@ -31,12 +31,22 @@
       const c = b.cloneNode(true);
       c.removeAttribute("id");
       c.querySelectorAll("[id]").forEach((x) => x.removeAttribute("id"));
+      stripLayout(c);
       const title = (b.querySelector(".bt") || b.querySelector("header") || b).textContent.trim();
       const tint = getComputedStyle(b).getPropertyValue("--c").trim() || "#5ee7ff";
       slides.push({ node: c, label: title, tint, src: b });
     });
     slides.push({ node: overview(slides), label: "Whole chart", tint: "#5ee7ff", final: true });
     return slides;
+  }
+
+  // A slide shows the bubble's content only: no saved position/size (app/layout.js) and no drag or resize handles.
+  function stripLayout(c) {
+    c.removeAttribute("style");
+    [...c.classList].filter((k) => k.indexOf("mf-") === 0).forEach((k) => c.classList.remove(k));
+    c.querySelectorAll(".mf-ui").forEach((x) => x.remove());
+    const h = c.querySelector(":scope > header");
+    if (h) ["tabindex", "aria-keyshortcuts"].forEach((a) => h.removeAttribute(a));
   }
 
   // Final slide: every bubble as a coloured tile in reading order, joined by arrows.

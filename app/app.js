@@ -308,19 +308,11 @@
     }).join("")}</ol>`;
   }
 
-  // Elbow arrows between consecutive bubbles, routed through the grid gutters.
-  function drawArrows() {
-    const wrap = $("#bubbles"), svg = $("#arrows");
-    if (!wrap || !svg) return;
-    const z = currentZoom();
-    svg.setAttribute("width", 0); svg.setAttribute("height", 0); // measure the bubbles, not last time's overlay
-    const W = wrap.clientWidth, H = wrap.scrollHeight;
-    svg.setAttribute("width", W); svg.setAttribute("height", H); svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
-    const base = wrap.getBoundingClientRect();
-    const boxes = [...wrap.querySelectorAll(".bubble")].map((el) => {
-      const r = el.getBoundingClientRect();
-      return { x: (r.left - base.left) / z, y: (r.top - base.top) / z, w: r.width / z, h: r.height / z };
-    });
+  // ---------- Flow arrows between consecutive bubbles (1 → 2 → 3 …) ----------
+  // Grid layout: elbow arrows routed through the grid gutters.
+  // Free layout (app/layout.js puts .mf-free on #bubbles): a smooth cubic Bézier between the closest facing sides.
+  const r1 = (v) => Math.round(v * 10) / 10;
+  function elbowPaths(boxes) {
     const paths = [];
     for (let i = 0; i < boxes.length - 1; i++) {
       const a = boxes[i], b = boxes[i + 1];
@@ -332,9 +324,110 @@
         paths.push(`M${ax} ${a.y + a.h} L${ax} ${gy} L${bx} ${gy} L${bx} ${b.y - 2}`);
       }
     }
-    setHTML(svg, `<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 0 L10 5 L0 10 z" class="ahead"/></marker></defs>` +
-      paths.map((p) => `<path d="${p}" class="flowline" marker-end="url(#ah)"/>`).join(""));
+    return paths;
   }
+  // Side midpoints of a box with their outward normals.
+  const sides = (r) => [
+    { x: r.x + r.w / 2, y: r.y, nx: 0, ny: -1 },       // top
+    { x: r.x + r.w, y: r.y + r.h / 2, nx: 1, ny: 0 },  // right
+    { x: r.x + r.w / 2, y: r.y + r.h, nx: 0, ny: 1 },  // bottom
+    { x: r.x, y: r.y + r.h / 2, nx: -1, ny: 0 }        // left
+  ];
+  const within = (p, r) => p.x > r.x + 1 && p.x < r.x + r.w - 1 && p.y > r.y + 1 && p.y < r.y + r.h - 1;
+  const bezAt = (p, c1, c2, q, t) => {
+    const u = 1 - t, a = u * u * u, b = 3 * u * u * t, c = 3 * u * t * t, d = t * t * t;
+    return { x: a * p.x + b * c1.x + c * c2.x + d * q.x, y: a * p.y + b * c1.y + c * c2.y + d * q.y };
+  };
+  // Best curve from box a to box b: shortest pair of side midpoints that face each other, control points
+  // perpendicular to those sides, penalised when the curve would run under the source (most), the target or
+  // another bubble. opts.avoid = side of a where the previous arrow arrives, so in and out do not share a point.
+  function curveBetween(a, b, opts) {
+    const o = opts || {}, others = o.others || [];
+    let best = null;
+    sides(a).forEach((p, ia) => sides(b).forEach((q, ib) => {
+      const dx = q.x - p.x, dy = q.y - p.y, dist = Math.hypot(dx, dy) || 1;
+      const k = Math.max(26, Math.min(170, dist * 0.45));
+      const c1 = { x: p.x + p.nx * k, y: p.y + p.ny * k }, c2 = { x: q.x + q.nx * k, y: q.y + q.ny * k };
+      let cost = dist + (ia === o.avoid ? 250 : 0);
+      if (dx * p.nx + dy * p.ny <= 0) cost += 4000;   // target is behind the side it would leave from
+      if (dx * q.nx + dy * q.ny >= 0) cost += 4000;   // source is behind the side it would enter
+      for (let i = 1; i < 20; i++) {
+        const s = bezAt(p, c1, c2, q, i / 20);
+        if (within(s, a)) cost += 600;
+        if (within(s, b)) cost += 300;
+        for (let j = 0; j < others.length; j++) if (within(s, others[j])) { cost += 25; break; }
+      }
+      if (!best || cost < best.cost) best = { cost, p, q, c1, c2, ia, ib };
+    }));
+    let { p, c1 } = best;
+    const { q, c2, ia, ib } = best;
+    if (ia === o.avoid) { // still the best side: start beside the incoming arrow head, not on it
+      const t = { x: -p.ny * 18, y: p.nx * 18 };
+      p = { x: p.x + t.x, y: p.y + t.y }; c1 = { x: c1.x + t.x, y: c1.y + t.y };
+    }
+    const e = { x: q.x + q.nx * 2, y: q.y + q.ny * 2 }; // stop just outside so the head shows
+    return { d: `M${r1(p.x)} ${r1(p.y)} C${r1(c1.x)} ${r1(c1.y)}, ${r1(c2.x)} ${r1(c2.y)}, ${r1(e.x)} ${r1(e.y)}`, from: p, to: q, fromSide: ia, toSide: ib, cost: best.cost };
+  }
+  const SVGNS = "http://www.w3.org/2000/svg";
+  const svgEl = (tag, attrs) => {
+    const e = document.createElementNS(SVGNS, tag);
+    Object.keys(attrs).forEach((k) => e.setAttribute(k, attrs[k]));
+    return e;
+  };
+  function drawArrows() {
+    const wrap = $("#bubbles"), svg = $("#arrows");
+    if (!wrap || !svg) return;
+    const z = currentZoom(), free = wrap.classList.contains("mf-free");
+    svg.setAttribute("width", 0); svg.setAttribute("height", 0); // measure the bubbles, not last time's overlay
+    const W = wrap.clientWidth, H = wrap.scrollHeight;
+    svg.setAttribute("width", W); svg.setAttribute("height", H); svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
+    const base = wrap.getBoundingClientRect();
+    const boxes = [...wrap.querySelectorAll(".bubble")].map((el) => {
+      const r = el.getBoundingClientRect();
+      return { x: (r.left - base.left) / z, y: (r.top - base.top) / z, w: r.width / z, h: r.height / z };
+    });
+    const ds = [];
+    if (free) {
+      let arrive = -1;
+      for (let i = 0; i < boxes.length - 1; i++) {
+        const c = curveBetween(boxes[i], boxes[i + 1], { avoid: arrive, others: boxes.filter((_, k) => k !== i && k !== i + 1) });
+        ds.push(c.d);
+        arrive = c.toSide;
+      }
+    } else ds.push(...elbowPaths(boxes));
+    svg.dataset.mode = free ? "free" : "grid";
+    // Paths are reused between frames so a drag redraw does not restart the theme's dash animation.
+    if (!svg.querySelector("marker#ah")) {
+      const marker = svgEl("marker", { id: "ah", viewBox: "0 0 10 10", refX: "9", refY: "5", markerWidth: "7", markerHeight: "7", orient: "auto-start-reverse" });
+      marker.appendChild(svgEl("path", { d: "M0 0 L10 5 L0 10 z", class: "ahead" }));
+      const defs = svgEl("defs", {});
+      defs.appendChild(marker);
+      svg.replaceChildren(defs);
+    }
+    const lines = [...svg.querySelectorAll("path.flowline")];
+    while (lines.length < ds.length) lines.push(svg.appendChild(svgEl("path", { class: "flowline", "marker-end": "url(#ah)" })));
+    while (lines.length > ds.length) lines.pop().remove();
+    ds.forEach((d, i) => { if (lines[i].getAttribute("d") !== d) lines[i].setAttribute("d", d); });
+  }
+  // One redraw per frame at most, whoever asks (resize, zoom, ResizeObserver, layout.js drags).
+  let arrowFrame = 0, bubbleRO = null;
+  function scheduleArrows() {
+    if (arrowFrame) return;
+    arrowFrame = requestAnimationFrame(() => { arrowFrame = 0; drawArrows(); });
+  }
+  // Content that changes size after render (fonts loading, images, a resized window) keeps the arrows attached.
+  function watchBubbles() {
+    if (bubbleRO) bubbleRO.disconnect();
+    bubbleRO = null;
+    const wrap = $("#bubbles");
+    if (!wrap || !window.ResizeObserver) return;
+    bubbleRO = new ResizeObserver(scheduleArrows);
+    bubbleRO.observe(wrap);
+    wrap.querySelectorAll(".bubble").forEach((b) => bubbleRO.observe(b));
+  }
+  MF.drawArrows = drawArrows;
+  MF.scheduleArrows = scheduleArrows;
+  MF.arrowGeometry = { curveBetween, elbowPaths };
 
   function renderNode(id) {
     MF._topic = null;
@@ -478,6 +571,7 @@
   // ---------- Zoom ----------
   const ZK = "mf-zoom";
   const currentZoom = () => parseFloat(view().style.zoom || 1) || 1;
+  MF.currentZoom = currentZoom;
   // A zoomed page keeps the screen's width: its own px width is scaled by the zoom in every engine
   // (Chrome's standard zoom and Safari's legacy zoom alike), so text re-wraps instead of running off a phone.
   function fitZoom() {
@@ -490,23 +584,23 @@
     fitZoom();
     $("#zoomVal").textContent = Math.round(z * 100) + "%";
     try { localStorage.setItem(ZK, z); } catch (e) { /* storage unavailable */ }
-    requestAnimationFrame(drawArrows);
+    scheduleArrows();
   }
 
   // ---------- Router ----------
+  // After every render, "mf:render" { detail: { view, id, anchor } } lets add-on modules (app/layout.js …) enhance the page.
+  const VIEWS = { topic: renderTopic, node: renderNode, shared: renderShared, connections: renderConnections, legend: renderLegend, progress: renderProgress };
   function route() {
     $("#results").hidden = true;
     const h = decodeURIComponent(location.hash.replace(/^#\/?/, "")).split("/");
     document.querySelectorAll(".topnav a").forEach((a) => a.classList.toggle("active", a.getAttribute("href") === "#/" + (h[0] || "")));
-    switch (h[0]) {
-      case "topic": return renderTopic(h[1], h[2]);
-      case "node": return renderNode(h[1]);
-      case "shared": return renderShared();
-      case "connections": return renderConnections();
-      case "legend": return renderLegend();
-      case "progress": return renderProgress();
-      default: return renderMaster();
-    }
+    const name = Object.prototype.hasOwnProperty.call(VIEWS, h[0]) ? h[0] : "master";
+    if (name === "topic") renderTopic(h[1], h[2]);
+    else if (name === "node") renderNode(h[1]);
+    else if (name === "master") renderMaster();
+    else VIEWS[name]();
+    watchBubbles();
+    document.dispatchEvent(new CustomEvent("mf:render", { detail: { view: name, id: name === "master" ? null : h[1] || null, anchor: h[2] || null } }));
   }
 
   function boot() {
@@ -517,7 +611,7 @@
     window.addEventListener("hashchange", route);
     const setTB = () => document.documentElement.style.setProperty("--tb", ($(".topbar") ? $(".topbar").offsetHeight + 4 : 56) + "px");
     setTB();
-    window.addEventListener("resize", () => { setTB(); fitZoom(); requestAnimationFrame(drawArrows); });
+    window.addEventListener("resize", () => { setTB(); fitZoom(); scheduleArrows(); });
     const s = $("#search");
     s.addEventListener("input", () => search(s.value));
     s.addEventListener("keydown", (e) => { if (e.key === "Escape") { s.value = ""; search(""); } });

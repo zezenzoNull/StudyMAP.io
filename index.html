@@ -6,7 +6,9 @@
 <meta name="color-scheme" content="dark">
 <meta name="theme-color" content="#03060d">
 <title>Medicine Master Flowchart</title>
-<script>(function () { var v = Date.now(); ["app/styles.css", "app/theme-neo.css"].forEach(function (h) { document.write('<link rel="stylesheet" href="' + h + '?v=' + v + '">'); }); })();</script>
+<!-- Big, rarely-changing assets load without a cache-buster; code and styles carry the build version (bump MF_V on deploy). -->
+<link rel="stylesheet" href="app/assets/fonts.css">
+<script>window.MF_V = "2026.10.12-1"; (function (v) { ["app/styles.css", "app/theme-neo.css", "app/layout.css"].forEach(function (h) { document.write('<link rel="stylesheet" href="' + h + '?v=' + v + '">'); }); document.write('<script src="app/ui.js?v=' + v + '"><\/script>'); })(window.MF_V);</script>
 </head>
 <body class="neo">
 <header class="topbar">
@@ -19,7 +21,7 @@
     <a href="#/progress">Progress</a>
   </nav>
   <div class="tools">
-    <input id="search" type="search" placeholder="Search everything…  ( / )" autocomplete="off">
+    <input id="search" type="search" placeholder="Search…" title="Search (shortcut: /)" autocomplete="off">
     <div class="zoom">
       <button id="zoomOut" title="Zoom out">−</button>
       <span id="zoomVal">100%</span>
@@ -31,11 +33,11 @@
 <main id="view"></main>
 
 <!-- Engine first, then data. Topic files are loaded by data/manifest.js. -->
-<!-- Cache-busting: each load appends ?v=<time> so edited data files are never served stale. -->
+<!-- Cache-busting: each file gets ?v=MF_V, so a new deploy is never served stale. -->
 <script>
   (function () {
-    var v = Date.now();
-    ["app/expand.js", "app/app.js", "app/player.js", "data/glossary.js", "data/drugs.js", "data/shared-nodes.js", "data/manifest.js"].forEach(function (src) {
+    var v = window.MF_V;
+    ["app/expand.js", "app/app.js", "app/layout.js", "app/player.js", "data/icons.js", "data/glossary.js", "data/drugs.js", "data/shared-nodes.js", "data/manifest.js"].forEach(function (src) {
       document.write('<script src="' + src + '?v=' + v + '" data-build="' + v + '"><\/script>');
     });
   })();

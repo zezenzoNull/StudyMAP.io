@@ -1,0 +1,141 @@
+/* Movable / resizable topic windows (app/layout.js) and content that re-flows with each window's width.
+   Loaded after app/styles.css and app/theme-neo.css. Colour classes keep their meaning; nothing here recolours content. */
+
+/* #bubbles is its own stacking context, so a window brought to the front never climbs over the sticky top bar. */
+.bubbles { z-index: 0; }
+/* Every bubble is a size container: its content adapts to the bubble's width, not the screen's. */
+.bubble { container: mf-bubble / inline-size; }
+
+/* ---------- free layout (after the first move/resize) ---------- */
+.bubbles.mf-free { display: block; }
+.bubbles.mf-free > .bubble { position: absolute; margin: 0; }
+.bubbles.mf-free > .bubble.mf-fixed-h { overflow: auto; overscroll-behavior: contain; -webkit-overflow-scrolling: touch; }
+.bubble.mf-fixed-h > header { position: sticky; top: 0; z-index: 3; }
+/* opaque base under the (possibly translucent) header tint, so scrolled content never shows through it */
+.bubbles > .bubble.mf-fixed-h > header { background-color: var(--bg); }
+/* Windows can overlap now: the dark glass gets a solid-ish base so the one in front stays readable. */
+html:not([data-theme="light"]) body.neo .bubbles.mf-free > .bubble { background-color: color-mix(in srgb, var(--bg) 86%, transparent); }
+.bubbles.mf-anim > .bubble { transition: left .32s cubic-bezier(.2, .8, .2, 1), top .32s cubic-bezier(.2, .8, .2, 1); }
+
+/* ---------- handles ---------- */
+.mf-drag, .mf-grip { display: none; }
+.bubbles.mf-movable > .bubble > header { cursor: grab; -webkit-touch-callout: none; }
+.bubbles.mf-movable .mf-drag {
+  display: inline-block; flex: none; margin: 0 -3px 0 -5px; font-size: 15px; line-height: 1; letter-spacing: 0;
+  color: var(--c); opacity: .5; transition: opacity .15s;
+}
+.bubbles.mf-movable > .bubble > header:hover .mf-drag, .bubble.mf-lift .mf-drag { opacity: 1; }
+.bubble > header:focus-visible { outline: 2px solid var(--focus, var(--c)); outline-offset: -3px; }
+@media (pointer: coarse) { .bubbles.mf-movable > .bubble > header { -webkit-user-select: none; user-select: none; } }
+/* Resize grip: stays in the bottom-right corner, also while a fixed-height window scrolls. */
+.bubbles.mf-movable > .bubble > .mf-grip {
+  display: block; position: sticky; bottom: 5px; z-index: 4;
+  width: 20px; height: 20px; margin: -25px 5px 5px auto;
+  cursor: nwse-resize; touch-action: none; opacity: .5; transition: opacity .15s;
+  background: linear-gradient(135deg, transparent 0 50%, var(--c) 50% 57%, transparent 57% 68%, var(--c) 68% 75%, transparent 75% 86%, var(--c) 86% 93%, transparent 93%);
+}
+.bubbles.mf-movable > .bubble:hover > .mf-grip, .bubble.mf-resizing > .mf-grip { opacity: 1; }
+
+/* Picked up: lift + shadow (touch shows it as soon as the long-press is recognised). */
+.bubbles > .bubble.mf-lift {
+  scale: 1.012; transition: scale .14s ease-out, box-shadow .14s ease-out;
+  box-shadow: 0 22px 60px rgba(0, 0, 0, .45), 0 0 0 2px var(--c), 0 0 36px color-mix(in srgb, var(--c) 45%, transparent) !important;
+}
+html.mf-dragging, html.mf-dragging * { -webkit-user-select: none !important; user-select: none !important; }
+html.mf-dragging-move, html.mf-dragging-move * { cursor: grabbing !important; }
+html.mf-dragging-resize, html.mf-dragging-resize * { cursor: nwse-resize !important; }
+
+/* ---------- toolbar + one-time tip (top-right of #bubbles) ---------- */
+.mf-bar {
+  position: absolute; right: 0; bottom: 100%; margin-bottom: 4px; z-index: 60; max-width: 100%;
+  display: flex; flex-wrap: wrap; justify-content: flex-end; align-items: center; gap: 6px;
+}
+.mf-bar[hidden], .mf-bar [hidden] { display: none !important; }
+.mf-btn {
+  -webkit-appearance: none; appearance: none; font: 700 12px/1 var(--font-ui, var(--font)); padding: 6px 11px; border-radius: 999px; white-space: nowrap;
+  border: 1px solid var(--line); background: var(--panel); color: var(--ink); cursor: pointer;
+}
+.mf-btn:hover { border-color: var(--arrow); }
+.mf-btn:focus-visible, .mf-hint-x:focus-visible { outline: 2px solid var(--focus, var(--arrow)); outline-offset: 2px; }
+.mf-arrange.on { background: var(--arrow); border-color: var(--arrow); color: #001018; }
+.mf-hint {
+  display: inline-flex; align-items: center; gap: 2px; max-width: 100%; padding: 2px 3px 2px 11px; border-radius: 999px;
+  font-size: 12px; line-height: 1.3; color: var(--ink); background: var(--panel); border: 1px dashed var(--arrow);
+  animation: mf-hint-in .4s ease-out;
+}
+.mf-hint-x {
+  -webkit-appearance: none; appearance: none; flex: none; width: 22px; height: 22px; border: 0; border-radius: 50%;
+  background: transparent; color: var(--muted); font-size: 15px; line-height: 1; cursor: pointer;
+}
+.mf-hint-x:hover { color: var(--ink); }
+@keyframes mf-hint-in { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: none; } }
+html:not([data-theme="light"]) body.neo .mf-btn, html:not([data-theme="light"]) body.neo .mf-hint { background: color-mix(in srgb, var(--bg) 82%, transparent); -webkit-backdrop-filter: blur(10px); backdrop-filter: blur(10px); }
+html:not([data-theme="light"]) body.neo .mf-arrange.on { background: var(--arrow); color: #001018; box-shadow: 0 0 14px color-mix(in srgb, var(--arrow) 60%, transparent); }
+.mf-sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); clip-path: inset(50%); white-space: nowrap; }
+
+/* Phones: the toolbar (✥ Arrange) always shows, in a band of its own above the windows. */
+@media (max-width: 700px) {
+  .bubbles.mf-phone { padding-top: 42px; }
+  .bubbles.mf-phone > .mf-bar { top: 2px; bottom: auto; margin: 0; }
+  .bubbles.mf-movable .mf-drag { font-size: 17px; }
+  .bubbles.mf-movable > .bubble > .mf-grip { width: 26px; height: 26px; margin-top: -31px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bubbles > .bubble.mf-lift { scale: none; transition: none; }
+  .bubbles.mf-anim > .bubble, .mf-drag, .mf-grip { transition: none; }
+  .mf-hint { animation: none; }
+}
+html[data-motion="reduce"] .bubbles > .bubble.mf-lift { scale: none; transition: none; }
+html[data-motion="reduce"] .bubbles.mf-anim > .bubble, html[data-motion="reduce"] .mf-hint { transition: none; animation: none; }
+
+/* Print: the normal grid, never the saved positions. */
+@media print {
+  .mf-ui { display: none !important; }
+  .bubbles.mf-phone { padding-top: 0; }
+  .bubbles.mf-free { display: grid !important; height: auto !important; }
+  .bubbles.mf-free > .bubble { position: relative !important; left: auto !important; top: auto !important; width: auto !important; height: auto !important; overflow: visible !important; }
+  .bubbles.mf-free > .arrows { display: none; }
+}
+
+/* ---------- content re-flows with the window's width ---------- */
+/* Phones keep their own (viewport) rules from app/styles.css; these container rules serve resizable windows on wider screens. */
+@media (min-width: 701px) {
+  /* Narrow window (< 380px): stacked mini tables (as on phones), wrapping chains, flowchart branches in a column. */
+  @container mf-bubble (max-width: 379.98px) {
+    .chain { flex-wrap: wrap; gap: 3px; }
+    .ch { white-space: normal; overflow-wrap: anywhere; }
+    .bflow .branches { flex-direction: column; gap: 10px; }
+    .bflow .branch { min-width: 0; }
+    .mini-wrap { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+    .stackable table.mini, .stackable table.mini tbody { display: block; border: 0; min-width: 0; background: transparent; border-radius: 0; overflow: visible; }
+    .stackable table.mini thead { display: none; }
+    .stackable table.mini tr {
+      display: block; margin: 0 0 10px; overflow: hidden; border-radius: 12px; background: var(--panel);
+      border: 1px solid color-mix(in srgb, var(--c) 35%, var(--line));
+    }
+    .stackable table.mini tr.hl { border-color: var(--cx); background: var(--hl-bg, color-mix(in srgb, var(--cx) 16%, transparent)); }
+    .stackable table.mini td { display: block; border: 0; padding: 5px 12px 7px; background: transparent !important; box-shadow: none !important; overflow-wrap: anywhere; }
+    .stackable table.mini td:first-child {
+      padding: 8px 12px; background: linear-gradient(100deg, var(--cb), var(--panel-2, transparent)) !important;
+      border-bottom: 1px solid color-mix(in srgb, var(--c) 28%, var(--line));
+    }
+    .stackable table.mini tr.hl td:first-child { background: var(--hl-bg, color-mix(in srgb, var(--cx) 16%, transparent)) !important; box-shadow: inset 3px 0 0 var(--cx) !important; }
+    .stackable table.mini td[data-h]::before {
+      content: attr(data-h); display: block; margin-bottom: 1px; color: var(--c);
+      font: 700 10.5px/1.3 var(--font-ui, var(--font)); letter-spacing: .06em; text-transform: uppercase;
+    }
+    .stackable table.mini td:not(:first-child):empty { display: none; }
+    /* a window the reader has made narrow also gets a compact header (the grid's own look is left alone) */
+    .mf-free .tylabel { display: none; }
+    .mf-free .bubble > header, body.neo .mf-free .bubble > header { padding: 8px 10px; column-gap: 6px; }
+    .mf-free .bubble > ul { padding-left: 10px; padding-right: 10px; }
+    .mf-free .bubble .bsrc { padding-left: 10px; padding-right: 10px; }
+  }
+  /* Wide window (> 700px): plain bullet lists flow in two columns (lists holding tables, mnemonics or chains stay in one). */
+  @container mf-bubble (min-width: 700.02px) {
+    .bubble > ul:not(:has(> li.li-block)) { columns: 2; column-gap: 32px; }
+    .bubble > ul:not(:has(> li.li-block)) > li { break-inside: avoid; }
+    .bubble > ul:not(:has(> li.li-block)) > li.li-h { break-after: avoid; }
+  }
+}
