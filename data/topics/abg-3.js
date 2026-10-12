@@ -17,7 +17,7 @@ MF.addTopic({
       { t: "Case 1 → 7.30 · 30 · 10: expected 25, actual 30 → ==metabolic acidosis + respiratory acidosis== (a)", node: "lab-abg", role: "dx", why: "Mixed disorder detection" }
     ]},
     { type: "investigation", title: "Anion gap & delta ratio", src: "p.838–839", items: [
-      { t: "Anion gap = ==Na⁺ − (Cl⁻ + HCO₃⁻)==", node: "lab-anion-gap", role: "dx", why: "HAGMA vs NAGMA" },
+      { t: "Anion gap = ==Na⁺ − (Cl⁻ + HCO₃⁻)==", add: "Normal ≈ 8–12 mmol/L (laboratory-dependent). Most of the gap is albumin, so correct for hypoalbuminaemia → add about 2.5 for every 10 g/L that albumin is below 40 g/L, or a HAGMA can be missed.", node: "lab-anion-gap", role: "dx", why: "HAGMA vs NAGMA" },
       { t: "Delta ratio = ==(AG − 12) ÷ (24 − HCO₃⁻)==", role: "hy" },
       { table: { head: ["Delta ratio", "Meaning"], rows: [
         ["<0.4", "Pure NAGMA"],
@@ -25,18 +25,18 @@ MF.addTopic({
         ["0.8–2", "Pure HAGMA"],
         { c: [">2", "==HAGMA + metabolic alkalosis=="], hl: true }
       ]}},
-      { t: "Lowest band printed as '<4.0'", verify: "The delta-ratio table prints '<4.0' for pure NAGMA; the band continues to 0.4–0.8, so it should read <0.4." },
+      { t: "Lowest band printed as '<4.0'", verify: "The delta-ratio table prints '<4.0' for pure NAGMA; the band continues to 0.4–0.8, so it should read <0.4.", add: "Standard teaching: <0.4 → pure NAGMA · 0.4–0.8 → HAGMA + NAGMA (often seen in renal failure) · 1–2 → pure HAGMA (lactic acidosis is typically about 1.6; DKA is often nearer 1 because ketones are lost in urine) · >2 → HAGMA + metabolic alkalosis, or a pre-existing compensated respiratory acidosis." },
       { mnemonic: "0.4 · 0.8 · 2", t: "NAGMA · mixed · HAGMA · +alkalosis" },
-      { t: "Case 3 → CKD + T2DM vomiting on empagliflozin, thiazide, ramipril: pH 7.4, pCO₂ 40, HCO₃ 22, Na 140, Cl 90 → AG 28, delta 8 → ==HAGMA + metabolic alkalosis== (a) — a normal pH can hide two disorders", role: "hy" }
+      { t: "Case 3 → CKD + T2DM vomiting on empagliflozin, thiazide, ramipril: pH 7.4, pCO₂ 40, HCO₃ 22, Na 140, Cl 90 → AG 28, delta 8 → ==HAGMA + metabolic alkalosis== (a) — a normal pH can hide two disorders", add: "Why: empagliflozin (an SGLT2 inhibitor) can cause euglycaemic ketoacidosis, especially when vomiting stops food intake, and CKD retains acids → HAGMA; vomiting and the thiazide cause metabolic alkalosis. The two push pH in opposite directions, so only the high AG and the delta ratio >2 reveal them.", role: "hy" }
     ]},
     { type: "etiology", title: "NAGMA vs HAGMA", src: "p.842", items: [
-      { mnemonic: "DR. FUSE (notes)", t: "normal anion gap metabolic acidosis", lines: [["D", "Diarrhoea"], ["R", "Renal tubular acidosis"], ["F", "Fistula"], ["U-S-E", "Ureterosigmoidostomy"]] },
-      { t: "HAGMA examples (notes) → lactic acidosis · chronic renal failure · methanol · DKA", see: "dka-hhs" },
+      { mnemonic: "DR. FUSE (notes)", add: "Other standard NAGMA causes → carbonic anhydrase inhibitors (acetazolamide) · large volumes of 0.9% saline · hypoaldosteronism / Addison's (type 4 RTA) · parenteral nutrition. Each loses HCO₃⁻ (through the gut or kidney) or fails to excrete H⁺, and Cl⁻ rises in its place → hyperchloraemic acidosis.", t: "normal anion gap metabolic acidosis", lines: [["D", "Diarrhoea"], ["R", "Renal tubular acidosis"], ["F", "Fistula"], ["U-S-E", "Ureterosigmoidostomy"]] },
+      { t: "HAGMA examples (notes) → lactic acidosis · chronic renal failure · methanol · DKA", add: "Standard fuller list (GOLDMARK) → glycols (ethylene, propylene) · 5-oxoproline (chronic paracetamol use) · L- and D-lactate · methanol · aspirin · renal failure · ketoacidosis (diabetic, alcoholic, starvation). HAGMA with a raised osmolar gap points to methanol or ethylene glycol.", see: "dka-hhs" },
       { table: { caption: "Lactic acidosis", head: ["Type", "Mechanism", "Examples"], rows: [
         ["==A==", "↓ tissue perfusion / O₂", "Cardiogenic shock (COVID myocarditis) · septic shock · ==cyanide=="],
         { c: ["==B==", "No hypoperfusion", "==Metformin=="], node: "rx-metformin", role: "danger", why: "Type B lactic acidosis" }
-      ]}},
-      { t: "Case 7 → Na 135, K 1.7, HCO₃ 9, Cl 116, pCO₂ 24, pH 7.25 → expected 24 (compensated), AG 10 → ==NAGMA== (a)", role: "hy" },
+      ]}, add: "Standard type B groups → B1 underlying disease without shock (liver failure, malignancy, thiamine deficiency) · B2 drugs and toxins (metformin, salbutamol / adrenaline, linezolid, propofol, alcohol, nucleoside reverse-transcriptase inhibitors) · B3 inborn errors of metabolism." },
+      { t: "Case 7 → Na 135, K 1.7, HCO₃ 9, Cl 116, pCO₂ 24, pH 7.25 → expected 24 (compensated), AG 10 → ==NAGMA== (a)", add: "NAGMA with severe hypokalaemia → diarrhoea or type 1 (distal) / type 2 (proximal) RTA; type 4 RTA has a high K⁺ instead. Urine anion gap (Na⁺ + K⁺ − Cl⁻) separates them → negative in diarrhoea (the kidney still excretes NH₄⁺), positive in distal RTA.", role: "hy" },
       { t: "Case 9 → nausea, dizziness, hyperventilation, NAGMA → ==RTA== (c)", role: "hy" }
     ]},
     { type: "mcq", title: "More cases", src: "p.837–843", wide: true, items: [
@@ -47,7 +47,7 @@ MF.addTopic({
         ["6", "pH 7.5, HCO₃ 30, pCO₂ 40, Na 130, Cl 90 (AG 10)", "==Vomiting== (d) → metabolic alkalosis"],
         { c: ["10", "NOT type A lactic acidosis", "==Metformin== (d) — type B"], node: "rx-metformin", role: "hy", why: "Type B lactic acidosis" },
         { c: ["11", "Cirrhosis, massive ascites, spironolactone + Lasix: 7.58 · 38 · 33, AG 16", "==Metabolic alkalosis + respiratory alkalosis== (b) — expected pCO₂ 48, actual 38"], node: "rx-spironolactone", why: "Diuretic metabolic alkalosis" }
-      ]}}
+      ]}, add: "Read each as pH / pCO₂ / HCO₃⁻ → 7.5/51/36 = metabolic alkalosis with matching compensation (expected pCO₂ 36 + 15 = 51) · 7.25/31/16 = metabolic acidosis with matching compensation (16 + 15 = 31) · 7.4/25/18 = compensated chronic respiratory alkalosis · 7.4/60/34 = compensated chronic respiratory acidosis. Only chronic respiratory alkalosis regularly brings pH fully back to normal, so a normal pH with a high pCO₂ should also raise the possibility of an added metabolic alkalosis." }
     ]},
     { type: "diagnosis", title: "Classic mixed pairs", src: "p.843", items: [
       { table: { head: ["Mixed disorder", "Example"], rows: [
@@ -55,13 +55,13 @@ MF.addTopic({
         ["Metabolic alkalosis + respiratory alkalosis", "Cirrhosis on diuretics (secondary aldosteronism + ascites-driven tachypnoea)"],
         ["Metabolic acidosis + metabolic alkalosis", "CKD with vomiting / diuretics"],
         ["HAGMA + NAGMA", "Toluene toxicity · diarrhoea + lactic acidosis"]
-      ]}}
+      ]}, add: "Toluene (glue sniffing) → hippuric acid causes a HAGMA, but hippurate is quickly excreted in urine, so the AG may normalise and a NAGMA (plus distal RTA) dominates. Other classic pairs → metabolic acidosis + respiratory alkalosis = salicylate poisoning or sepsis · respiratory acidosis + metabolic alkalosis = COPD on diuretics or steroids." }
     ]},
     { type: "imaging", title: "Davenport (acid–base) nomogram", src: "p.841", items: [
       "Axes → arterial pH (x) vs plasma HCO₃⁻ (y) with pCO₂ isobars",
       { t: "MCQ: zones A and D → ==acute respiratory acidosis== and ==acute respiratory alkalosis== (c)", role: "hy" },
       "Other zones → chronic respiratory acidosis · metabolic alkalosis · chronic respiratory alkalosis · metabolic acidosis",
-      "Mostly used by paramedical professionals"
+      { t: "Mostly used by paramedical professionals", add: "Standard teaching: the Davenport diagram is mainly a teaching tool showing how pH, HCO₃⁻ and pCO₂ move together; at the bedside clinicians use the stepwise approach with compensation formulas. On any acid–base map, a point that lies outside all the simple-disorder bands suggests a mixed disorder." }
     ]}
   ],
   sources: [

@@ -27,24 +27,24 @@ MF.addTopic({
         { c: ["==Skeletal (Pott)==", "Spine > hip > knee · ==2 adjacent vertebrae== · ==gibbus== · lower thoracic / upper lumbar · paraplegia + psoas abscess", "==Bone biopsy== > abscess aspirate · TB hip → synovial biopsy"], node: "img-mri-spine", role: "dx", why: "MRI spine in Pott's (joint space ↓)" },
         ["GI", "Swallowed sputum > M. bovis milk · ==ileocaecal stricture== (RIF lump) · MR enterography · barium ==obtuse ileocaecal angle==", "—"],
         { c: ["Others", "Adrenal → ==Addison== · congenital → ==liver first== · fungal ball (aspergilloma, air crescent)", "—"], see: "adrenal" }
-      ]}},
+      ]}, add: "Troisier's sign (an enlarged left supraclavicular Virchow's node) classically points to abdominal, especially gastric, cancer, so it is a differential here rather than a TB sign. TB nodes progress: lymphadenitis → matted nodes (periadenitis) → caseation → cold abscess → collar-stud abscess → discharging sinus. · These are Light's criteria ratios: pleural/serum protein >0.5 and pleural/serum LDH >0.6 (or pleural LDH >⅔ of the upper normal serum value). TB fluid typically has very few mesothelial cells." },
       "Dowager's hump (thoracic kyphosis) → osteoporosis, not TB"
     ]},
     { type: "patho", title: "Pulmonary TB — primary vs post-primary", src: "p.791–792", wide: true, items: [
-      { chain: ["==Ghon focus== (lower upper lobe / upper middle lobe)", "Lymphangitis", "Lymphadenopathy = ==Ghon complex==", "Calcified = ==Ranke complex== (good immunity)"] },
+      { chain: ["==Ghon focus== (lower upper lobe / upper middle lobe)", "Lymphangitis", "Lymphadenopathy = ==Ghon complex==", "Calcified = ==Ranke complex== (good immunity)"], add: "Standard wording: the Ghon focus is a subpleural lesion in the lower part of the upper lobe or the upper part of the lower lobe, i.e. the well-ventilated mid-lung just under the pleura." },
       { table: { head: ["", "Primary progressive", "Post-primary (adult)"], rows: [
         ["Who", "Poor immunity", "Reactivation from Ranke complex"],
         ["Spread", "Effusion · nodes compress airway (ball-valve collapse) · cavity · bronchiectasis sicca · ==tree-in-bud== (HRCT, endobronchial) · ==miliary (snowstorm)==", "Supraclavicular → ==Puhl lesion== · infraclavicular → ==Assmann focus=="],
         ["Site", "—", "==Apical / posterior segments of upper lobe=="],
         ["Features", "—", "Low fever with ==evening rise== · cough >2 wk · weight + appetite loss · night sweats · haemoptysis · clubbing rare"]
-      ]}},
+      ]}, add: "Standard teaching: reactivation usually starts from dormant bacilli seeded to the lung apices during the primary bacteraemia (Simon foci), where high oxygen tension favours growth, hence the apical site of post-primary TB. Exogenous reinfection is the other route in high-burden countries." },
       { t: "Snowstorm CXR → silicosis · chickenpox pneumonia · alveolar proteinosis · miliary TB", node: "img-cxr", role: "hy", why: "Snowstorm differential" },
       { mnemonic: "Puhl = Peak (supraclavicular) · Assmann = Armpit level (infraclavicular)" }
     ]},
     { type: "emergency", title: "Massive haemoptysis", src: "p.792", items: [
       { t: "Leading cause → ==TB== · source → ==bronchial artery==", role: "hy" },
       { t: "Definition → ==>600 mL/24 h== or ==>150 mL in one episode==", role: "danger" },
-      { t: "Treat → ==bronchial artery embolisation==", node: "proc-bae", role: "emerg", why: "Massive haemoptysis" },
+      { t: "Treat → ==bronchial artery embolisation==", add: "Standard sequence: secure the airway and lie the patient bleeding side down (protects the good lung), resuscitate and correct clotting, then find the source with CT angiography / bronchoscopy before embolising. Surgical resection if embolisation fails or bleeding recurs.", node: "proc-bae", role: "emerg", why: "Massive haemoptysis" },
       "==Rasmussen aneurysm== → dilated ==pulmonary== artery in a cavity ruptures",
       { mnemonic: "600 a day or 150 at once" }
     ]},
@@ -52,7 +52,7 @@ MF.addTopic({
       { t: "Presumptive TB: cough >2 weeks ± symptoms (offer HIV testing to all)", type: "clinical" },
       { t: "Sputum smear + CXR", node: ["lab-afb", "img-cxr"], role: "init", type: "investigation", why: "First TB tests" },
       { decision: "Result", branches: [
-        { label: "Smear + and CXR suggestive", steps: [{ t: "Microbiologically confirmed TB (CBNAAT for Rif if PMDT/high MDR)", type: "diagnosis" }] },
+        { label: "Smear + and CXR suggestive", steps: [{ t: "Microbiologically confirmed TB (CBNAAT for Rif if PMDT/high MDR)", add: "Standard teaching (current NTEP): universal drug-susceptibility testing. Every microbiologically confirmed patient gets a rifampicin-resistance test (CBNAAT / Truenat) whatever the risk group, and if Rif-sensitive, a line probe assay for isoniazid resistance.", type: "diagnosis" }] },
         { label: "Any discordance / negative but high suspicion / PLHIV", steps: [{ t: "==CBNAAT==", node: "lab-cbnaat", role: "confirm", type: "investigation", why: "Confirms MTB + rifampicin resistance" }] }
       ]},
       { decision: "CBNAAT", branches: [
@@ -71,7 +71,7 @@ MF.addTopic({
         ["Solid culture (LJ)", "4–8 weeks", "Isolation + DST"],
         ["Immunochromatographic assay", "~15 min", "Rapid confirmation from culture"]
       ]}},
-      "High MDR setting → >5% of samples MDR · BACTEC → measures CO₂ released"
+      { t: "High MDR setting → >5% of samples MDR · BACTEC → measures CO₂ released", add: "The older radiometric BACTEC 460 measured ¹⁴CO₂ released from ¹⁴C-labelled palmitic acid. The current BACTEC MGIT 960 instead detects O₂ use by fluorescence, as in the table above." }
     ]},
     { type: "treatment", title: "Drug-sensitive TB", src: "p.794", wide: true, items: [
       { table: { head: ["Drug", "mg/kg", "Action", "Cidal?", "Liver", "Resistance gene", "Main S/E"], rows: [
@@ -79,10 +79,10 @@ MF.addTopic({
         ["**R** rifampicin", "10", "RNA polymerase", "Cidal", "+", "rpoB", "==Orange urine==, flu-like"],
         { c: ["**Z** pyrazinamide", "25", "Pyrazinoic acid · membrane transporter", "Cidal", "==+++==", "pncA", "==Hyperuricaemia=="], hl: true },
         ["**E** ethambutol", "15", "Arabinogalactan (cell wall)", "==Static==", "−", "embB", "==Optic neuritis=="]
-      ]}},
+      ]}, add: "Standard explanation: pyrazinamide is a prodrug that bacterial pyrazinamidase converts to pyrazinoic acid. It works only at acid pH, so it kills semi-dormant bacilli inside macrophages and in acidic inflamed lesions. This sterilising action in the first 2 months is what lets treatment be shortened to 6 months." },
       { mnemonic: "5-10-25-15 (H-R-Z-E) · Neuritis-Orange-Uric-Eyes" },
       { table: { head: ["Phase", "Regimen", "Doses"], rows: [["Intensive", "2 HRZE", "**56**"], ["Continuation", "4 HRE (notes print 4HRZE)", "**112**"]] } },
-      { t: "Continuation phase printed as '4HRZE'", verify: "NTEP continuation phase is 4 months of H-R-E (pyrazinamide stops after the intensive phase). Verify." },
+      { t: "Continuation phase printed as '4HRZE'", verify: "NTEP continuation phase is 4 months of H-R-E (pyrazinamide stops after the intensive phase). Verify.", add: "Standard teaching confirms this: NTEP gives pyrazinamide only in the 2-month intensive phase. WHO's standard continuation phase is 4HR. NTEP keeps ethambutol in it because isoniazid resistance is common, so rifampicin is never left unprotected." },
       { t: "CNS TB → ==1 year== + ==dexamethasone 6–8 weeks==", node: "rx-dexamethasone", role: "adjunct", why: "CNS TB" },
       "Intra-ocular TB → 9 months + steroid drops"
     ]},
@@ -101,7 +101,7 @@ MF.addTopic({
         ["Linezolid", "600 mg OD"],
         ["Moxifloxacin", "400 mg OD"],
         ["Pyridoxine", "50 mg (16–29 kg) · 100 mg (≥30 kg)"]
-      ]}}
+      ]}, add: "Standard teaching (WHO): if fluoroquinolone resistance is confirmed (pre-XDR-TB), moxifloxacin is dropped and the rest is given as BPaL. This is how BPaLM covers 'any FQ status'." }
     ]},
     { type: "mcq", title: "MCQ in the notes", src: "p.796", items: [
       { t: "NOT a pleural TB finding → ==decreased ADA== (d)", node: "lab-ada", role: "dx", why: "MCQ: ADA is raised in TB" }

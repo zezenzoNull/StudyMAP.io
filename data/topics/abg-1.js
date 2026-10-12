@@ -30,7 +30,7 @@ MF.addTopic({
         { c: ["Respiratory alkalosis (CO₂ ↓)", "HCO₃⁻ ↓ **2**", "HCO₃⁻ ↓ **4**"], hl: true }
       ]}},
       { mnemonic: "Acidosis 1-4 · Alkalosis 2-4", t: "acute → chronic, mEq of HCO₃⁻ per 10 mmHg CO₂" },
-      "Kidney compensates at the PCT → reabsorbs (acidosis) or wastes (alkalosis) HCO₃⁻"
+      { t: "Kidney compensates at the PCT → reabsorbs (acidosis) or wastes (alkalosis) HCO₃⁻", add: "Standard explanation: in the first minutes to hours only cell buffers (haemoglobin, proteins) act, so the acute HCO₃⁻ change is small. Renal compensation builds over 3–5 days as the kidney also excretes extra H⁺ as NH₄⁺, which makes new HCO₃⁻ → hence the larger 'chronic' numbers." }
     ]},
     { type: "etiology", title: "Respiratory acidosis — DEPRESO (notes)", src: "p.821–822", items: [
       { mnemonic: "DEPRESO (notes)", lines: [["D", "Drugs — morphine, sedatives, anaesthetics"], ["D", "Disease of NMJ — polio, ALS, myasthenic crisis, muscular dystrophy"], ["E", "Edema & V/P imbalance — severe ARDS"], ["P", "Pneumoconiosis · barotrauma"], ["R", "Respiratory obstruction (foreign body)"], ["S", "Spasm — life-threatening asthma, AECOPD"], ["O", "Obesity — OSAHS, Pickwickian (obesity hypoventilation)"]] },
@@ -38,18 +38,18 @@ MF.addTopic({
       { t: "AECOPD", see: "copd" }
     ]},
     { type: "clinical", title: "Respiratory acidosis — features & treatment", src: "p.822", items: [
-      { table: { head: ["Acute", "Chronic"], rows: [["Anxiety · confusion · hallucinations", "↑↑ daytime somnolence · ==asterixis (flapping tremor)== · ↑ ICP → papilloedema"]] } },
-      { t: "Treat → ==elective intubation + IPPV==", node: "proc-ippv", role: "first", why: "Severe respiratory acidosis" },
-      { t: "==Avoid aggressive CO₂ washout== → lost cerebral vasodilatation → ↓ perfusion → dizziness, seizures", role: "ci" }
+      { table: { head: ["Acute", "Chronic"], rows: [["Anxiety · confusion · hallucinations", "↑↑ daytime somnolence · ==asterixis (flapping tremor)== · ↑ ICP → papilloedema"]] }, add: "Standard teaching: CO₂ dilates cerebral vessels → headache, and causes warm flushed hands, a bounding pulse and flapping tremor. As pCO₂ keeps rising, drowsiness progresses to coma (CO₂ narcosis), classically when high-flow oxygen is given to a chronic CO₂ retainer." },
+      { t: "Treat → ==elective intubation + IPPV==", add: "Standard management: treat the cause (naloxone for opioid overdose, bronchodilators for asthma/COPD) and give controlled oxygen (target 88–92% in known CO₂ retainers). In hypercapnic AECOPD with pH < 7.35, non-invasive ventilation (BiPAP) comes first, and intubation is for NIV failure, falling consciousness or exhaustion. Bicarbonate is not used.", node: "proc-ippv", role: "first", why: "Severe respiratory acidosis" },
+      { t: "==Avoid aggressive CO₂ washout== → lost cerebral vasodilatation → ↓ perfusion → dizziness, seizures", add: "Standard explanation: in chronic hypercapnia the kidney has already retained HCO₃⁻. If ventilation drops pCO₂ quickly, that HCO₃⁻ is left unopposed → post-hypercapnic metabolic alkalosis (seizures, arrhythmias). So pCO₂ is lowered gradually towards the patient's usual level, not straight to 40 mmHg.", role: "ci" }
     ]},
     { type: "clinical", title: "Respiratory alkalosis", src: "p.822–823", items: [
       "Seen in → anxiety, pneumonia, acute heart failure",
       { mnemonic: "CHAMPS", t: "causes", lines: [["C", "CNS — pain, anxiety, hysteria, fever, CVA"], ["H", "Heart failure — pulmonary oedema · HAPE"], ["A", "Altitude"], ["M", "Miscellaneous — sepsis, heat"], ["P", "Pulmonary embolism (↑ dead space)"], ["S", "Shock-free chest trauma — haemothorax"]] },
       { h: "Features (CO₂ ↓ = cerebral vasoconstriction)" },
       "Dizziness, vertigo",
-      "Intracellular shift of Na⁺, K⁺, PO₄ → ==arrhythmias==",
+      { t: "Intracellular shift of Na⁺, K⁺, PO₄ → ==arrhythmias==", add: "Standard teaching: alkalaemia moves K⁺ into cells in exchange for H⁺ → hypokalaemia, and speeds glycolysis so phosphate enters cells → hypophosphataemia. The hypokalaemia, plus the alkalaemia itself, lowers the arrhythmia threshold, especially in heart disease or in patients on digoxin." },
       { t: "↑ protein binding of Ca²⁺ → ↓ ionised Ca → ==tetany==", see: "parathyroid" },
-      "Treat → ==paper-bag rebreathing==",
+      { t: "Treat → ==paper-bag rebreathing==", add: "Standard teaching: paper-bag rebreathing is no longer recommended → it can cause dangerous hypoxaemia, and apparent hyperventilation may really be PE, asthma, MI or DKA. Exclude organic causes and treat the cause; for anxiety-related hyperventilation use reassurance and slow, controlled breathing." },
       { t: "M/c acid–base disorder in ICU → ==chronic respiratory alkalosis==", role: "hy" },
       { t: "==Pregnancy== → progesterone lowers pCO₂ 5–10 mmHg → chronic respiratory alkalosis", role: "hy" }
     ]},
@@ -62,7 +62,7 @@ MF.addTopic({
         ["Site", "==Radial artery== (between FCR tendon and styloid)"],
         ["After", "Press 5 min (prevent haematoma)"],
         ["Kit", "3 mL pre-heparinised syringe (2 mL sample) · rubber stopper · rolled towel · ice bag"]
-      ]}},
+      ]}, add: "Standard purpose of each item: the rolled towel keeps the wrist dorsiflexed for puncture · the stopper seals out air (bubbles raise pO₂ and lower pCO₂) · ice slows white-cell metabolism, which otherwise lowers pO₂ and raises pCO₂ if analysis is delayed beyond about 30 minutes." },
       { t: "==Excess heparin → falsely low pH and low HCO₃⁻==", role: "hy" }
     ]},
     { type: "mcq", title: "Practice cases (notes)", src: "p.824–825", wide: true, items: [
@@ -79,8 +79,8 @@ MF.addTopic({
         ["Anxious pre-op, hyperventilating", "7.51 · 22 · 25", "Uncompensated respiratory alkalosis"],
         { c: ["Haemothorax", "7.42 · 25 · 18", "==Respiratory alkalosis, fully compensated== (d)"], hl: true },
         ["—", "7.56 · 20 · 20", "Respiratory alkalosis, partially compensated (c)"]
-      ]}, node: "lab-abg", role: "dx", why: "ABG interpretation practice" },
-      { mnemonic: "pH normal = Fully · pH abnormal + other value moving = Partially · other value normal = Uncompensated" }
+      ]}, node: "lab-abg", role: "dx", why: "ABG interpretation practice", add: "Standard read: pCO₂ is up by 28 → the acute rule predicts HCO₃⁻ ≈ 24 + 2.8 ≈ 27, and 28 fits → acute respiratory acidosis with the expected acute buffering, so no separate metabolic alkalosis is needed. A coexisting metabolic alkalosis would push HCO₃⁻ clearly above that. · Numbers check: by Henderson–Hasselbalch, pH 7.25 with pCO₂ 17 fits an HCO₃⁻ of about 7, and Winter's formula (expected pCO₂ = 1.5 × HCO₃⁻ + 8 ± 2) then shows appropriate respiratory compensation. An HCO₃⁻ of 2 would give a pH well below 7.0, so check this value. Toluene (glue/paint sniffing) classically causes a normal-anion-gap acidosis resembling distal RTA." },
+      { mnemonic: "pH normal = Fully · pH abnormal + other value moving = Partially · other value normal = Uncompensated", add: "Standard teaching: compensation rarely returns pH fully to normal; long-standing (chronic) respiratory alkalosis is the main exception. A normal pH with clearly abnormal pCO₂ and HCO₃⁻ should prompt a check for a mixed disorder: e.g. in the ALS case the chronic rule predicts HCO₃⁻ ≈ 31, so 34 suggests an added metabolic alkalosis." }
     ]}
   ],
   sources: [

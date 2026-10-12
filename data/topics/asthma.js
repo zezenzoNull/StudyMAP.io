@@ -14,7 +14,7 @@ MF.addTopic({
         ["pMDI", "Needs hand–breath coordination · deposits in mouth/upper airway · 1st reflex = exhale", "**10–20%**"],
         ["DPI", "==Breath-actuated== (advantage over pMDI)", "**20–40%**"],
         ["Valved holding chamber (spacer)", "Breathe at own pace · better compliance + delivery", "↑"]
-      ]}},
+      ]}, add: "Standard teaching: the soft mist inhaler (Respimat) runs on a spring, not a battery, and needs no propellant. It releases a slow, long-lasting aerosol cloud, so little hand–breath coordination is needed. It mainly delivers the long-acting bronchodilators tiotropium and olodaterol, not an ICS-formoterol combination." },
       { t: "Ideal particle size to reach terminal bronchiole → ==1–3 µm==", role: "hy" },
       { mnemonic: "Mist Most · DPI Decent · MDI Minimal", t: "delivery ranking" },
       { h: "pMDI technique" },
@@ -29,7 +29,7 @@ MF.addTopic({
         { c: ["Blood eosinophils", ">150 type 2 · ==>300 → anti-IL-5 response==", "{N:lab-eosinophil}"], node: "lab-eosinophil", role: "dx", why: "Eosinophilic phenotype" },
         { c: ["IgE", "==>1000 IU/mL + brown plugs → ABPA==", "{N:lab-ige}"], node: "lab-ige", role: "dx", why: "Allergic bronchopulmonary aspergillosis" },
         { c: ["Chest X-ray", "Normal between attacks · ==hyperinflation, flat diaphragm== in attack", "—"], node: "img-cxr", role: "dx", why: "Acute asthma CXR" }
-      ]}},
+      ]}, add: "Standard teaching (GINA): significant reversibility needs a post-bronchodilator FEV₁ rise of >12% AND >200 mL. In asthma the ratio is compared with the lower limit of normal (normally >0.75–0.8 in adults, >0.9 in children), not the fixed 0.7 used for COPD. Spirometry may be normal between attacks, so a normal result does not exclude asthma. · Standard (ATS) cut-offs: high FeNO, meaning eosinophilic, steroid-responsive inflammation, is >50 ppb in adults but >35 ppb in children. Low FeNO is <25 ppb in adults and <20 ppb in children. GINA treats FeNO ≥20 ppb as a type 2 marker in severe asthma." },
       "Flow–volume loop → ==scooped / scalloped== expiratory limb · post-BD area ↑",
       "Air trapping → RV ↑, TLC ↑",
       { t: "FEV₁/FVC ==>0.8 → restrictive== disease", role: "hy", see: "ild" },
@@ -47,10 +47,10 @@ MF.addTopic({
       { mnemonic: "Curschmann = Curly mucus · Charcot = Crystals (eosinophil) · Creola = Cells shed" },
       "Exam → expiratory rhonchi early → inspiratory + expiratory later → ==silent chest== (status asthmaticus)",
       { mnemonic: "PAVE-DO", t: "triggers", lines: [["P", "Pollen, dust, mites, cat fur"], ["A", "Air pollution — CO, NO, SO₂"], ["V", "Viruses — RSV, COVID-19, H3N1"], ["E", "Exercise, cold air"], ["D", "Drugs — ==aspirin (COX-1 → ↑ leukotrienes)==, timolol drops, propranolol"], ["O", "Occupation — cleaners, nurses"]] },
-      "Uncontrolled on moderate ICS + LABA → check ==GERD, OSA==, drugs (ACEi, β-blockers, COX-1), nasal polyps"
+      { t: "Uncontrolled on moderate ICS + LABA → check ==GERD, OSA==, drugs (ACEi, β-blockers, COX-1), nasal polyps", add: "Standard (GINA) order before stepping up: first check inhaler technique and adherence, the commonest causes of poor control. Then confirm the diagnosis and remove smoke, allergen and occupational exposures. Only then treat comorbidities such as rhinosinusitis, obesity, anxiety/depression, reflux and sleep apnoea." }
     ]},
     { type: "diagnosis", title: "Severity", src: "p.771, 774", wide: true, items: [
-      { table: { caption: "Chronic grading", head: ["Severity", "FEV₁"], rows: [["Mild", "70–80%"], ["Moderate", "40–69%"], ["Severe", "<40%"], { c: ["Imminent arrest", "<25%"], role: "danger" }] } },
+      { table: { caption: "Chronic grading", head: ["Severity", "FEV₁"], rows: [["Mild", "70–80%"], ["Moderate", "40–69%"], ["Severe", "<40%"], { c: ["Imminent arrest", "<25%"], role: "danger" }] }, add: "Standard teaching: these FEV₁/PEF bands are the US National Asthma Education and Prevention Program grading of an acute EXACERBATION: ≥70% mild, 40–69% moderate, <40% severe, <25% life-threatening. GINA grades chronic severity by the treatment needed for control: mild = step 1–2, moderate = step 3–4, severe = needs high-dose ICS-LABA ± add-ons, or stays uncontrolled despite it." },
       { table: { caption: "Acute exacerbation", head: ["", "Mild", "Severe", "Imminent arrest"], rows: [
         ["Talks in", "Sentences", "Words", "==Can't talk=="],
         ["Alertness", "± agitated", "Agitated", "==Drowsy=="],
@@ -67,17 +67,17 @@ MF.addTopic({
       { decision: "Severity?", branches: [
         { label: "Mild–moderate", steps: [
           { t: "==Formoterol (rapid LABA) + ICS==", node: "rx-ics-laba", role: "first", type: "treatment", why: "Mild-moderate attack" },
-          { t: "==SABA alone not recommended==", node: "rx-saba", role: "ci", type: "emergency", why: "SABA monotherapy discouraged" }
+          { t: "==SABA alone not recommended==", add: "Standard teaching (GINA): this means long-term SABA-only treatment without ICS, which raises the risk of severe exacerbations and death. In an acute attack, salbutamol by pMDI + spacer, repeated every 20 min for the first hour, is still used (or ICS-formoterol for patients on MART). Add an oral corticosteroid and controlled O₂ to SpO₂ 93–95% in adults.", node: "rx-saba", role: "ci", type: "emergency", why: "SABA monotherapy discouraged" }
         ]},
         { label: "Severe → urgent care", steps: [
-          { t: "==Salbutamol nebulisation, oxygen-driven== (air-driven → V/Q mismatch)", node: ["rx-saba", "em-acute-asthma"], role: "emerg", type: "emergency", why: "Severe acute asthma" },
+          { t: "==Salbutamol nebulisation, oxygen-driven== (air-driven → V/Q mismatch)", add: "Standard explanation: salbutamol dilates pulmonary vessels in poorly ventilated lung → worse V/Q mismatch and a brief fall in PaO₂. So in a hypoxaemic patient the nebuliser is driven by O₂ (6–8 L/min), not air. Usual dose: salbutamol 5 mg nebulised, repeated every 15–30 min or given continuously if the response is poor.", node: ["rx-saba", "em-acute-asthma"], role: "emerg", type: "emergency", why: "Severe acute asthma" },
           { t: "==IV hydrocortisone== (blocks phospholipase A2 → ↓ leukotrienes)", node: "rx-hydrocortisone", role: "emerg", type: "emergency", why: "Acute asthma steroid" },
           { t: "==Ipratropium nebulisation==", node: "rx-lama", role: "adjunct", type: "treatment", why: "Add-on bronchodilator" },
           { t: "==IV MgSO₄== (blocks intracellular Ca²⁺ → smooth-muscle relaxation)", node: "rx-mgso4", role: "adjunct", type: "treatment", why: "Severe asthma add-on" }
         ]}
       ]},
       { t: "Aminophylline IV → ==not useful== (MCQ)", role: "ci", type: "pearl" },
-      { mnemonic: "O-SHIM", t: "Oxygen-driven Salbutamol · Hydrocortisone · Ipratropium · Magnesium" }
+      { mnemonic: "O-SHIM", add: "Standard doses (BTS / Davidson's): prednisolone 40–50 mg orally (as effective as IV if the patient can swallow) or hydrocortisone 100 mg IV 6-hourly, for at least 5 days · ipratropium 0.5 mg nebulised 4–6-hourly · MgSO₄ 1.2–2 g IV over 20 min as a single dose. Exhaustion, drowsiness, worsening PEF or a rising PaCO₂ → ICU for possible intubation.", t: "Oxygen-driven Salbutamol · Hydrocortisone · Ipratropium · Magnesium" }
     ]},
     { type: "treatment", title: "Long-term drugs", src: "p.775", wide: true, items: [
       { h: "Goals" },
@@ -90,7 +90,7 @@ MF.addTopic({
         { c: ["==ICS / LABA==", "==1st line for persistent asthma== · ↓ mortality · rinse mouth · PJP prophylaxis if oral steroid >20 mg/day"], node: "rx-ics-laba", role: "first", why: "Controller first line", hl: true },
         { c: ["Leukotriene modifiers", "Montelukast (==suicidal ideation==) · zafirlukast · cromolyn"], node: "rx-ltra", role: "second", why: "Controller add-on" },
         { c: ["Biologics", "See table below"], node: "rx-asthma-biologic", role: "second", why: "Severe type 2 asthma" }
-      ]}}
+      ]}, add: "Standard classification: montelukast and zafirlukast are CysLT1 receptor antagonists, and zileuton is a 5-lipoxygenase inhibitor. Cromolyn (sodium cromoglicate) is a mast-cell stabiliser, not a leukotriene modifier. Zafirlukast and zileuton can cause liver toxicity." }
     ]},
     { type: "treatment", title: "GINA steps", src: "p.775–776", wide: true, steps: [
       { decision: "How uncontrolled?", branches: [
@@ -110,7 +110,7 @@ MF.addTopic({
         ["Benralizumab", "IL-5 receptor", "Eosinophilic (fast depletion)", "SC · 4–8 wk"],
         { c: ["==Dupilumab==", "IL-4Rα (IL-4 & IL-13)", "Allergic + eosinophilic (eos >300, >2 steroid courses)", "SC · 2 wk"], verify: "Notes' biologics table prints 'IL-4 & IL-3' for dupilumab; the text above says IL-4/IL-13 via IL-4Rα. IL-3 is a typo." },
         ["Tezepelumab", "TSLP (upstream)", "==Type 2 and non-type 2==", "SC · 4 wk"]
-      ]}, node: "rx-asthma-biologic", role: "second", why: "Severe asthma biologics" },
+      ]}, node: "rx-asthma-biologic", role: "second", why: "Severe asthma biologics", add: "Standard teaching: dupilumab binds IL-4Rα, the receptor subunit shared by IL-4 and IL-13, so it blocks both IL-4 and IL-13 signalling. IL-3 is not a target. It can cause a temporary rise in blood eosinophils and conjunctivitis." },
       { mnemonic: "Oma = IgE · Mepo/Res/Benra = IL-5 · Dupi = Double (4 & 13) · Teze = Top (TSLP)" }
     ]},
     { type: "followup", title: "Special asthma & hypersensitivity pneumonitis", src: "p.776–777", items: [

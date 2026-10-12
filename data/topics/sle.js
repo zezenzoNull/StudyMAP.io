@@ -17,7 +17,7 @@ MF.addTopic({
         { c: ["Highest EULAR/ACR weight", "==Kidney (lupus nephritis)=="], hl: true },
         ["Diagnosis", "==≥10 points== over 7 clinical + 3 immunological domains"],
         ["Entry criterion", "ANA ==≥1:80 on Hep-2 cells== (notes print 'ANCA')"]
-      ]}},
+      ]}, add: "Standard teaching: TREX1 (a DNA-clearing exonuclease gene) is on chromosome 3 and is a rare single-gene cause. The strongest single-gene risk is inherited early-complement deficiency (C1q > C4 > C2), and HLA-DR2/DR3 are the common associations. The X-chromosome link is gene dosage (e.g. TLR7 escaping X-inactivation), so men with Klinefelter (XXY) have a risk close to that of women." },
       { t: "Entry criterion printed as '+ve ANCA'", verify: "Typo: the EULAR/ACR entry criterion is ANA ≥1:80 (as the notes' own table on p.631 says), not ANCA." },
       "Malar rash → nose, cheeks, ear lobes · photosensitive (vs ==malar flush== of mitral stenosis)"
     ]},
@@ -32,7 +32,7 @@ MF.addTopic({
         ["**N**", "Neurological", "Headache · seizures (lupus cerebritis) · myelopathy · neuropathy · depression / psychosis → ==anti-ribosomal P=="],
         { c: ["**A**", "Autoimmune haemolytic anaemia", "Coombs + · spherocytes · leuco/lympho/thrombocytopenia → steroids"], node: "lab-coombs", role: "dx", why: "SLE haemolysis" },
         { c: ["**R**", "Renal", "UPCR ==>0.5== (normal <0.2) · RBC casts · biopsy ==wire-loop==, class III/IV, ==full-house IF== · ↓ GFR, renin ↑, HTN"], node: ["lab-upcr", "proc-renal-biopsy"], role: "dx", why: "Lupus nephritis", hl: true }
-      ]}},
+      ]}, add: "Standard grouping: the malar (butterfly) rash is ACUTE cutaneous lupus and spares the nasolabial folds. Subacute cutaneous lupus (SCLE) is a non-scarring annular or psoriasiform photosensitive rash on the upper trunk and arms, linked to anti-Ro. Discoid lupus is chronic cutaneous lupus, and it scars. · Diffuse thinning or fragile, easily broken hairs at the frontal hairline ('lupus hair') that grow back once the disease is controlled. This is unlike discoid lupus of the scalp, which leaves permanent scarring alopecia." },
       "Pericardial vs pleural rub → hold breath → persists = pericarditis",
       { t: "M/c anaemia in SLE → ==anaemia of chronic disease== (normocytic normochromic)", role: "hy" }
     ]},
@@ -47,7 +47,7 @@ MF.addTopic({
         ["==Anti-histone==", "Drug-induced lupus (brain + kidney spared, good prognosis)"],
         ["Anti-erythrocyte / platelet", "Haemolysis / bleeding, petechiae"],
         ["Anti-neuronal / ribosomal-P", "Cerebritis / neuropsychiatric"]
-      ]}},
+      ]}, add: "Standard teaching: these are two different antibodies. Anti-La (SS-B) goes with anti-Ro (Sjögren's, neonatal lupus, congenital heart block). Lupus anticoagulant is an antiphospholipid antibody that prolongs phospholipid-dependent clotting tests (aPTT, dRVVT) in the tube but causes thrombosis in the patient, and the false-positive VDRL comes from anticardiolipin." },
       { t: "Complement ↓ (C3, C4, CH50)", node: "lab-complement", role: "dx", why: "Active SLE consumes complement" },
       { mnemonic: "SHIP (notes)", t: "drug-induced lupus", lines: [["S", "Sulfonamides"], ["H", "Hydralazine"], ["I", "Isoniazid"], ["P", "==Procainamide (m/c)== — used in WPW"]] },
       { mnemonic: "ANA Alerts · Smith Signs · dsDNA Dances with activity" }
@@ -71,21 +71,21 @@ MF.addTopic({
         ["I & II", "Monitor progression"],
         { c: ["III (focal) · IV (diffuse) · V (membranous)", "==Tacrolimus + mycophenolate=="], node: "rx-mycophenolate", role: "first", why: "Lupus nephritis III-V", hl: true },
         ["VI", "Dialysis / transplant"]
-      ]}}
+      ]}, add: "Standard teaching (EULAR/KDIGO): induction for class III/IV (and class V with heavy proteinuria) = glucocorticoids (IV methylprednisolone pulses → tapering oral prednisolone) + mycophenolate OR low-dose IV cyclophosphamide. A calcineurin inhibitor (tacrolimus/voclosporin) or belimumab can be added. Maintenance = mycophenolate (or azathioprine) for years, with hydroxychloroquine and an ACE inhibitor/ARB throughout." }
     ]},
     { type: "treatment", title: "SLE treatment flowchart", src: "p.632–633", steps: [
       { decision: "Situation", branches: [
         { label: "Not organ-threatening", steps: [
-          { t: "==Low-dose glucocorticoids== (+ hydroxychloroquine)", node: ["rx-steroids", "rx-hcq"], role: "first", type: "treatment", why: "Mild SLE" },
+          { t: "==Low-dose glucocorticoids== (+ hydroxychloroquine)", add: "Standard teaching (EULAR 2023): hydroxychloroquine is for EVERY patient unless contraindicated (≤5 mg/kg/day by real body weight, with regular retinal screening for toxicity). Glucocorticoids are kept to the lowest dose and tapered to ≤5 mg/day prednisolone or stopped, with methotrexate or azathioprine as the usual steroid-sparers.", node: ["rx-steroids", "rx-hcq"], role: "first", type: "treatment", why: "Mild SLE" },
           { t: "Steroid toxicity → ==belimumab==", node: "rx-belimumab", role: "second", type: "treatment", why: "Steroid-sparing" }
         ]},
         { label: "Life / organ-threatening", steps: [{ t: "==High-dose steroids + mycophenolate / cyclophosphamide==", node: ["rx-steroids", "rx-mycophenolate"], role: "first", type: "treatment", why: "Severe SLE" }] },
         { label: "Nephritis III, IV, V", steps: [{ t: "==Mycophenolate + tacrolimus==", node: "rx-mycophenolate", role: "first", type: "treatment", why: "Lupus nephritis" }] },
         { label: "Pregnancy (active)", steps: [
           { t: "==Hydroxychloroquine + prednisolone==", node: "rx-hcq", role: "first", type: "treatment", why: "SLE in pregnancy" },
-          { t: "Steroids not 1st line → placental ==11β-dehydrogenase== inactivates them + fetal risk", type: "pearl" }
+          { t: "Steroids not 1st line → placental ==11β-dehydrogenase== inactivates them + fetal risk", add: "Standard teaching: placental 11β-hydroxysteroid dehydrogenase type 2 inactivates prednisolone, so little reaches the fetus. That is why low-dose prednisolone is the steroid of choice for MATERNAL lupus activity in pregnancy, while dexamethasone/betamethasone escape the enzyme and are used only when the fetus is the target. Azathioprine and tacrolimus are pregnancy-safe add-ons; mycophenolate, cyclophosphamide and methotrexate must be stopped before conception.", type: "pearl" }
         ]},
-        { label: "APS (thrombosis / placental infarction)", steps: [{ t: "==Low-dose aspirin + LMWH (enoxaparin)==", node: "rx-lmwh-aspirin", role: "first", type: "treatment", why: "APS in pregnancy" }] }
+        { label: "APS (thrombosis / placental infarction)", steps: [{ t: "==Low-dose aspirin + LMWH (enoxaparin)==", add: "Standard teaching: aspirin + prophylactic LMWH is the regimen for OBSTETRIC APS. After a thrombosis, APS needs long-term warfarin (target INR 2–3) rather than a DOAC, especially in triple-positive or arterial disease, and warfarin is switched to therapeutic LMWH + aspirin in pregnancy. Catastrophic APS → heparin + high-dose steroids + plasma exchange and/or IVIG.", node: "rx-lmwh-aspirin", role: "first", type: "treatment", why: "APS in pregnancy" }] }
       ]}
     ]},
     { type: "investigation", title: "ANA patterns", src: "p.633–634", items: [
@@ -104,14 +104,14 @@ MF.addTopic({
       { h: "Suspect when" },
       "Stroke <55 y",
       "DVT → Budd–Chiari, PE",
-      "Pregnancy loss → unexplained fetal death >10 wk · preterm <34 wk (pre-eclampsia, PIH) · >3 consecutive miscarriages",
+      { t: "Pregnancy loss → unexplained fetal death >10 wk · preterm <34 wk (pre-eclampsia, PIH) · >3 consecutive miscarriages", add: "Standard (Sydney) wording: ≥1 unexplained death of a morphologically normal fetus at ≥10 weeks · ≥1 premature birth before 34 weeks due to severe pre-eclampsia/eclampsia or placental insufficiency · ≥3 unexplained consecutive miscarriages BEFORE 10 weeks." },
       { t: "Work-up → lupus anticoagulant (==dilute Russell viper venom test==; aPTT ↑, kaolin clotting time ↑) · anticardiolipin ELISA · β2-glycoprotein ELISA", node: "lab-apl", role: "dx", why: "APS diagnosis" },
       { table: { head: ["", "2006 Sapporo (Sydney)", "2023 ACR/EULAR"], rows: [
         ["Purpose", "Diagnosis + classification", "Classification (research)"],
         ["Entry", "None", "≥1 positive aPL within 3 y"],
         ["Clinical", "Thrombosis · pregnancy morbidity", "6 domains: macro- / microvascular, obstetric, valve, haematologic, neuro"],
         ["Labs", "LA · aCL · anti-β2GP1 — ==2 positives 12 weeks apart==", "LA + solid-phase ELISA"]
-      ]}},
+      ]}, add: "Standard 2023 list: macrovascular venous (VTE) · macrovascular arterial (stroke counts here) · microvascular · obstetric · cardiac valve · haematological (thrombocytopenia). There is no separate neurological domain. APS is classified only with ≥3 points from the clinical domains AND ≥3 points from the laboratory domains." },
       { t: "Livedo reticularis (fishnet) → SLE · APS · PAN · cryoglobulinaemia", node: "con-livedo", why: "Livedo differential" },
       { t: "Hypercoagulable stroke", see: "tia-stroke-int" }
     ]},

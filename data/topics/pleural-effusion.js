@@ -35,7 +35,7 @@ MF.addTopic({
     ]},
     { type: "clinical", title: "Signs", src: "p.805", items: [
       "Asymmetrical chest expansion · ==stony dullness== · ↓ vocal fremitus · ↓ / absent breath sounds",
-      "Trachea → ==contralateral shift >1 L== (ipsilateral → collapse, pulmonary shunt)",
+      { t: "Trachea → ==contralateral shift >1 L== (ipsilateral → collapse, pulmonary shunt)", add: "Standard teaching: trachea pulled towards the effusion → collapse of the lung beneath it (e.g. central bronchial carcinoma blocking a main bronchus) or previous pneumonectomy. A large effusion with a central trachea → collapse beneath it or a mediastinum fixed by tumour (e.g. mesothelioma)." },
       "==Egophony== at the upper fluid level (E → A, goat-bleat bronchial breathing)",
       "Pleural rub → ==disappears on breath-holding== (pericardial rub persists)",
       { table: { caption: "Positional breathlessness", head: ["Term", "Worse when", "Cause"], rows: [["==Trepopnoea==", "Lateral decubitus", "Massive U/L effusion"], ["==Platypnoea==", "Upright / sitting", "Atrial myxoma · hepatopulmonary syndrome"], ["Orthopnoea", "Supine", "CHF"]] } }
@@ -59,7 +59,7 @@ MF.addTopic({
         ["PF : serum LDH", "**>0.6**"],
         { c: ["PF LDH", "**>2/3** upper limit of serum"], hl: true }
       ]}},
-      { t: "Light's criteria misclassify ==25% of transudates as exudates==", role: "hy" },
+      { t: "Light's criteria misclassify ==25% of transudates as exudates==", add: "This happens mainly in heart failure treated with diuretics (diuresis concentrates pleural protein and LDH). If the patient clinically has a transudate, a serum − pleural fluid albumin gradient >1.2 g/dL (or protein gradient >3.1 g/dL) confirms it is a transudate.", role: "hy" },
       { mnemonic: "0.5 · 0.6 · 2/3" }
     ]},
     { type: "investigation", title: "Extra fluid tests", src: "p.807", items: [
@@ -72,16 +72,16 @@ MF.addTopic({
         ["Amylase ↑", "==Oesophageal rupture (Boerhaave)== · pancreatitis"],
         ["Bloody", "TB · trauma · tumour (adenocarcinoma, mesothelioma)"],
         ["Cholesterol crystals (pseudochylous)", "TB · RA"]
-      ]}}
+      ]}, add: "Standard teaching: in a parapneumonic effusion, pH <7.2 or organisms on Gram stain/culture = 'complicated' effusion → needs a chest drain; frank pus = empyema. Common organisms in community-acquired empyema: Streptococcus anginosus (milleri) group, pneumococcus, anaerobes, Staph aureus." }
     ]},
     { type: "treatment", title: "Empyema & malignant effusion", src: "p.807", steps: [
       { decision: "Type", branches: [
         { label: "Empyema (acidic, glucose <60, organisms)", steps: [
-          { t: "Antibiotics", type: "treatment" },
+          { t: "Antibiotics", add: "Standard choice for community-acquired empyema: a β-lactam with anaerobic cover (co-amoxiclav, or a cephalosporin + metronidazole), IV then oral, usually for several weeks guided by culture. Hospital-acquired → also cover MRSA and Gram-negatives; avoid aminoglycosides (poor pleural penetration, inactive in acidic pus).", type: "treatment" },
           { t: "==ICD at 5th ICS, anterior to mid-axillary line (triangle of safety)== + intrapleural tPA + DNase", node: "proc-icd", role: "first", type: "treatment", why: "Empyema drainage" },
           { t: "Loculated → thoracoscopy + adhesiolysis → thoracotomy", role: "def", type: "treatment" }
         ]},
-        { label: "Malignant (massive U/L, adenocarcinoma, trepopnoea)", steps: [{ t: "==Pleurodesis with doxycycline== · thoracoscopic pleural abrasion", node: "proc-pleurodesis", role: "first", type: "treatment", why: "Malignant effusion" }] }
+        { label: "Malignant (massive U/L, adenocarcinoma, trepopnoea)", steps: [{ t: "==Pleurodesis with doxycycline== · thoracoscopic pleural abrasion", add: "Standard teaching: sterile talc is the most effective sclerosant (talc slurry via chest drain or talc poudrage at thoracoscopy); doxycycline/tetracycline and bleomycin are alternatives. Pleurodesis works only if the lung re-expands fully → for trapped lung or failed pleurodesis use an indwelling pleural catheter (also a first-line choice alongside talc, by patient preference).", node: "proc-pleurodesis", role: "first", type: "treatment", why: "Malignant effusion" }] }
       ]}
     ]},
     { type: "diagnosis", title: "Special effusions", src: "p.808–809", items: [
@@ -92,7 +92,7 @@ MF.addTopic({
         { c: ["==Haemothorax==", "PF Hct ==>50%== of blood · intervene if drain ==>200 mL/h==", "Angiographic coil · thoracotomy"], role: "danger" },
         ["==Meigs syndrome==", "Ovarian fibroma / thecoma + ascites + ==right== effusion", "—"],
         ["Hepatic hydrothorax", "Cirrhotic ascites → effusion", "—"]
-      ]}},
+      ]}, add: "Standard teaching: the gap from asbestos exposure to mesothelioma is long, usually 20–40 years or more. Pleural plaques are benign markers of past exposure, not premalignant. Mesothelioma presents with chest-wall pain, a unilateral effusion and nodular pleural thickening encasing the lung → diagnosed by thoracoscopic pleural biopsy (fluid cytology is often negative). · Standard treatment: mostly palliative → control the effusion (talc pleurodesis or indwelling pleural catheter) + systemic therapy (platinum–pemetrexed chemotherapy, or nivolumab + ipilimumab immunotherapy) · palliative radiotherapy for chest-wall pain. Radical surgery has only a limited role in selected patients (the MARS2 trial showed no benefit from extended pleurectomy); prognosis is poor. · Standard first step: chest drain (traditionally large-bore) to evacuate the blood and measure ongoing loss. Thoracotomy if ~1500 mL drains at once, bleeding stays high for 2–4 h or the patient stays unstable; retained clot → early VATS evacuation to prevent empyema and fibrothorax. · Standard: surgical removal of the ovarian tumour is curative → ascites and effusion resolve. CA-125 can be raised, so it can mimic ovarian cancer (pseudo-Meigs = same picture with other pelvic tumours). · Standard treatment: salt restriction + diuretics (spironolactone ± furosemide) and therapeutic taps; refractory cases → transjugular intrahepatic portosystemic shunt or liver transplant. Avoid a chest drain (large protein and fluid loss, infection, renal failure). Usually a right-sided transudate passing through small diaphragmatic defects, sometimes with little visible ascites." },
       { t: "Pulmonary embolism effusion → ==exudate==", role: "hy" }
     ]},
     { type: "mcq", title: "MCQs in the notes", src: "p.810", items: [

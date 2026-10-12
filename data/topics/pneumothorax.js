@@ -14,8 +14,8 @@ MF.addTopic({
         ["==Deep sulcus sign==", "Only on a ==supine== film"],
         { c: ["USG ==barcode / stratosphere sign==", "Pneumothorax"], node: "img-usg-chest", role: "dx", why: "Pneumothorax on USG" },
         ["CXR ==continuous diaphragm sign== (air below heart)", "Pneumomediastinum"]
-      ]}},
-      "==Light index== → % lung collapsed = 100 × [1 − (lung diameter³ ÷ hemithorax diameter³)] · >2 cm = large"
+      ]}, add: "Standard explanation: in a supine patient pleural air collects in the highest part of the pleural space (anterior and basal) instead of at the apex → an abnormally deep, lucent lateral costophrenic angle. This is why pneumothorax is easily missed on supine ICU and trauma films." },
+      { t: "==Light index== → % lung collapsed = 100 × [1 − (lung diameter³ ÷ hemithorax diameter³)] · >2 cm = large", add: "Standard (BTS) teaching: the 2 cm is a separate rule → a rim of air ≥2 cm between lung edge and chest wall, measured at the level of the hilum, ≈ 50% loss of lung volume = large. The American College of Chest Physicians rule instead uses an apex-to-cupola distance of ≥3 cm." }
     ]},
     { type: "patho", title: "Tension pneumothorax", src: "p.812", items: [
       "Causes → mechanical ventilation (high pressures) · aggressive resuscitation (rib #) · trauma",
@@ -29,22 +29,22 @@ MF.addTopic({
     { type: "clinical", title: "TENSION signs (notes)", src: "p.812", items: [
       "Sudden dyspnoea, ↓ SpO₂, altered mentation",
       { mnemonic: "TENSION (notes)", lines: [["T", "Tracheal shift (contralateral)"], ["E", "PEA"], ["N", "Neck veins distended / ↑ JVP"], ["S", "Shift of apex beat (contralateral)"], ["I", "Increased percussion note + ↓ vocal fremitus"], ["O", "Obstructive shock"], ["N", "No breath sounds on affected side"]] },
-      { t: "Untreated pneumothorax → ==no air-lifting by helicopter==", role: "ci" }
+      { t: "Untreated pneumothorax → ==no air-lifting by helicopter==", add: "Standard explanation: trapped air expands as ambient pressure falls with altitude (Boyle's law) → a small pneumothorax can enlarge or become tension, so it is drained before air transport. Flying is advised only after resolution is confirmed on CXR, and diving is avoided for life unless a definitive surgical procedure (pleurectomy) has been done.", role: "ci" }
     ]},
     { type: "emergency", title: "Tension pneumothorax — flowchart", src: "p.813–814", steps: [
-      { t: "Confirmed on CXR / USG", node: "em-tension-ptx", role: "emerg", type: "emergency", why: "Entry to tension pneumothorax protocol" },
+      { t: "Confirmed on CXR / USG", add: "Standard teaching: tension pneumothorax is a clinical diagnosis → decompress at once on the clinical signs and never delay treatment to get a CXR. Bedside USG helps only if it is immediately to hand.", node: "em-tension-ptx", role: "emerg", type: "emergency", why: "Entry to tension pneumothorax protocol" },
       { decision: "Step 1 — wide-bore (14G) needle", branches: [
-        { label: "Adult", steps: [{ t: "==5th ICS anterior to mid-axillary line== (ATLS) · Harrison: 2nd ICS", node: "proc-needle-decompression", role: "emerg", type: "emergency", why: "Adult needle decompression" }] },
+        { label: "Adult", steps: [{ t: "==5th ICS anterior to mid-axillary line== (ATLS) · Harrison: 2nd ICS", add: "Standard teaching: ATLS (10th edition) moved the adult site to the 4th–5th ICS just anterior to the mid-axillary line because the chest wall is thinner there → a standard needle often fails to reach the pleura at the 2nd ICS mid-clavicular line. The 2nd ICS mid-clavicular site remains an accepted alternative.", node: "proc-needle-decompression", role: "emerg", type: "emergency", why: "Adult needle decompression" }] },
         { label: "Child", steps: [{ t: "==2nd ICS mid-clavicular line==", node: "proc-needle-decompression", role: "emerg", type: "emergency", why: "Paediatric needle decompression" }] }
       ]},
       { t: "**Step 2** → ==ICD in triangle of safety== (28–32 Fr usual · 32–36 Fr if haemothorax / large body)", node: "proc-icd", role: "def", type: "treatment", why: "Definitive drainage" },
-      { t: "Triangle of safety → anterior: lateral border ==pectoralis major== · posterior: ==latissimus dorsi== · inferior: ==5th rib==", type: "pearl" },
+      { t: "Triangle of safety → anterior: lateral border ==pectoralis major== · posterior: ==latissimus dorsi== · inferior: ==5th rib==", add: "Standard (BTS) wording: lateral border of pectoralis major, anterior border of latissimus dorsi, a base along the horizontal line of the nipple (≈4th–5th ICS) and an apex just below the axilla. Insert the tube just above the upper border of the rib below to avoid the intercostal neurovascular bundle.", type: "pearl" },
       { t: "Tube tip → pneumothorax ==upwards== · haemothorax upwards + posterior", type: "pearl" },
       { t: "**Step 3** → ==underwater seal drain== (Pleur-evac)", type: "treatment" },
       { mnemonic: "Needle → Tube → Seal" }
     ]},
     { type: "investigation", title: "Underwater seal drain", src: "p.814", items: [
-      { table: { head: ["System", "Look for"], rows: [["Dry", "Orange pressure knob · ==intermittent bubbling== = air leaving"], ["Wet", "Water-seal ==tidaling== · column ~2 cm · bubbling intermittent, not continuous"]] } },
+      { table: { head: ["System", "Look for"], rows: [["Dry", "Orange pressure knob · ==intermittent bubbling== = air leaving"], ["Wet", "Water-seal ==tidaling== · column ~2 cm · bubbling intermittent, not continuous"]] }, add: "Standard explanation: the ~2 cm of water acts as a one-way valve. Tidaling = the water-seal level rises on inspiration and falls on expiration (reversed on a ventilator) and shows the tube is patent. In wet-suction systems, gentle continuous bubbling in the separate suction-control chamber is normal; only continuous bubbling in the water-seal chamber means an air leak." },
       { table: { caption: "Troubleshooting", head: ["Sign", "Means"], rows: [
         { c: ["==Continuous bubbling==", "Air leak · ==bronchopleural fistula=="], role: "danger" },
         ["Bubbling stops", "Tube kinked / malpositioned · or lung re-expanded"]
@@ -55,15 +55,15 @@ MF.addTopic({
         { c: ["==Primary spontaneous==", "No lung disease · ruptured ==apical blebs== · occasional smoker", "==Needle aspiration==", "Thoracoscopic bleb stapling · pleural abrasion"], node: "proc-needle-decompression", role: "first", why: "Primary spontaneous pneumothorax", hl: true },
         { c: ["Secondary", "COPD (bullae) · COVID-19 · ILD · ==S. aureus pneumatocele==", "==Tube thoracostomy==", "VATS bleb stapling"], node: "proc-icd", role: "first", why: "Secondary pneumothorax", see: "copd" },
         { c: ["Traumatic / iatrogenic", "Stab · subclavian line · thoracocentesis · transthoracic biopsy", "O₂ (small) · aspiration (>2 cm) · tube if cyanosed · ==thoracotomy if haemothorax >1500 mL or 200 mL/h × 4 h==", "—"], node: ["rx-oxygen", "proc-icd"], role: "first", why: "Traumatic pneumothorax" }
-      ]}},
+      ]}, add: "Standard (BTS) approach: few symptoms → observe as an outpatient even if large; symptomatic → needle aspiration (or an ambulatory drain); if aspiration fails → small-bore chest drain. Advise stopping smoking, as smoking greatly raises recurrence." },
       { t: "LAM cysts → spontaneous pneumothorax", see: "ild" }
     ]},
     { type: "clinical", title: "Pneumomediastinum", src: "p.815–816", items: [
       { t: "Cause → ==Boerhaave syndrome== (oesophageal rupture — instrumentation, alcoholic vomiting) · trauma", role: "hy" },
       { mnemonic: "Mackler triad = 'VCS'", lines: [["V", "Vomiting"], ["C", "Chest pain — substernal (chemical mediastinitis)"], ["S", "Subcutaneous emphysema (crepitus neck)"]] },
       { t: "Auscultation → ==Hamman crunch== (walking-on-snow crunch with heartbeat)", role: "hy" },
-      "Signs → Naclerio V sign · spinnaker-sail sign",
-      { t: "Treat → high-concentration O₂", node: "rx-oxygen", role: "first", why: "Pneumomediastinum" },
+      { t: "Signs → Naclerio V sign · spinnaker-sail sign", add: "Standard explanation: Naclerio V sign = V-shaped lucency where air outlines the left lower mediastinal border and the medial left hemidiaphragm (classic in Boerhaave). Spinnaker-sail (angel-wing) sign = thymus lifted off the heart by mediastinal air, seen in infants." },
+      { t: "Treat → high-concentration O₂", add: "Standard teaching: spontaneous pneumomediastinum (alveolar rupture with asthma, Valsalva, vomiting or inhaled drugs) is benign → rest, analgesia, observation; O₂ may speed reabsorption of the air. Suspected Boerhaave → confirm with water-soluble contrast swallow / CT, nil by mouth, IV broad-spectrum antibiotics ± antifungal, and urgent surgical or endoscopic repair.", node: "rx-oxygen", role: "first", why: "Pneumomediastinum" },
       { t: "Pleural amylase ↑ in Boerhaave", see: "pleural-effusion" }
     ]},
     { type: "mcq", title: "MCQ in the notes", src: "p.816", items: [

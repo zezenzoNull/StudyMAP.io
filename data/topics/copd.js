@@ -19,7 +19,7 @@ MF.addTopic({
       { mnemonic: "G-C-P-I-D-A = 'Good Cigarettes Pollute Its Delicate Airways'" },
       { h: "α1-antitrypsin deficiency" },
       "==SERPINA1 gene, chromosome 14== · autosomal ==co-dominant==",
-      "Z allele → marked ↓ · null allele → absent → ==panacinar emphysema==",
+      { t: "Z allele → marked ↓ · null allele → absent → ==panacinar emphysema==", add: "Standard teaching: the Z protein misfolds and polymerises inside hepatocytes, so PiZZ can cause both early-onset, lower-lobe panacinar emphysema (much worse in smokers) and neonatal hepatitis / cirrhosis · null alleles make no protein, so they cause lung disease but not liver disease." },
       "Treat → weekly α1-antitrypsin infusions"
     ]},
     { type: "diagnosis", title: "GOLD grade · mMRC · CAT · ABE", src: "p.779–781", wide: true, items: [
@@ -41,11 +41,11 @@ MF.addTopic({
         ["Look", "==Pink puffer== (no central cyanosis)", "==Blue bloater== (central cyanosis)"],
         { c: ["CXR", "Flat diaphragm · ==tubular heart== · blebs/bullae", "↑ bronchovascular markings"], node: "img-cxr", role: "dx", why: "COPD CXR pattern" },
         { c: ["HRCT", "Bulla (merged blebs) → rupture → ==secondary pneumothorax==", "—"], node: "img-hrct", role: "dx", why: "Emphysema bullae", see: "pneumothorax" }
-      ]}}
+      ]}, add: "Standard explanation: DLCO falls in emphysema because alveolar walls and their capillary bed are destroyed, leaving less surface for gas transfer (a low DLCO from scarring is the pattern of pulmonary fibrosis) · DLCO is usually normal in chronic bronchitis and normal or raised in asthma, which helps tell them apart. · Standard HRCT in chronic bronchitis → bronchial wall thickening ± mucus plugging, often with little or no emphysema, and it may be normal · CT is not needed for diagnosis; it is used to assess emphysema before lung-volume reduction and to look for bronchiectasis or lung cancer." }
     ]},
     { type: "clinical", title: "Clinical features", src: "p.782–783", items: [
       "Smoker or rural Indian housewife (biomass) → chronic cough, dyspnoea, sputum",
-      "Better when bracing arms (shopping cart, treadmill) · worse if not leaning forward",
+      { t: "Better when bracing arms (shopping cart, treadmill) · worse if not leaning forward", add: "Standard explanation: bracing the arms fixes the shoulder girdle so the pectoral and other accessory muscles can lift the rib cage · leaning forward pushes the abdominal contents up under the flattened diaphragm, restoring its dome and efficiency · pursed-lip breathing (another typical sign) keeps the small airways open on expiration and reduces air trapping." },
       { t: "Weight loss, ==cachexia → bad prognosis==, temporal wasting", role: "danger" },
       { table: { head: ["Sign", "Meaning"], rows: [
         ["==Barrel chest==", "AP > transverse diameter"],
@@ -74,16 +74,16 @@ MF.addTopic({
       { decision: "Still exacerbating on…", branches: [
         { label: "LABA/LAMA, eos >300", steps: [{ t: "Triple therapy → still >300 → add ==dupilumab==", node: "rx-asthma-biologic", role: "second", type: "treatment", why: "Eosinophilic COPD" }] },
         { label: "LABA+LAMA, eos <100", steps: [{ t: "==Roflumilast== (FEV₁ <50% + chronic bronchitis) · ==azithromycin== (former smokers)", node: ["rx-roflumilast", "rx-azithromycin"], role: "second", type: "treatment", why: "Non-eosinophilic exacerbator" }] },
-        { label: "Persistent dyspnoea", steps: [{ t: "==Ensifentrine== (PDE3 + 4)", node: "rx-roflumilast", role: "second", type: "treatment", why: "Dyspnoea despite LABA+LAMA" }] }
+        { label: "Persistent dyspnoea", steps: [{ t: "==Ensifentrine== (PDE3 + 4)", add: "Ensifentrine is a nebulised dual PDE3/PDE4 inhibitor (bronchodilator + anti-inflammatory) · standard teaching for persistent breathlessness: first check inhaler technique and adherence, and refer for pulmonary rehabilitation (exercise training + education), which improves breathlessness, exercise capacity and quality of life.", node: "rx-roflumilast", role: "second", type: "treatment", why: "Dyspnoea despite LABA+LAMA" }] }
       ]},
       { t: "==LTOT → greatest mortality reduction==: 1–2 L/min nasal ≥16 h/day, SpO₂ >90% · indication ==PaO₂ <55 / SaO₂ <88%==, or PaO₂ 55–60 with right heart failure", node: "proc-ltot", role: "def", type: "treatment", why: "LTOT reduces mortality" },
-      { t: "Lung-volume reduction → VATS bullectomy", role: "def", type: "treatment" }
+      { t: "Lung-volume reduction → VATS bullectomy", add: "Standard teaching: bullectomy removes a giant bulla that is compressing healthier lung, whereas lung-volume reduction surgery resects the worst, usually upper-lobe-predominant emphysema (endobronchial valves collapse that lobe bronchoscopically instead) · lung transplant is the option for very severe disease.", role: "def", type: "treatment" }
     ]},
     { type: "emergency", title: "Exacerbation (E-COPD) & NIV", src: "p.784–785", steps: [
-      { t: "Moderate → any 3: RR >24 · HR >95 · SaO₂ <92% on air · CRP >10", node: "lab-crp", role: "dx", type: "diagnosis", why: "E-COPD severity" },
-      { t: "Severe → ==pCO₂ >45 + pH <7.35== (respiratory acidosis)", node: "lab-abg", role: "danger", type: "emergency", why: "Severe exacerbation" },
-      { t: "==Non-invasive ventilation (BiPAP)==", node: "proc-niv", role: "emerg", type: "emergency", why: "Hypercapnic E-COPD" },
-      { t: "NIV also for → acute pulmonary oedema · weaning (SIMV) · myasthenic crisis · severe COVID-19", type: "pearl" },
+      { t: "Moderate → any 3: RR >24 · HR >95 · SaO₂ <92% on air · CRP >10", add: "Standard (Rome proposal, adopted by GOLD): moderate means at least 3 of 5 criteria · the fifth is breathlessness ≥5 on a 0–10 visual analogue scale, and a fall in SaO₂ of >3% from baseline also counts · first exclude mimics such as pneumonia, pulmonary embolism, heart failure and pneumothorax.", node: "lab-crp", role: "dx", type: "diagnosis", why: "E-COPD severity" },
+      { t: "Severe → ==pCO₂ >45 + pH <7.35== (respiratory acidosis)", add: "Standard teaching: in E-COPD give controlled oxygen by Venturi mask (24–28%) to a target SpO₂ of 88–92%, because uncontrolled high-flow oxygen worsens hypercapnia · repeat the ABG 30–60 minutes after starting or changing oxygen.", node: "lab-abg", role: "danger", type: "emergency", why: "Severe exacerbation" },
+      { t: "==Non-invasive ventilation (BiPAP)==", add: "Standard E-COPD treatment given alongside → nebulised salbutamol ± ipratropium · oral prednisolone 30–40 mg daily for 5 days · an antibiotic if sputum is purulent · NIV is started when respiratory acidosis persists after this initial treatment, and intubation follows if NIV fails or is contraindicated.", node: "proc-niv", role: "emerg", type: "emergency", why: "Hypercapnic E-COPD" },
+      { t: "NIV also for → acute pulmonary oedema · weaning (SIMV) · myasthenic crisis · severe COVID-19", add: "Correction to learn: SIMV is an invasive ventilator mode that can be used during weaning, not a form of NIV · NIV's role in weaning is early extubation straight onto NIV in hypercapnic COPD, which shortens invasive ventilation · other standard NIV uses → obesity hypoventilation and neuromuscular / chest-wall disease.", type: "pearl" },
       { t: "==NIV absolute C/I== → unresponsive · can't protect airway · facial trauma · apnoea · haemodynamic instability · severe GI bleed", node: "proc-niv", role: "ci", type: "emergency", why: "NIV contraindications" },
       { mnemonic: "45 & 7.35 → BiPAP alive" }
     ]},
